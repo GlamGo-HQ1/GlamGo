@@ -134,3 +134,4 @@ reviews (id, booking_id, client_id, stylist_id, rating, comment, created_at)
 ## Questions? Ask the Team
 
 If you're unsure about a decision, check `PRODUCT_DECISIONS.md` first. If it's not covered there, ask the team before building.
+<!-- Reviewed by Lead Developer -->
