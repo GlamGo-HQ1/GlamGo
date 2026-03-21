@@ -1,119 +1,72 @@
-# User Flows
+# GlamGo Hackathon User Flows
+This document outlines the core user journey paths that we are building for the Hackathon MVP.
 
-## Flow 1: Client Discovers and Books a Hairstyle
+---
 
-```
-[Open App]
-    │
-    ▼
-[See Premium Gallery] ← Grid of beautiful hairstyle cards
-    │
-    ├── Filter by category (Braids, Locs, etc.)
-    ├── Search by name
-    │
-    ▼
-[Tap a Style] → Style Detail Page
-    │
-    ├── See multiple images
-    ├── See description, price range, duration
-    │
-    ▼
-[See Available Stylists] ← "Stylists who do this style"
-    │
-    ├── Each stylist: photo, rating, their price, portfolio
-    │
-    ▼
-[Tap "Book"] → Booking Page
-    │
-    ├── Select date
-    ├── Select time slot
-    ├── Enter address
-    ├── See total price
-    │
-    ▼
-[Tap "Proceed to Payment"] → Payment Page
-    │
-    ├── Order summary
-    ├── Redirect to Interswitch
-    ├── Enter card details
-    │
-    ▼
-[Payment Complete] → Confirmation Page
-    │
-    ├── Booking confirmed ✅
-    ├── Booking details shown
-    ├── "View My Bookings" button
-    │
-    ▼
-[After Service] → Review Page
-    │
-    ├── Rate 1-5 stars
-    ├── Write comment
-    ├── Submit review
-    │
-    ▼
-[Done] ← Stylist gets paid, review is public
+## 1. Client Booking (Happy Path MVP)
+This is the **primary flow** that the judges will see during the demo. It emphasizes the journey from inspiration to secure escrow payment.
+
+```mermaid
+flowchart TD
+    %% Styling
+    classDef page fill:#111,stroke:#333,stroke-width:2px,color:#fff,rx:8px,ry:8px;
+    classDef action fill:#FF4081,stroke:#C2185B,stroke-width:2px,color:#fff,rx:4px,ry:4px;
+    classDef payment fill:#388E3C,stroke:#1B5E20,stroke-width:2px,color:#fff,rx:4px,ry:4px;
+    classDef external fill:#f39c12,stroke:#d68910,stroke-width:2px,color:#fff,rx:4px,ry:4px;
+    
+    A[📱 Open App]:::page --> B[🖼️ View Premium Gallery]:::page
+    
+    B --> C{Filter/Search}
+    C -->|Braid, Locs, etc.| D[✨ View Style Details]:::page
+    
+    D -->|See Description & Images| E[Stylists Available for this Style]:::page
+    
+    E --> F([Select Stylist]):::action
+    F --> G[📅 Select Date & Time slot]:::page
+    
+    G --> H([Confirm Location Address]):::action
+    H --> I[💳 Booking & Payment Summary]:::page
+    
+    I -->|Redirect| J([💸 Interswitch Payment Gateway]):::external
+    J -->|Success Verify| K[✅ Booking Confirmed]:::payment
+    
+    K --> L>Generate 4-Digit Confirmation Code]
+    K --> M{Service Day}
+    
+    M --> N[Stylist Arrives & Performs Service]
+    N --> O([Client Gives Code to Stylist]):::action
+    O --> P[🔒 Escrow Funds Released to Stylist]:::payment
+    
+    P --> Q([⭐ Client Leaves Review]):::action
+    Q --> R[Dashboard]:::page
 ```
 
-## Flow 2: Stylist Signs Up and Gets Booked
+---
 
-```
-[Register as Stylist]
-    │
-    ├── Enter name, email, phone
-    ├── Select role: Stylist
-    │
-    ▼
-[Complete Profile]
-    │
-    ├── Add bio
-    ├── Upload portfolio photos
-    ├── Select specialties
-    ├── Set service area
-    │
-    ▼
-[Link Styles They Can Do]
-    │
-    ├── Browse hairstyles in system
-    ├── Select ones they can do
-    ├── Set their price for each
-    ├── Upload their own photos for each style
-    │
-    ▼
-[Wait for Bookings]
-    │
-    ├── Profile is visible when clients browse styles
-    │
-    ▼
-[Receive Booking Notification]
-    │
-    ├── See booking details
-    ├── Accept or decline
-    │
-    ▼
-[Go to Client Location]
-    │
-    ├── Make the hair
-    ├── Client confirms in app
-    │
-    ▼
-[Get Paid] ← Payment released to stylist account
-```
+## 2. Stylist Onboarding & Fulfillment
+The secondary flow showing how stylists get onto the platform and receive their payouts.
 
-## Flow 3: Authentication
+```mermaid
+flowchart TD
+    %% Styling
+    classDef page fill:#111,stroke:#333,stroke-width:2px,color:#fff,rx:8px,ry:8px;
+    classDef action fill:#FF4081,stroke:#C2185B,stroke-width:2px,color:#fff,rx:4px,ry:4px;
+    classDef payment fill:#388E3C,stroke:#1B5E20,stroke-width:2px,color:#fff,rx:4px,ry:4px;
+    
+    A[📱 Stylist Sign Up]:::page --> B[📸 Complete Profile & Portfolio]:::page
+    B --> C([Link Pre-defined Styles they can do]):::action
+    C --> D[Set Pricing for each Style]:::page
+    
+    D --> E{Wait for Client Booking}
+    E -->|Notification| F[🔔 New Booking Request]:::page
+    
+    F --> G([Accept Request]):::action
+    
+    G --> H[🚗 Travel to Client on Specified Date]
+    H --> I[✂️ Perform Hair Service]
+    
+    I --> J([Receive 4-Digit Code from Client]):::action
+    J --> K[Input Code in App]:::page
+    K --> L[💰 Funds Transferred to Stylist Wallet]:::payment
 
-```
-[Landing Page]
-    │
-    ├── "Sign Up" → Register Page
-    │     ├── Enter email, password, name
-    │     ├── Select role: Client or Stylist
-    │     ├── → Redirect to dashboard
-    │
-    ├── "Log In" → Login Page
-    │     ├── Enter email, password
-    │     ├── → Redirect to dashboard (based on role)
-    │
-    └── Browse gallery (no auth needed for browsing)
-         └── Auth required only when booking
 ```
