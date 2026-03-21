@@ -27,7 +27,7 @@
 
 ---
 
-## 3. Brother (Lead Developer)
+## 3. Overcomer (Lead Developer)
 **Focus:** Technical Feasibility, API Integration Strategy, MVP Scoping
 
 * **Scope Management:** Consistently challenged complex feature bloat (e.g., bot calls, multi-stylist routing logic), ensuring the roadmap remained achievable within a 4-day hackathon sprint.
