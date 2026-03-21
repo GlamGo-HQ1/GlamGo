@@ -43,8 +43,8 @@ GlamGo is a visual hair marketplace where clients discover hairstyles, find veri
 | Name | Role | Focus |
 | --- | --- | --- |
 | Beloved | Product Engineer | Product strategy, UI/UX design, gallery curation |
-| Brother | Lead Developer | Backend, API integrations, database architecture |
-| Bukky | Industry Specialist | Domain expertise, hairstyle categorization, flow validation |
+| Overcomer | Lead Developer | Backend, API integrations, database architecture |
+| Bukola | Industry Specialist | Domain expertise, hairstyle categorization, flow validation |
 
 ## Project Structure
 
