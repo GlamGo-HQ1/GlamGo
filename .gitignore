@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+.next/
+out/
+build/
+dist/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+
+# AI / Internal
+.agents/
+.gemini/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Internal working files (not for repo)
+HANDOVER_SESSION_1.md
+DAY_0_AGENDA.md
+PRE_HACKATHON_PLAN.md
+context/PROJECT_CONTEXT.md
+
+# Large files
+slides/
+research/
+notes/
