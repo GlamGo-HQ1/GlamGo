@@ -1,0 +1,18 @@
+-- Seed Hairstyles for Gallery
+insert into hairstyles (name, category, description, images, price_min, price_max, duration_hrs, is_trending) values
+('Goddess Braids', 'braids', 'Ethereal knotless braids with curly leave-outs for a romantic, premium look.', array['https://images.unsplash.com/photo-1605980776566-0486c3ac7617?q=80&w=600'], 25000, 45000, 4.5, true),
+('Bohemian Knotless', 'braids', 'Lightweight knotless braids mixed with free-flowing human hair curls.', array['https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=600'], 30000, 50000, 5.0, true),
+('Classic Stitch Braids', 'cornrows', 'Sharp, geometrically precise stitch cornrows straight back or into a bun.', array['https://images.unsplash.com/photo-1615555462529-659223e710ae?q=80&w=600'], 15000, 25000, 2.5, false),
+('Fulani Tribal Braids', 'cornrows', 'Intricate cornrow patterns with central braids and side drops, adorned with beads.', array['https://images.unsplash.com/photo-1583001809873-c6cd8dedb1cb?q=80&w=600'], 18000, 35000, 3.5, true),
+('Butterfly Locs', 'locs', 'Distressed, textured faux locs with signature loops for a bohemian vibe.', array['https://images.unsplash.com/photo-1630132145346-6bf46c3b6f9a?q=80&w=600'], 25000, 40000, 4.0, true),
+('Soft Locs', 'locs', 'Smooth, tension-free wrapped locs that are lightweight and flow naturally.', array['https://images.unsplash.com/photo-1605333190886-f40c74cb1e23?q=80&w=600'], 22000, 38000, 4.0, false),
+('Bone Straight Frontal', 'weaves', 'Silky, ultra-flat weave install with a perfectly melted lace frontal.', array['https://images.unsplash.com/photo-1563462923588-4672e87c0c45?q=80&w=600'], 45000, 80000, 3.0, true),
+('Body Wave Sew-in', 'weaves', 'Voluminous body wave bundles installed with a seamless leave-out.', array['https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600'], 35000, 60000, 2.5, false),
+('HD Lace Wig Install', 'wigs', 'Flawless wig application featuring HD lace and custom hairline plucking.', array['https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600'], 20000, 35000, 1.5, true),
+('Glueless Bob Unit', 'wigs', 'Sharp, blunt-cut bob wig styled securely without adhesives.', array['https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=600'], 15000, 25000, 1.0, false),
+('Silk Press', 'natural', 'Silky smooth, high-shine straightening treatment for natural hair types.', array['https://images.unsplash.com/photo-1605333190886-f40c74cb1e23?q=80&w=600'], 12000, 25000, 1.5, true),
+('Big Chop + Tapered Cut', 'natural', 'Liberating big chop styled into a chic, edgy tapered fro.', array['https://images.unsplash.com/photo-1512495039889-52a3b799c9bc?q=80&w=600'], 8000, 15000, 1.0, false),
+('Passion Twists', 'twists', 'Silky, curly two-strand twists that mimic natural distressed textures.', array['https://images.unsplash.com/photo-1605333190886-f40c74cb1e23?q=80&w=600'], 18000, 30000, 3.5, false),
+('Marley Twists', 'twists', 'Chunky, textured twists using kinky hair for a protective, natural look.', array['https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600'], 15000, 25000, 3.0, false),
+('Water Wave Crochet', 'crochet', 'Quick, voluminous water wave curls installed via crochet method.', array['https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600'], 10000, 18000, 1.5, false),
+('Sleek Low Bun', 'updos', 'Elegant, glass-like slicked-back bun perfect for events and bridals.', array['https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=600'], 8000, 15000, 1.0, true);
