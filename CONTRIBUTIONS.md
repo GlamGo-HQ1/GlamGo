@@ -36,7 +36,14 @@ The following architectural gaps were identified by the Product Manager during t
 
 ## Phase 2: Database & Seed Data
 
-*[To be filled as work is completed]*
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-23 | Lead Dev (Overcomer) | Created complete Phase 2 database schema (`users`, `stylist_profiles`, `hairstyles`, `bookings`, `reviews`) and enums. |
+| 2026-03-23 | Lead Dev (Overcomer) | Implemented Core Row Level Security (RLS) across all tables. |
+| 2026-03-23 | Lead Dev (Overcomer) | Seeded database with 16 categorized hairstyles and 3 test stylist profiles (with Auth integration). |
+| 2026-03-23 | Lead Dev (Overcomer) | Created `portfolio` and `hairstyle-images` Supabase storage buckets via JS SDK. |
+| 2026-03-23 | Product Manager | Audited Phase 2 schema via OpenCode, identifying critical RLS gaps (too broad booking updates, missing review CRUD, loose storage rules). |
+| 2026-03-23 | Lead Dev (Overcomer) | Resolved audit gaps: split booking update rules, added review delete/update paths, and restricted storage inserts strictly to registered stylists. |
 
 ---
 
