@@ -3,8 +3,13 @@ import Link from 'next/link'
 import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import styles from './Navbar.module.css'
+import { createClient } from '@/lib/supabase/server'
+import { logout } from '@/app/auth/actions'
 
-export function Navbar() {
+export async function Navbar() {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <nav className={styles.navbar}>
       <Container>
@@ -15,13 +20,25 @@ export function Navbar() {
           
           <div className={styles.navLinks}>
             <Link href="/gallery" className={styles.navItem}>Gallery</Link>
-            {/* We'll handle auth state later in Phase 3 */}
-            <Link href="/auth/login">
-              <Button variant="secondary" style={{ padding: '8px 16px' }}>Log In</Button>
-            </Link>
-            <Link href="/auth/register">
-              <Button variant="primary" style={{ padding: '8px 16px' }}>Sign Up</Button>
-            </Link>
+            {user ? (
+              <>
+                <Link href="/dashboard">
+                  <Button variant="secondary" style={{ padding: '8px 16px' }}>Dashboard</Button>
+                </Link>
+                <form action={logout}>
+                  <Button type="submit" variant="primary" style={{ padding: '8px 16px' }}>Sign Out</Button>
+                </form>
+              </>
+            ) : (
+              <>
+                <Link href="/auth/login">
+                  <Button variant="secondary" style={{ padding: '8px 16px' }}>Log In</Button>
+                </Link>
+                <Link href="/auth/register">
+                  <Button variant="primary" style={{ padding: '8px 16px' }}>Sign Up</Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </Container>
