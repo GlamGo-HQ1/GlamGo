@@ -49,4 +49,21 @@ The following architectural gaps were identified by the Product Manager during t
 
 ## Phase 3: Authentication
 
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-23 | Lead Dev (Overcomer) | Created root Next.js middleware (`src/middleware.ts`) with route protection for `/dashboard` and `/booking`, and redirect logic for authenticated users on auth pages. |
+| 2026-03-23 | Lead Dev (Overcomer) | Built Supabase admin client (`src/lib/supabase/admin.ts`) for secure server-side user provisioning bypassing RLS. |
+| 2026-03-23 | Lead Dev (Overcomer) | Implemented `login`, `register`, and `logout` server actions (`src/app/auth/actions.ts`) with role-based user + stylist_profile creation. |
+| 2026-03-23 | Lead Dev (Overcomer) | Built `AuthForm` and `RoleSelector` components with GlamGo design system styling (glassmorphism, gold accents). |
+| 2026-03-23 | Lead Dev (Overcomer) | Created `/auth/register`, `/auth/login`, and `/auth/callback` page routes with full Supabase Auth integration. |
+| 2026-03-23 | Lead Dev (Overcomer) | Updated `Navbar` to async Server Component with dynamic session-aware rendering (Dashboard/Sign Out vs Log In/Sign Up). |
+| 2026-03-23 | Lead Dev (Overcomer) | Added reproducible `scripts/seed_stylists.js` and `npm run seed` command for audit trail compliance. |
+| 2026-03-23 | Product Manager (Overcomer) | Caught git attribution issue — all commits were using `glamgo@hackathon.dev` instead of verified GitHub email, preventing contribution graph tracking. Fixed via `git filter-branch` rewrite across all 10 affected commits. |
+
+---
+
+## Phase 4A: Landing Page & 3D UI
+
+> **Session handover:** Product Engineer (Beloved) taking over Phase 4A while Lead Developer (Overcomer) resumes from where Beloved stops.
+
 *[To be filled as work is completed]*
