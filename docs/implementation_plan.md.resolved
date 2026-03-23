@@ -1,0 +1,282 @@
+# GlamGo — Technical Build Roadmap
+
+> **Purpose:** Atomic-level sequence of everything we build, in dependency order.
+> Each phase must be COMPLETE before the next one starts.
+> **Stack:** Next.js 14 (App Router) · Supabase (Auth + DB + Storage) · Interswitch API · Google Maps API · Vercel
+
+---
+
+## Phase 1: Project Scaffolding & Infrastructure
+**Owner:** Lead Developer (Overcomer)
+**Time:** ~2 hours
+**Depends on:** Nothing — this is the foundation
+
+| # | Task | Details |
+| --- | --- | --- |
+| 1.1 | Initialize Next.js 14 project | `npx create-next-app@latest ./ --ts --app --src-dir --eslint` in `src/` |
+| 1.2 | Install core dependencies | `@supabase/supabase-js`, `@supabase/ssr`, `zod` |
+| 1.3 | Set up environment variables | `.env.local` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, Interswitch keys |
+| 1.4 | Create Supabase client utilities | `src/lib/supabase/client.ts` (browser), `src/lib/supabase/server.ts` (server components), `src/lib/supabase/middleware.ts` |
+| 1.5 | Set up root layout | `src/app/layout.tsx` — fonts (Google Fonts), metadata, global CSS import |
+| 1.6 | Create global CSS / design tokens | `src/app/globals.css` — color palette, typography scale, spacing, CSS variables |
+| 1.7 | Build shared UI components (Round 1) | `Button`, `Input`, `Container`, `LoadingSkeleton`, `Toast`, `Avatar`, `PriceTag`, `StarRating`, `CategoryTag` |
+| 1.8 | Build `Navbar` + `Footer` | Navigation with logo, links, auth state indicator |
+| 1.9 | Deploy skeleton to Vercel | Confirm the empty shell deploys and Supabase env vars connect |
+
+**✅ Phase 1 Done = Empty app deploys, connects to Supabase, shared components exist**
+
+---
+
+## Phase 2: Database & Seed Data
+**Owner:** Lead Developer
+**Time:** ~2 hours
+**Depends on:** Phase 1 (Supabase connection working)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 2.1 | Create `users` table | UUID PK, email, full_name, phone, role (client/stylist), avatar_url, city, area |
+| 2.2 | Create `stylist_profiles` table | FK to users, bio, average_rating, total_reviews, service_mode (enum: salon/mobile/both), service_area[], specialties[], portfolio_images[], is_available, wallet_balance |
+| 2.3 | Create `hairstyles` table | name, category (enum: braids/cornrows/locs/weaves/wigs/natural/twists/crochet/updos), images[], price_range, duration, is_trending |
+| 2.4 | Create `stylist_styles` junction table | Links stylists ↔ hairstyles with per-stylist pricing and portfolio |
+| 2.5 | Create `bookings` table | client_id, stylist_id, style_id, date, time_slot, client_address, status (pending→confirmed→in_progress→completed→cancelled/declined), payment_fields, confirmation_code |
+| 2.6 | Create `reviews` table | booking_id (unique), client_id, stylist_id, rating (1-5), comment |
+| 2.7 | Add database indexes | category, is_available+rating, client bookings, stylist bookings, stylist reviews |
+| 2.8 | Set up Row Level Security (RLS) | Public read on hairstyles + stylist_profiles; authenticated CRUD on bookings + reviews; owner-only on user profiles |
+| 2.9 | Create Supabase Storage bucket | `hairstyle-images` bucket for gallery photos, `portfolio` bucket for stylist photos |
+| 2.10 | Seed hairstyle data | Insert 20-30 hairstyles with categories, descriptions, AI-enhanced images (from Bukky's data) |
+| 2.11 | Seed test stylist profiles | 3-5 fake stylist profiles with portfolio images for demo |
+
+**✅ Phase 2 Done = All tables exist, RLS active, seed data loaded, storage buckets ready**
+
+---
+
+## Phase 3: Authentication
+**Owner:** Lead Developer
+**Time:** ~2 hours
+**Depends on:** Phase 2 (users table exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 3.1 | Configure Supabase Auth | Enable email/password provider in Supabase dashboard |
+| 3.2 | Create auth middleware | `src/middleware.ts` — refresh session on every request, protect `/dashboard` and `/booking` routes |
+| 3.3 | Build `AuthForm` component | Shared login/register form with email + password fields |
+| 3.4 | Build `RoleSelector` component | Client vs Stylist toggle during registration |
+| 3.5 | Create `/auth/register` page | Registration form → creates user in Supabase Auth → inserts into `users` table with selected role → if stylist, also creates empty `stylist_profiles` row |
+| 3.6 | Build `ClientHairProfile` form | During client signup: hair type, length, texture (stored in `users` table or separate profile) |
+| 3.7 | Build `StylistProfileSetup` flow | After stylist registers: bio, upload portfolio, select specialties, set service area, link styles they can do + set prices |
+| 3.8 | Create `/auth/login` page | Login form → redirects to role-based dashboard |
+| 3.9 | Create `/auth/callback/route.ts` | Handles Supabase auth callback (email confirmation redirect) |
+| 3.10 | Update `Navbar` | Show login/register buttons when logged out, avatar + dashboard link when logged in |
+
+**✅ Phase 3 Done = Users can register as client or stylist, fill out profiles, login, see protected routes**
+
+---
+
+## Phase 4A: Landing Page (The First Impression)
+**Owner:** Product Lead (design + 3D) · Lead Developer (wiring)
+**Time:** ~3 hours
+**Depends on:** Phase 1 (shared components + layout)
+
+> [!IMPORTANT]
+> This is the PUBLIC marketing page. Visitors land here BEFORE entering the platform. It sells the vision. Judges see this first.
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4A.1 | Design landing page layout | Hero section, value proposition, feature highlights, CTA ("Get Started" / "Explore Styles") |
+| 4A.2 | Build 3D hero scene (Spline) | Interactive 3D element using Spline — e.g. rotating hair model, floating UI cards, or abstract beauty scene. Embed via `@splinetool/react-spline` |
+| 4A.3 | Build landing `HeroSection` | Headline ("Your Hair, Your Way"), subtext, CTA button, 3D scene background |
+| 4A.4 | Build `FeatureShowcase` | 3-4 value prop cards: Visual Gallery, Secure Payment, Verified Stylists, Ratings |
+| 4A.5 | Build `HowItWorks` | 3-step visual: Browse → Book & Pay → Get Styled |
+| 4A.6 | Build `SocialProof` section | Testimonials or stats (can be mock data for demo) |
+| 4A.7 | Build `LandingCTA` footer | Final CTA: "Join GlamGo Today" → links to `/auth/register` |
+| 4A.8 | Wire up Landing page `/` | Assemble all sections, add scroll animations, mobile-responsive |
+| 4A.9 | Performance: lazy-load Spline | Load 3D scene only after page paint, show fallback image on mobile/low-GPU |
+
+**✅ Phase 4A Done = Beautiful marketing landing page with 3D visuals, clear value prop, CTA → register**
+
+---
+
+## Phase 4B: Platform Gallery & Discovery (The Hook)
+**Owner:** Frontend: Product Lead · Backend: Lead Developer
+**Time:** ~4 hours
+**Depends on:** Phase 2 (hairstyles seeded) + Phase 3 (auth working)
+
+> [!IMPORTANT]
+> This is the IN-APP experience after login/signup. The gallery must look premium — it's the core product.
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.1 | Build `GalleryHero` | "Find Your Next Look" headline with search bar (distinct from landing hero) |
+| 4B.2 | Build `CategoryFilter` | Horizontal scrolling pills: All, Braids, Cornrows, Locs, Weaves, Wigs, Natural, Twists, Crochet, Updos |
+| 4B.3 | Build `HairstyleCard` | Image (with `next/image`), style name, price range (₦), duration, hover animation |
+| 4B.4 | Build `HairstyleGrid` | Responsive CSS grid layout for cards |
+| 4B.5 | Wire up Gallery page `/gallery` | Server Component: fetch hairstyles from Supabase → GalleryHero + CategoryFilter + HairstyleGrid |
+| 4B.6 | Add category filtering logic | URL search params `?category=braids` → filter Supabase query |
+| 4B.7 | Build `StyleImageGallery` | Carousel or grid of multiple images for a single style |
+| 4B.8 | Build `StyleInfo` | Name, category tag, description, price range, estimated duration |
+| 4B.9 | Build `StylistCard` (mini) | Avatar, name, rating stars, their price for this style, service mode badge |
+| 4B.10 | Build `StylistList` | "Stylists Who Do This Style" — fetches from `stylist_styles` joined with `stylist_profiles` |
+| 4B.11 | Wire up Style Detail page `/styles/[id]` | Server Component: fetch style + available stylists → render gallery + info + stylist list |
+| 4B.12 | Build `StylistHeader` | Avatar, name, bio, rating, specialties tags, service mode badge |
+| 4B.13 | Build `StylistPortfolio` | Grid of portfolio images |
+| 4B.14 | Build `StylistReviews` + `ReviewCard` | List of reviews with star display and comment |
+| 4B.15 | Build `StylistStyles` | Styles this stylist offers with their specific prices |
+| 4B.16 | Wire up Stylist Profile `/stylists/[id]` | Server Component: fetch profile + styles + reviews |
+| 4B.17 | Create GET `/api/stylists/route.ts` | Query stylists with optional category/area filters |
+
+**✅ Phase 4B Done = Gallery loads with real data, category filtering works, style detail shows stylists, stylist profiles render with reviews**
+
+---
+
+## Phase 5: Booking Flow
+**Owner:** Lead Developer
+**Time:** ~3 hours
+**Depends on:** Phase 3 (auth working) + Phase 4 (style + stylist pages exist)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 5.1 | Build `BookingSummary` | Shows selected style image + name + selected stylist name + price |
+| 5.2 | Build `DatePicker` | Calendar for selecting appointment date (min: tomorrow) |
+| 5.3 | Build `TimeSlotPicker` | Morning / Afternoon / Evening slots (hardcoded for hackathon) |
+| 5.4 | Build `LocationInput` with Google Maps | Address input with Google Maps Places Autocomplete API for address suggestions |
+| 5.5 | Build `NearbyMap` (optional) | Small Google Maps embed showing stylist location relative to client (wow factor for judges) |
+| 5.6 | Build `PriceSummary` | Stylist price + service fee = total |
+| 5.7 | Wire up Booking page `/booking/[styleId]/[stylistId]` | Client Component: fetch style + stylist data → render booking form → collect date, time, address |
+| 5.8 | Create POST `/api/bookings/route.ts` | Validates input (Zod) → creates booking row with status=pending, generates 4-digit confirmation_code, returns booking ID |
+| 5.9 | Add "Proceed to Payment" button | On submit: creates booking via API → redirects to `/payment?bookingId=xxx` |
+
+**✅ Phase 5 Done = Client can select date/time/location, booking is created in DB with pending status**
+
+---
+
+## Phase 6: Payment Integration (Interswitch)
+**Owner:** Lead Developer
+**Time:** ~4 hours
+**Depends on:** Phase 5 (booking exists in DB)
+
+> [!CAUTION]
+> This is the CORE differentiator. Payment must work end-to-end for the demo.
+
+| # | Task | Details |
+| --- | --- | --- |
+| 6.1 | Set up Interswitch sandbox credentials | Register on Interswitch developer portal, get test merchant code, API keys |
+| 6.2 | Build `PaymentSummary` component | Booking details + total price + "Pay with Interswitch" button |
+| 6.3 | Create POST `/api/payment/initiate/route.ts` | Generates Interswitch payment request: transaction ref, amount, redirect URL, hash |
+| 6.4 | Build `/payment` page | Shows PaymentSummary → on click, redirects to Interswitch hosted payment page |
+| 6.5 | Create GET `/api/payment/verify/route.ts` | Interswitch redirects back here with transaction ref → verify payment status via Interswitch API → update booking `payment_status` to `paid` and `status` to `confirmed` |
+| 6.6 | Build `PaymentStatus` component | Shows success ✅ / failure ❌ / pending ⏳ states |
+| 6.7 | Build `/payment/callback` page | Receives Interswitch redirect → calls verify API → shows PaymentStatus → link to booking confirmation |
+| 6.8 | Build `BookingConfirmation` page `/booking/confirm` | Shows "Booking Confirmed!" + booking details + 4-digit confirmation code + "View My Bookings" button |
+
+**✅ Phase 6 Done = Client pays via Interswitch sandbox, money is "escrowed", booking status updates, confirmation code displayed**
+
+---
+
+## Phase 7: Dashboards & Service Completion
+**Owner:** Lead Developer + Product Lead (styling)
+**Time:** ~3 hours
+**Depends on:** Phase 6 (bookings with payment exist)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 7.1 | Build `BookingCard` | Style image, stylist name, date, time, location, status badge (Pending/Confirmed/In Progress/Completed) |
+| 7.2 | Build `BookingList` | Upcoming + Past tabs with BookingCards |
+| 7.3 | Wire up Client Dashboard `/dashboard` | Fetch client's bookings -> render BookingList + show confirmation codes for confirmed/upcoming |
+| 7.4 | Build Stylist Dashboard `/dashboard/stylist` | Fetch stylist's bookings -> show incoming requests + accepted upcoming |
+| 7.5 | Create Accept/Decline APIs | `PATCH /api/bookings/[id]/accept` (status=confirmed) and `PATCH /api/bookings/[id]/decline` (status=declined, triggers fake refund to client internal wallet) |
+| 7.6 | Add Accept/Decline UI | Buttons on Stylist Dashboard for pending incoming requests |
+| 7.7 | Add "Enter Code" flow on Stylist Dashboard | Stylist enters 4-digit code -> API validates -> booking status changes to `in_progress` |
+| 7.8 | Add "Service Rendered" API | Client taps -> API changes booking status to `completed` -> moves funds to stylist `wallet_balance` (simulated escrow release) |
+| 7.9 | Build Review page `/review/[bookingId]` | Star rating (1-5) + comment textarea + submit |
+| 7.9 | Redirect to review after "Service Rendered" | After marking complete → redirect to `/review/[bookingId]` |
+
+**✅ Phase 7 Done = Full cycle works: booking → pay → code → service start → service done → review**
+
+---
+
+## Phase 8: Polish, Demo Prep & Deploy
+**Owner:** All team members
+**Time:** ~3 hours
+**Depends on:** Phases 1-7 complete
+
+| # | Task | Details |
+| --- | --- | --- |
+| 8.1 | Visual polish pass | Ensure every page matches the chosen design direction. Premium colors, animations, hover states |
+| 8.2 | Upload final AI-enhanced gallery images | Replace seed images with Bukky's hairstyle photos, AI-enhanced by Product Lead |
+| 8.3 | Responsive check | Test on mobile viewport (judges often check mobile) |
+| 8.4 | Error states | Empty states, loading skeletons, form validation messages |
+| 8.5 | Create demo walkthrough script | Written script of exactly what to click during the 5-minute demo |
+| 8.6 | Set up demo accounts | Pre-create 1 client account + 1 stylist account with realistic data |
+| 8.7 | Final Vercel deploy | Production build, environment variables confirmed, custom domain if available |
+| 8.8 | Smoke test full flow | Run through the 11-step demo flow end-to-end on production URL |
+
+**✅ Phase 8 Done = Production-ready demo, walkthrough script ready, full flow tested**
+
+---
+
+## Build Sequence Dependency Graph
+
+```mermaid
+flowchart LR
+    classDef foundation fill:#1a1a2e,stroke:#e94560,color:#fff
+    classDef data fill:#16213e,stroke:#0f3460,color:#fff
+    classDef auth fill:#0f3460,stroke:#533483,color:#fff
+    classDef ui fill:#533483,stroke:#e94560,color:#fff
+    classDef core fill:#e94560,stroke:#fff,color:#fff
+    classDef final fill:#388E3C,stroke:#1B5E20,color:#fff
+
+    P1[Phase 1: Scaffolding]:::foundation --> P2[Phase 2: Database]:::data
+    P2 --> P3[Phase 3: Auth]:::auth
+    P1 --> P4[Phase 4: Gallery UI]:::ui
+    P2 --> P4
+    P3 --> P5[Phase 5: Booking]:::core
+    P4 --> P5
+    P5 --> P6[Phase 6: Payment]:::core
+    P6 --> P7[Phase 7: Dashboards]:::core
+    P7 --> P8[Phase 8: Polish]:::final
+```
+
+---
+
+## Time Estimate Summary
+
+| Phase | Hours | Parallel? |
+| --- | --- | --- |
+| 1. Scaffolding | ~2h | No — must be first |
+| 2. Database | ~2h | No — needs Phase 1 |
+| 3. Auth + Profiles | ~3h | Can overlap with Phase 4A |
+| 4A. Landing Page + 3D | ~3h | **Yes** — Product Lead does this while Dev does Auth |
+| 4B. Gallery UI | ~4h | After Auth |
+| 5. Booking + Maps | ~3h | No — needs Auth + Gallery |
+| 6. Payment | ~4h | No — needs Booking |
+| 7. Dashboards | ~3h | No — needs Payment |
+| 8. Polish | ~3h | **Yes** — All hands |
+| **TOTAL** | **~27h** | With parallelization: **~22-24h** |
+
+> [!WARNING]
+> 4-day hackathon = ~48 working hours max.
+> We use ~24h on code, leaving ~24h for design, pitch deck, sleep, and debugging.
+> This is tight but achievable if we follow the sequence.
+
+---
+
+## Completeness Cross-Check
+
+Every feature from the Hackathon Framework mapped to a build phase:
+
+| Framework Feature | Build Phase | Status |
+| --- | --- | --- |
+| Hair Gallery (AI-enhanced photos) | Phase 4B (4B.1–4B.6) | ✅ Covered |
+| Stylist Profiles (portfolio, rating, badge) | Phase 4B (4B.12–4B.16) | ✅ Covered |
+| Service Mode Badge | Phase 4B (4B.9, 4B.12) | ✅ Covered |
+| Nearby Stylist Search (Google Maps) | Phase 5 (5.4–5.5) | ✅ Covered |
+| Booking Flow | Phase 5 (5.1–5.9) | ✅ Covered |
+| Interswitch Payment (escrow) | Phase 6 (6.1–6.8) | ✅ Covered |
+| Confirmation Code (4-digit) | Phase 7 (7.5) | ✅ Covered |
+| Service Rendered (escrow release) | Phase 7 (7.6) | ✅ Covered |
+| Post-Service Rating (stars + comment) | Phase 7 (7.7–7.9) | ✅ Covered |
+| Client Hair Profile | Phase 3 (3.6) | ✅ Covered |
+| Landing Page (3D concepts) | Phase 4A (4A.1–4A.9) | ✅ Covered |
+| Stylist Profile Setup (onboarding) | Phase 3 (3.7) | ✅ Covered |
+
+**All 12 features accounted for. Nothing missing.** ✅

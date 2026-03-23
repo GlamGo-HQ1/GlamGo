@@ -1,0 +1,330 @@
+# GlamGo — Design Workflow Guide
+
+> How to split design work across tools to save IDE quota and move faster.
+
+---
+
+## Tool Roles
+
+| Tool | Best For | Free? | Output |
+| --- | --- | --- | --- |
+| **Google Stitch** | UI layouts, multi-screen flows, interactive prototypes | ✅ Free (Labs) | Figma files, HTML/CSS/JS, React code |
+| **Google AI Studio** | High-fidelity visual mockups, hero images, mood boards, asset generation | ✅ Free (with daily limits) | PNG/JPG images |
+| **Dribbble / Awwwards** | Visual inspiration, reference screenshots | ✅ Free to browse | Screenshots you save |
+| **This IDE (Antigravity)** | Synthesis, production code, backend wiring, deployment | Your current plan | Production Next.js code |
+
+---
+
+## The Strategy
+
+```
+You design in Stitch + AI Studio (free, fast, no quota)
+     ↓
+You bring results here (screenshots, exports, HTML)
+     ↓
+I synthesize into production Next.js + Tailwind code
+```
+
+---
+
+## Step-by-Step Sequence
+
+### STEP 0: Gather Inspiration (30 min)
+
+**Where:** Dribbble, Awwwards, reference sites from our research
+
+**What to search:**
+- Dribbble: "dark luxury app", "beauty app dark mode", "hair salon app"
+- Awwwards: [awwwards.com/websites/dark](https://awwwards.com/websites/dark)
+- Study these specific sites:
+  - **SSENSE.com** — dark editorial product grid
+  - **Linear.app** — gradient mesh + smooth scroll
+  - **Stripe.com** — dark hero transitions
+  - **DEYGA 3D** (on Awwwards) — beauty + immersive 3D
+
+**What to save:** Screenshot 5–10 layouts you like. Save to `c:\Dev\GlamGo\research\inspiration\` folder. These become your reference when prompting Stitch.
+
+---
+
+### STEP 1: Landing Page in Google Stitch
+
+**Go to:** [stitch.withgoogle.com](https://stitch.withgoogle.com)
+
+**Mode:** Use Experimental Mode (Gemini 2.5 Pro) for best results.
+
+**Prompt to paste:**
+
+```
+Design a luxury dark-themed landing page for "GlamGo" — a premium hairstyle booking platform for women in Nigeria.
+
+Visual direction:
+- Background: near-black (#0A0A0F)
+- Accent color: warm gold (#C9A96E)
+- Secondary accent: rose gold (#B76E79)
+- Glassmorphism cards (semi-transparent with blur)
+- Headings: serif font (like Playfair Display), large and bold  
+- Body text: clean sans-serif, light grey (#9A9A9A)
+
+Sections (top to bottom):
+1. HERO: Split layout. Left side: large bold headline "Your Hair, Your Way" with subtext and gold CTA button "Explore Styles". Right side: placeholder for a 3D interactive element (just show a dark glowing orb placeholder)
+2. "HOW IT WORKS": 3 steps with icons — Browse → Book & Pay → Get Styled
+3. "FEATURED STYLES": Horizontal scroll row of 4 hairstyle cards (3:4 portrait ratio, dark gradient overlay at bottom with style name and price in Naira)
+4. TESTIMONIALS: 2-3 glassmorphic cards with star ratings and quotes
+5. FOOTER CTA: "Join GlamGo Today" with a large gold button
+
+Make it feel like a high-end fashion editorial, not a typical app.
+```
+
+**After Stitch generates:**
+1. Iterate with refinement prompts like: "Make the hero headline bigger", "Add film grain texture overlay", "Switch to darker glass cards"
+2. When happy, **export as HTML/CSS** (Stitch can do this)
+3. Save the export and screenshots to `c:\Dev\GlamGo\research\stitch-exports\landing\`
+
+---
+
+### STEP 2: Gallery Page in Google Stitch
+
+**Prompt:**
+
+```
+Design the hairstyle gallery page for GlamGo. Same dark luxury theme as before.
+
+Layout:
+- Top: "Find Your Next Look" headline with a search icon
+- Below: Horizontal scrolling category pills (All, Braids, Cornrows, Locs, Weaves, Wigs, Natural, Twists). Active pill is gold filled, inactive pills are glass/transparent
+- Main content: responsive grid of hairstyle cards (3 columns desktop, 2 columns mobile)
+- Each card: portrait 3:4 image with dark gradient overlay at bottom. Shows style name (serif font), price range in ₦, and duration
+- Cards have subtle hover: scale up slightly with a gold glow shadow
+
+Colors: same as landing (#0A0A0F bg, #C9A96E accent, #F5F0EB text)
+Typography: Playfair Display headings, DM Sans body
+```
+
+**Refinement prompts to try:**
+- "Make the category pills sticky at the top on scroll"
+- "Add a floating action button for 'Filter by Price'"
+- "Show the cards with a Ken Burns-style subtle zoom effect on images"
+
+**Export:** HTML/CSS → save to `c:\Dev\GlamGo\research\stitch-exports\gallery\`
+
+---
+
+### STEP 3: Style Detail Page in Google Stitch
+
+**Prompt:**
+
+```
+Design the hairstyle detail page for GlamGo. Dark luxury theme.
+
+Layout:
+- Top: Full-width hero image of the hairstyle (16:9 ratio) with dark gradient overlay
+- Below image: Row of thumbnail tabs (Front, Side, Back, Top) for switching angles
+- Style info section: Style name (large serif heading), category tag pill, description paragraph, price range, estimated duration
+- "Available Stylists" section: horizontal scroll of stylist mini-cards. Each card shows: circular avatar, name, star rating, their price for this style, and a service mode badge ("Comes to you" / "You go to them")
+- Bottom: Gold CTA button "Book This Style"
+
+Same color scheme: #0A0A0F background, #C9A96E accent, glassmorphic surfaces
+```
+
+---
+
+### STEP 4: Stylist Profile Page in Google Stitch
+
+**Prompt:**
+
+```
+Design a stylist profile page for GlamGo. Dark luxury theme.
+
+Layout:
+- Top: Large circular avatar with name, star rating (e.g. 4.8), total reviews count, and bio text
+- Tags row: specialty pills (e.g. "Braids", "Cornrows", "Natural Hair")
+- Service mode badge: "Comes to you" with a pin icon
+- Portfolio section: Grid of portfolio images (2 columns, square aspect ratio)
+- Styles offered: List of hairstyles with this stylist's specific price for each
+- Reviews section: List of review cards with star display, client name, date, comment text
+- Bottom sticky bar: "Book [Stylist Name]" gold button
+
+Colors and typography same as all other pages.
+```
+
+---
+
+### STEP 5: Booking Flow in Google Stitch
+
+**Prompt:**
+
+```
+Design the booking flow page for GlamGo. Dark luxury theme.
+
+Top section: Booking summary showing the selected hairstyle image (small), style name, selected stylist name and avatar, and stylist's price
+
+Form fields below:
+1. Date picker (calendar UI for selecting appointment date)
+2. Time slot selector (3 large tappable cards: Morning 8am-12pm, Afternoon 12pm-5pm, Evening 5pm-9pm)
+3. Location input with a map pin icon (address text field)
+4. Small embedded map preview showing location
+
+Price breakdown at bottom:
+- Service price: ₦XX,XXX
+- Booking fee: ₦500
+- Total: ₦XX,XXX
+
+Gold "Proceed to Payment" button at bottom
+
+All on dark background with glassmorphic card surfaces.
+```
+
+---
+
+### STEP 6: Payment + Confirmation in Google Stitch
+
+**Prompt:**
+
+```
+Design two screens for GlamGo payment flow. Dark luxury theme.
+
+SCREEN 1 — Payment Summary:
+- Booking details recap (style, stylist, date, time, location)
+- Price breakdown with total
+- "Pay with Interswitch" gold button with Interswitch logo
+- Trust badges: "Secure Payment", "Money-Back Guarantee", lock icon
+
+SCREEN 2 — Booking Confirmed:
+- Large green checkmark animation area
+- "Booking Confirmed!" heading
+- All booking details
+- Prominent display of 4-digit confirmation code (large digits in a glassmorphic box)
+- Instructions: "Share this code with your stylist after service is complete"
+- "View My Bookings" button
+
+Same dark theme throughout.
+```
+
+---
+
+### STEP 7: Dashboards in Google Stitch
+
+**Prompt:**
+
+```
+Design the client dashboard for GlamGo. Dark luxury theme.
+
+Top: "My Bookings" heading with user avatar and name
+Two tabs: "Upcoming" and "Past"
+
+Upcoming tab shows booking cards with:
+- Hairstyle image thumbnail
+- Style name
+- Stylist name and avatar
+- Date and time
+- Status badge (gold "Confirmed", green "In Progress")
+- 4-digit confirmation code display (for confirmed bookings)
+
+Past tab shows same cards but with:
+- "Completed" green badge
+- "Leave Review" link if no review yet
+- Star rating display if review exists
+
+Bottom nav: Home, Gallery, Bookings (active), Profile
+```
+
+---
+
+### STEP 8: Auth Screens in Google Stitch
+
+**Prompt:**
+
+```
+Design login and registration screens for GlamGo. Dark luxury theme.
+
+Both screens use a glassmorphic modal/card centered on a gradient mesh dark background.
+
+LOGIN:
+- GlamGo logo at top
+- "Welcome Back" heading in serif font
+- Email input field
+- Password input field
+- Gold "Sign In" button
+- "Don't have an account? Sign Up" link below
+
+REGISTER:
+- GlamGo logo
+- "Join GlamGo" heading
+- Full Name, Email, Phone, Password fields
+- Role toggle: "I'm looking for a stylist" / "I'm a stylist" (two tappable cards)
+- Gold "Create Account" button
+
+Keep it minimal and elegant. Dark background with the glassmorphic card containing the form.
+```
+
+---
+
+## Using Google AI Studio
+
+**Go to:** [aistudio.google.com](https://aistudio.google.com)
+
+Use AI Studio for generating **visual assets** that Stitch can't do:
+
+### Prompt 1: Hero mockup image
+
+```
+Generate a high-fidelity UI screenshot of a luxury dark-themed beauty app landing page. Near-black background (#0A0A0F). Left side has a large bold serif headline "Your Hair, Your Way" in off-white text with a warm gold CTA button. Right side has a glowing abstract 3D glass orb with purple and gold light reflections. Gradient mesh background with subtle purple and navy tones. Premium, editorial, fashion magazine feel. iPhone 15 Pro screen dimensions.
+```
+
+### Prompt 2: Gallery mockup image
+
+```
+Generate a high-fidelity UI screenshot of a dark-themed beauty app gallery page showing a grid of hairstyle photos. Near-black background. Each card has a portrait photo of a Black woman with a beautiful hairstyle against a dark background, with a dark gradient overlay at the bottom showing the style name in serif font and price in Nigerian Naira. Category filter pills at top in gold and glass styles. Premium luxury fashion editorial aesthetic.
+```
+
+### Prompt 3: Mood board
+
+```
+Create a visual mood board for a luxury dark-themed beauty tech app called GlamGo. Include: dark gradient mesh backgrounds in purple and navy, glassmorphic UI panels, gold accent elements, serif typography samples, editorial-style beauty photography, and subtle film grain textures. Arranged as a collage on a near-black canvas. Premium fashion magazine aesthetic.
+```
+
+---
+
+## The Handoff Process (Stitch → IDE)
+
+When you're done designing in Stitch:
+
+1. **Screenshot every screen** — save as PNG to `c:\Dev\GlamGo\research\stitch-exports\`
+2. **Export HTML/CSS** from Stitch for any screens where the code looks useful
+3. **Come back here** and tell me: "Here are my Stitch designs for [screen name]"
+4. I'll look at the screenshots/exports and synthesize them into production Next.js + Tailwind code that matches the design system tokens
+
+**What I do with your designs:**
+- Extract the layout structure
+- Map colors/fonts to our design system variables
+- Add Framer Motion animations (transitions, hover effects, scroll reveals)
+- Wire up Supabase data fetching
+- Make it responsive
+- Add error/loading/empty states
+
+---
+
+## Summary: Who Does What
+
+| Task | Tool | Cost |
+| --- | --- | --- |
+| Browse inspiration (Dribbble, Awwwards, reference sites) | Browser | Free |
+| Generate UI layouts per screen | Google Stitch | Free |
+| Generate visual mockup images and mood boards | Google AI Studio | Free |
+| Create Spline 3D hero scene | Spline.design | Free |
+| Edit and batch-process hairstyle photos | Lightroom Mobile | Free |
+| Synthesize designs into production code | This IDE | Quota |
+| Backend (Supabase, API routes, auth, payments) | This IDE | Quota |
+| Testing and deployment | This IDE | Quota |
+
+**You spend most of your time in Stitch and AI Studio.** You only come here when you have designs ready to turn into code, or when doing backend work. This should cut your IDE quota usage by about 50-60%.
+
+---
+
+## What to Do Right Now
+
+1. Go to **Dribbble** → search "dark luxury beauty app" → save 5-10 screenshots you like
+2. Open **Google Stitch** → paste the Landing Page prompt (Step 1) → iterate
+3. When happy with the landing page → screenshot it → come back here
+4. I turn it into production code
+5. Repeat for each screen in order: Gallery → Detail → Stylist → Booking → Payment → Dashboard → Auth
