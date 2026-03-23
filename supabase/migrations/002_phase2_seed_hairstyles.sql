@@ -15,4 +15,8 @@ insert into hairstyles (name, category, description, images, price_min, price_ma
 ('Passion Twists', 'twists', 'Silky, curly two-strand twists that mimic natural distressed textures.', array['https://images.unsplash.com/photo-1605333190886-f40c74cb1e23?q=80&w=600'], 18000, 30000, 3.5, false),
 ('Marley Twists', 'twists', 'Chunky, textured twists using kinky hair for a protective, natural look.', array['https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600'], 15000, 25000, 3.0, false),
 ('Water Wave Crochet', 'crochet', 'Quick, voluminous water wave curls installed via crochet method.', array['https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600'], 10000, 18000, 1.5, false),
-('Sleek Low Bun', 'updos', 'Elegant, glass-like slicked-back bun perfect for events and bridals.', array['https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=600'], 8000, 15000, 1.0, true);
+('Sleek Low Bun', 'updos', 'Elegant, glass-like slicked-back bun perfect for events and bridals.', array['https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=600'], 8000, 15000, 1.0, true),
+('Jumbo Box Braids', 'braids', 'Large, statement box braids.', array['https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=600'], 12000, 20000, 2.0, false),
+('Kinky Twists', 'twists', 'Short, lightweight springy twists.', array['https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=600'], 15000, 25000, 3.0, false),
+('Bridal Updo', 'updos', 'Intricate updo for weddings.', array['https://images.unsplash.com/photo-1605333190886-f40c74cb1e23?q=80&w=600'], 35000, 60000, 2.5, false),
+('Custom Color Wig', 'wigs', 'Hand-dyed custom wig unit.', array['https://images.unsplash.com/photo-1563462923588-4672e87c0c45?q=80&w=600'], 40000, 75000, 1.0, true);
