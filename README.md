@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 👑 GlamGo — The Future of Premium Hair Services
 
-## Getting Started
+GlamGo is a seamless, localized booking engine connecting clients with premium stylists. Focuses on specialized categories, escrowed payments, and verified bookings.
 
-First, run the development server:
+> 💎 **Executive Strategy & Vision**  
+> *For a deep dive into our business model, cancellation policy, and roadmap, review our official Strategy Documentation.* 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📱 Status
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Currently Building: Phase 2 (Platform Infrastructure)**
+✓ Phase 1: Authentication & UI Scaffolding Complete
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Visual Gallery: Explore curated hairstyles and portfolios.
+- Secure Escrow Payments: Powered by Interswitch Sandbox.
+- Verified Stylists: Book trusted local professionals.
+- Two-Way Dashboards: Custom experiences for Clients and Stylists.
 
-## Learn More
+## 🛠 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Frontend | Backend | Payments | Tooling |
+| :--- | :--- | :--- | :--- |
+| Next.js App Router | Supabase Database | Interswitch Sandbox | Vanilla CSS + CSS Modules |
+| React 18 | Supabase Auth/Storage| | TypeScript, ESLint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Run `npm install`
+2. Add your `.env.local` Supabase + Interswitch keys
+3. Run `npm run dev` to start locally at [localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
+## 👥 Team
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Product Manager
+- Product Lead (Design)
+- Lead Developer
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Built for the Enyata × Interswitch Buildathon 2026 (Health + Payments Track).*
