@@ -229,7 +229,7 @@ create policy "bookings: client insert" on bookings for insert with check (clien
 create policy "bookings: client update" on bookings for update using (client_id = auth.uid());
 create policy "bookings: stylist update" on bookings for update using (stylist_id in (select id from stylist_profiles where user_id = auth.uid()));
 create policy "bookings: parties delete" on bookings for delete using (client_id = auth.uid() or stylist_id in (select id from stylist_profiles where user_id = auth.uid()));
-create policy "reviews: authenticated read" on reviews for select using (auth.role() = 'authenticated');
+create policy "reviews: public read" on reviews for select using (true);
 create policy "reviews: client insert" on reviews for insert with check (client_id = auth.uid() and booking_id in (select id from bookings where client_id = auth.uid() and status = 'completed'));
 create policy "reviews: client update" on reviews for update using (client_id = auth.uid());
 create policy "reviews: client delete" on reviews for delete using (client_id = auth.uid());
