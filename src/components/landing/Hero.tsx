@@ -1,10 +1,9 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import styles from './Hero.module.css';
 
-// Using high-quality placeholder images of different hairstyles for the "Slot Machine" crossfade
 const HERO_STYLES = [
   {
     id: 'natural',
@@ -36,43 +35,48 @@ const HERO_STYLES = [
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // 1. The Zoom-Through Math (Scroll Parallax)
+  // 1. Scroll-linked Parallax (The Zoom-Through)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
   });
 
-  // Background Text scales up hugely and fades out
+  // Background text scales up and fades
   const bgScale = useTransform(scrollYProgress, [0, 0.6], [1, 4]);
   const bgOpacity = useTransform(scrollYProgress, [0, 0.4], [0.15, 0]);
 
-  // Center Portrait scales up to consume the screen (acts as a mask)
-  // Scaling by 7 ensures a 30vw element easily covers 100vw and 100vh
+  // Center portrait scales to fill viewport (the portal mask)
   const centerScale = useTransform(scrollYProgress, [0, 0.8], [1, 7]);
   
-  // The dark overlay inside the portrait fades in at the very end of the scroll 
-  // to transition smoothly into the dark background of Section 2
+  // Dark overlay fades in at end to transition to Section 2
   const transitionMaskOpacity = useTransform(scrollYProgress, [0.75, 1], [0, 1]);
 
-  // Flanking images drift outwards and fade
+  // Flanking images drift outward and fade
   const leftX = useTransform(scrollYProgress, [0, 0.6], ['0%', '-150%']);
   const rightX = useTransform(scrollYProgress, [0, 0.6], ['0%', '150%']);
   const flankingOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
-  // Foreground fades out relatively quickly so it doesn't block the visual
+  // Foreground UI fades quickly
   const foregroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
-  // 2. The Slot Machine Effect (Time-based Crossfade)
+  // 2. Slot Machine Effect (Time-based Crossfade)
+  // P2-3 FIX: Track whether hero is visible to pause the timer when off-screen
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
+  const [isInView, setIsInView] = useState(true);
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    setIsInView(latest < 0.92);
+  });
 
   useEffect(() => {
-    // Cycles very quickly (800ms) to create energy while zooming
+    if (!isInView) return; // Don't run the timer when hero is scrolled past
+    
     const interval = setInterval(() => {
       setCurrentStyleIndex((prev) => (prev + 1) % HERO_STYLES.length);
     }, 800);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [isInView]);
 
   return (
     <section ref={containerRef} className={styles.heroContainer}>
@@ -119,6 +123,21 @@ export const Hero = () => {
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
               />
             </AnimatePresence>
+
+            {/* P3-3 FIX: Style label that crossfades with the portrait */}
+            <div className={styles.styleLabel}>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={HERO_STYLES[currentStyleIndex].id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {HERO_STYLES[currentStyleIndex].name}
+                </motion.span>
+              </AnimatePresence>
+            </div>
 
             {/* The final fade to black before next section */}
             <motion.div 

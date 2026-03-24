@@ -1,6 +1,6 @@
 .storyContainer {
   position: relative;
-  min-height: 150vh; /* Gives enough scroll distance for the text scrub */
+  min-height: 250vh; /* Generous scroll distance for contemplative pace */
   background-color: var(--bg-primary);
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .storyText {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 2rem;
   line-height: 1.4;
   color: var(--text-primary);

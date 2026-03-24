@@ -1,11 +1,16 @@
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 40;
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-bottom: 1px solid var(--glass-border);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom: none;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  /* Hidden on landing page — Hero has its own header */
+  display: none;
 }
 .inner {
   display: flex;

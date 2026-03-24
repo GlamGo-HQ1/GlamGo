@@ -34,38 +34,29 @@
   }
 }
 
-.timelineGrid {
+/* P2-4 FIX: SVG is in a separate wrapper, positioned absolutely,
+   so it doesn't count as a grid child and break nth-child selectors */
+.timelineWrapper {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-  padding-left: var(--space-12); /* Room for the line on mobile */
-}
-
-@media (min-width: 768px) {
-  .timelineGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-16);
-    padding-left: 0;
-  }
 }
 
 .svgWrapper {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 32px; /* Center of the 64px padding-left on mobile */
+  left: 32px;
   width: 4px;
   z-index: 0;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .svgWrapper {
     left: 50%;
     transform: translateX(-50%);
-    width: 100%; /* For desktop snaking line */
+    width: 100%;
   }
 }
 
@@ -78,17 +69,33 @@
 .pathBg {
   fill: none;
   stroke: var(--glass-border);
-  stroke-width: 4;
-  stroke-dasharray: 4 8; /* Dotted background line */
+  stroke-width: 3;
+  stroke-dasharray: 4 8;
 }
 
 .pathDraw {
   fill: none;
   stroke: var(--accent-primary);
-  stroke-width: 4;
+  stroke-width: 3;
   stroke-linecap: round;
-  /* stroke-dasharray/offset handled by framer-motion */
   filter: drop-shadow(0 0 10px rgba(201,169,110,0.5));
+}
+
+.timelineGrid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  padding-left: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .timelineGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    padding-left: 0;
+  }
 }
 
 .stepCard {
@@ -99,27 +106,19 @@
   border-radius: var(--radius-lg);
   padding: var(--space-8);
   box-shadow: var(--shadow-md);
-  opacity: 0.5; /* Fade out inactive steps */
-  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.stepCard.active {
-  opacity: 1;
-  transform: translateY(-8px);
-  border-color: rgba(201,169,110,0.3);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.1);
-}
-
+/* P2-4 FIX: Using nth-of-type on the grid children (no SVG mixed in) */
 @media (min-width: 768px) {
   .stepCard:nth-child(odd) {
     grid-column: 1;
-    margin-right: var(--space-16);
+    margin-right: var(--space-8);
     text-align: right;
   }
   .stepCard:nth-child(even) {
     grid-column: 2;
-    margin-left: var(--space-16);
-    margin-top: 50%; /* Stagger */
+    margin-left: var(--space-8);
+    margin-top: 40%;
   }
 }
 
@@ -174,7 +173,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mockupLabel {
   color: var(--text-muted);
   font-size: 0.875rem;
   font-style: italic;
+  opacity: 0.5;
 }

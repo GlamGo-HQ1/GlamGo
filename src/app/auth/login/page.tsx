@@ -16,7 +16,7 @@ export default function LoginPage() {
         <AuthForm view="login" />
 
         <p className="mt-8 text-sm text-white/50 text-center">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/auth/register" className="text-[#C2A878] hover:text-[#d3bc8f] transition-colors">
             Create Account
           </Link>

@@ -22,7 +22,7 @@ export function RoleSelector({ onChange }: { onChange: (role: 'client' | 'stylis
         }`}
       >
         <span className="text-xl">✨</span>
-        <span className="font-medium">I'm a Client</span>
+        <span className="font-medium">I&apos;m a Client</span>
         <span className="text-xs text-center opacity-70">I want to book hair appointments</span>
       </button>
 
@@ -36,7 +36,7 @@ export function RoleSelector({ onChange }: { onChange: (role: 'client' | 'stylis
         }`}
       >
         <span className="text-xl">✂️</span>
-        <span className="font-medium">I'm a Stylist</span>
+        <span className="font-medium">I&apos;m a Stylist</span>
         <span className="text-xs text-center opacity-70">I want to list my services</span>
       </button>
       

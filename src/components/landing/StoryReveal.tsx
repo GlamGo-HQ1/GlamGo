@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import styles from './StoryReveal.module.css';
 
 const storyText = "You already know who you want to be. You can see her. The hair, the confidence, the walk. GlamGo brings her to life — from the stylist who truly understands your vision.";
@@ -15,7 +15,7 @@ const Word = ({
   range 
 }: { 
   children: React.ReactNode; 
-  progress: any; 
+  progress: MotionValue<number>; 
   range: [number, number] 
 }) => {
   // As scrollYProgress goes from range[0] to range[1], opacity goes from 0.15 to 1

@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import styles from './GalleryPreview.module.css';
 
 const GALLERY_ITEMS = [
@@ -15,16 +15,14 @@ const GALLERY_ITEMS = [
 
 export const GalleryPreview = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
 
-  // We use scroll to drive the horizontal translation of the track
+  // P3-6 FIX: Tightened scroll offset so animation only happens when section is prominently in view
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start']
+    offset: ['start 0.8', 'end 0.2']
   });
 
-  // Map vertical scroll progress to horizontal movement (0 to -1500px roughly)
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-40%']);
 
   const smoothX = useSpring(x, {
     stiffness: 100,
@@ -37,32 +35,48 @@ export const GalleryPreview = () => {
       
       <div className={styles.header}>
         <h2 className={styles.heading}>The Gallery</h2>
-        <p className={styles.subheading}>A glimpse of what's waiting for you.</p>
+        <p className={styles.subheading}>A glimpse of what&apos;s waiting for you.</p>
       </div>
 
       <div className={styles.reelWrapper}>
-        {/* We use motion.div to physically move the track left as the user scrolls down */}
         <motion.div 
-          ref={trackRef}
           className={styles.reelTrack}
           style={{ x: smoothX }}
         >
-          {GALLERY_ITEMS.map((item, index) => (
-            <div key={item.id} className={styles.galleryCard}>
-              <img 
-                src={item.img} 
-                alt={item.title} 
-                className={styles.cardImage} 
-                loading="lazy"
-              />
-              <div className={styles.cardOverlay}>
-                <div>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  <p className={styles.cardSubtitle}>By {item.stylist}</p>
+          {GALLERY_ITEMS.map((item, index) => {
+            // P3-1: Calculate a static rotation for coverflow effect
+            // Cards at edges are more rotated, center cards are flat
+            const totalCards = GALLERY_ITEMS.length;
+            const center = (totalCards - 1) / 2;
+            const offset = index - center;
+            const rotateY = offset * 8; // degrees per position from center
+
+            return (
+              <motion.div 
+                key={item.id} 
+                className={styles.galleryCard}
+                style={{ 
+                  rotateY: `${rotateY}deg`,
+                  z: -Math.abs(offset) * 20 
+                }}
+                whileHover={{ rotateY: 0, z: 50, scale: 1.05 }}
+                transition={{ duration: 0.4 }}
+              >
+                <img 
+                  src={item.img} 
+                  alt={item.title} 
+                  className={styles.cardImage} 
+                  loading="lazy"
+                />
+                <div className={styles.cardOverlay}>
+                  <div>
+                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                    <p className={styles.cardSubtitle}>By {item.stylist}</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
 

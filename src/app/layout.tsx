@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${playfair.variable} ${dmSans.className}`}>
+      <body className={`${dmSans.variable} ${playfair.variable} ${dmSans.className} film-grain`}>
         <SmoothScroll>
           <Navbar />
           <main>

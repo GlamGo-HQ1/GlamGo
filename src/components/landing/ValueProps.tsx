@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Focus, ShieldCheck, MapPin, Lock } from 'lucide-react';
 import styles from './ValueProps.module.css';
 
@@ -8,7 +8,7 @@ const PROPS = [
   {
     icon: <Focus size={28} strokeWidth={1.5} />,
     title: 'See Every Angle',
-    desc: '360° views and high-res video galleries so you know exactly what you’re getting before you book.'
+    desc: "360° views and high-res video galleries so you know exactly what you\u2019re getting before you book."
   },
   {
     icon: <ShieldCheck size={28} strokeWidth={1.5} />,
@@ -18,7 +18,7 @@ const PROPS = [
   {
     icon: <MapPin size={28} strokeWidth={1.5} />,
     title: 'Salon or Home',
-    desc: 'Step into a luxury salon environment or request a mobile stylist to your living room. Your call.'
+    desc: "Step into a luxury salon environment or request a mobile stylist to your living room. Your call."
   },
   {
     icon: <Lock size={28} strokeWidth={1.5} />,
@@ -27,7 +27,7 @@ const PROPS = [
   }
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -37,12 +37,12 @@ const containerVariants = {
   }
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' }
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
   }
 };
 
