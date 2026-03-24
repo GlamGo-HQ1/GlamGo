@@ -10,6 +10,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [

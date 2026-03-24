@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local hackathon planning/research
+/research/
+/slides/
+DAY_0_AGENDA.md
+HANDOVER_SESSION_1.md
+PRE_HACKATHON_PLAN.md

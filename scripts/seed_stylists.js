@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { createClient } = require('@supabase/supabase-js');
 // Load env vars if running locally
 // require('dotenv').config({ path: '.env.local' });

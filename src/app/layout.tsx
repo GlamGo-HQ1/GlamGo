@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"], 
@@ -27,12 +28,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${playfair.variable} ${dmSans.className}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Navbar />
-        <main style={{ flex: 1 }}>
-          {children}
-        </main>
-        <Footer />
+      <body className={`${dmSans.variable} ${playfair.variable} ${dmSans.className}`}>
+        <SmoothScroll>
+          <Navbar />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
