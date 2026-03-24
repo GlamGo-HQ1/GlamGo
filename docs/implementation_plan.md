@@ -2,66 +2,57 @@
 
 > **Written by:** Anti-Gravity
 > **Date:** 2026-03-24
-> **Status:** AWAITING BELOVED'S APPROVAL
-
-This plan outlines the technical execution of the `PHASE_4_LANDING_STRATEGY.md` we just finalized.
+> **Status:** ✅ APPROVED — Building now.
 
 ---
 
 ## 🎯 Selected Hero Strategy
 
-Based on the strategy synthesis, we proceed with **Hero Option B: "The Zoom-Through Reveal" (The Obsidian Assembly Effect)**.
+**B+A Hybrid: "The Zoom-Through Reveal" with Rapid Crossfade.**
 
-This provides the highest "jaw-drop" factor for the hackathon judges by utilizing scroll-driven parallax and a dramatic scaling mask transition.
+Two animation systems layered: scroll controls the zoom-mask (Obsidian effect), a timer controls the portrait crossfade (Apple AirPods effect). The portrait cycles through 5-6 hairstyles at ~600ms while simultaneously scaling up to fill the viewport on scroll.
 
-## 🛠️ Proposed Changes
+## 🛠️ Components to Build
 
 ### 1. Global Setup & Providers
 
 - **`src/app/layout.tsx`** & **`src/app/globals.css`**
   - Verify Lenis smooth scrolling is active and tuned for "heavy" editorial feel.
-  - Apply the global dark luxury color variables (Near-black `#0A0A0F` background, Off-white `#F5F0EB` text).
+  - Apply the global dark luxury color variables (`#0A0A0F` background, `#F5F0EB` text).
 
-### 2. The Hero Section (Section 1)
+### 2. Hero Section (Section 1)
 
 - **`src/components/landing/Hero.tsx`** [MODIFY]
-  - Discard the current crossfade implementation.
   - Implement the 3-layer parallax approach:
-    1. **Background:** Massive "YOUR HAIR" typography.
-    2. **Centerpiece:** A striking portrait (using a placeholder from Unsplash temporarily) that scales up on scroll to consume the viewport.
-    3. **Foreground:** Tagline and logo.
-  - Use `framer-motion` `useScroll` and `useTransform` to map scroll position to scale and y-axis translation.
+    1. **Background:** Massive "YOUR HAIR" typography at 20vw, muted at 20% opacity.
+    2. **Centerpiece:** Portrait that scales up on scroll to consume the viewport, with `AnimatePresence` rapidly crossfading through 5-6 hairstyle images on a 600ms timer.
+    3. **Foreground:** Tagline ("Your Way") and GlamGo logo. Two flanking images that drift apart on scroll.
+  - Use `framer-motion` `useScroll` + `useTransform` for scroll-linked scale/translate.
+  - Use `AnimatePresence` for the timed crossfade layer.
 
-### 3. The Story Section (Section 2)
+### 3. Story Section (Section 2)
 
 - **`src/components/landing/StoryReveal.tsx`** [NEW]
-  - Implement a scroll-scrub text reveal component.
-  - Use raw CSS or Framer Motion to transition word opacity from 20% to 100% as the element intersects the center of the viewport.
+  - Scroll-scrub text reveal: word-by-word opacity transition from 20% → 100%.
 
-### 4. The Booking Journey (Section 3)
+### 4. Booking Journey (Section 3)
 
 - **`src/components/landing/BookingFlow.tsx`** [NEW]
-  - Implement the GetQuoti-inspired self-drawing SVG path.
-  - Build 4 static UI mockup cards representing the steps: Find Stylist → View Gallery → Book Time → Pay Securely.
-  - Animate the SVG `stroke-dashoffset` tied to scroll progress.
+  - Self-drawing gold SVG path (`#C9A96E`) snaking through 4 steps.
+  - 4 static UI mockup cards: Browse Styles → Find Stylist → Book Instantly → Pay Securely.
+  - SVG `stroke-dashoffset` animated by scroll progress.
 
-### 5. The Value Props (The Closer)
-
-- **`src/components/landing/ValueProps.tsx`** [NEW]
-  - Build sleek, glassmorphic cards for the 4 core guarantees (See Every Angle, Verified Stylists, Salon or Home, Secure Payments).
-
-### 6. The Gallery Sneak Peek (Section 4)
+### 5. Gallery Sneak Peek (Section 4)
 
 - **`src/components/landing/GalleryPreview.tsx`** [NEW]
-  - Implement the horizontal scrolling row of cards.
-  - Apply a subtle 3D rotational transform (Coverflow effect) on hover or scroll proximity to give it the "Fabletics curved reel" feel.
+  - Horizontal scrolling row of hairstyle cards.
+  - 3D Coverflow-like curve on hover/proximity.
+  - Ken Burns fallback if no video assets available.
 
-### 6. The Value Props & Waitlist (Section 5 & 6)
+### 6. Value Props (Section 5 — The Closer)
 
 - **`src/components/landing/ValueProps.tsx`** [NEW]
-  - Build sleek, glassmorphic cards for the 4 core guarantees.
-- **`src/components/landing/FooterCTA.tsx`** [NEW]
-  - Replace the heavy mobile mockup waitlist with a clean, high-converting "Coming Soon / Early Access" email capture strip.
+  - 3-4 glassmorphic cards: See Every Angle, Verified Stylists, Salon or Home, Secure Payments.
 
 ---
 
@@ -69,12 +60,13 @@ This provides the highest "jaw-drop" factor for the hackathon judges by utilizin
 
 ### Automated / Browser Verification
 
-1. **Scroll Integrity:** Use the browser tool to scroll from top to bottom, verifying that the Hero image successfully scales up until it fully masks the screen without horizontal scrolling or breaking the layout.
-2. **Animation Firing:** Verify the Story text changes opacity strictly based on scroll position, not time.
-3. **SVG Path:** Verify the booking connecting line draws smoothly from the first step to the last.
+1. **Scroll Integrity:** Hero image scales up until it fully masks the screen without horizontal overflow.
+2. **Crossfade Timing:** Portrait cycles through all styles at consistent ~600ms intervals while zoom is in progress.
+3. **Animation Firing:** Story text changes opacity strictly based on scroll position, not time.
+4. **SVG Path:** Booking connecting line draws smoothly from first step to last.
 
 ### Manual Verification (Beloved's Check)
 
 1. Run `npm run dev` and open `localhost:3000`.
-2. Scroll through the page using a trackpad or mouse wheel to feel the weight of the Lenis scroll and observe the parallax layers in the Hero section.
-3. Confirm the placeholders and flow accurately represent the dark luxury aesthetic before we lock down the final image assets.
+2. Scroll through the page to feel the Lenis scroll weight and observe the parallax layers + crossfade in the Hero.
+3. Confirm the placeholders and flow match the dark luxury aesthetic.

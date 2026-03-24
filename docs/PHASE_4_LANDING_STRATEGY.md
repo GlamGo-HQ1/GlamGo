@@ -2,7 +2,7 @@
 
 > **Written by:** Anti-Gravity
 > **Date:** 2026-03-24
-> **Status:** AWAITING BELOVED'S APPROVAL — No code will be written until this is approved.
+> **Status:** ✅ APPROVED — Hero: B+A Hybrid. Waitlist: Cut. Booking SVG: Yes. Building now.
 
 ---
 
@@ -49,48 +49,23 @@ I visually browsed all 4 of your reference websites. Here is what I pulled from 
 
 Here is the proposed flow from top to bottom. Every section maps to a reference.
 
-### Section 1: THE HERO (The Hook)
+### Section 1: THE HERO — "The Zoom-Through Reveal" (B+A Hybrid) ✅
 
-**Three options. You must pick one.**
+*Inspired by: Obsidian Assembly zoom-mask + Apple AirPods Max color cycling*
 
-#### Option A: "The Omni-Style Crossfade"
+**The Concept:** Two animation systems layered together — scroll controls the zoom, a timer controls the crossfade.
 
-*Inspired by: Apple AirPods Max color switch*
-
-- Full-screen dark background. One large, centered portrait photograph.
-- Every 4-5 seconds, the portrait crossfades to a completely different hairstyle (Natural → Silk Press → Locs → Braids → Short Cuts).
-- Fixed headline: *"Whatever your style is, we have"* — then the last word morphs to match the current style.
-- Below: two CTAs ("Explore All Styles" + "Join Waitlist").
-- Small style-indicator dots at the bottom (clickable).
-- **Pros:** Immediately inclusive. Every user sees "their" style within 5 seconds. Simple to build. Highly narrative.
-- **Cons:** Depends on finding 5 placeholder images with consistent lighting/crop. Less "scroll-interactive" — the animation is time-based, not scroll-based.
-
-#### Option B: "The Zoom-Through Reveal" (The Obsidian Assembly Effect)
-
-*Inspired by: Obsidian Assembly + Tiwis.fr — directly adapted from the visual scrape*
-
-- You land on a dark section. The screen shows three layers simultaneously:
-  - **Background layer:** Massive Playfair Display serif text — "YOUR HAIR" — filling 70% of the viewport in muted off-white.
-  - **Center layer:** A large, beautifully framed portrait of a woman with a stunning hairstyle, positioned center-screen (similar to how Obsidian placed the rock). Two smaller flanking images (different hairstyles) sit tilted on each side.
+- You land on a dark section (#0A0A0F). The screen shows three layers:
+  - **Background layer:** Massive Playfair Display serif text — "YOUR HAIR" — filling 70% of the viewport in muted off-white at 20% opacity.
+  - **Center layer:** A large, beautifully framed portrait, positioned center-screen. Two smaller flanking images (different hairstyles) sit tilted on each side.
   - **Foreground layer:** A small tagline ("Your Way") and the GlamGo logo.
-- **As you scroll down**, all three layers react at different speeds (parallax):
-  1. The background text **scales up** dramatically — "YOUR HAIR" grows so large the letters become abstract shapes and drift off-screen.
-  2. The center portrait **also scales up** — growing until it fills the entire viewport, acting as a natural mask/transition from the hero into the next section.
+- **The Scroll Animation (from Option B):** As you scroll down, all three layers react at different speeds (parallax):
+  1. The background text **scales up** dramatically — letters become abstract shapes and drift off-screen.
+  2. The center portrait **scales up** — growing until it fills the entire viewport, acting as a natural mask/transition.
   3. The flanking images drift apart and fade.
-  4. Once the center image has consumed the screen, it dissolves into the dark background of Section 2 (the scroll-text reveal) — exactly like how Obsidian's rock transitions from warm beige to pure black.
-- **Pros:** The highest "jaw-drop" factor. It's the technique that makes hackathon judges lean forward. The parallax layering creates genuine 3D depth. It's scroll-driven so it rewards interaction. Directly matches the Obsidian/Tiwis DNA you loved.
-- **Cons:** More complex to build (GSAP ScrollTrigger + multiple transform layers). Requires one very strong center portrait and two supporting images. The "meaning" of the page (what GlamGo does) only becomes clear after you scroll — the first frame is purely emotional/visual.
-
-#### Option C: "The Asymmetric Gallery Entry"
-
-*Inspired by: Fourmula.ai floating grid*
-
-- Instead of one massive image, the hero features 3 differently-sized image panels arranged asymmetrically (large portrait left, medium square top-right, small rectangle bottom-right).
-- Each panel shows a different hairstyle. They have subtle parallax — they move at slightly different speeds as you scroll, creating depth.
-- Headline sits centered or left-aligned in Playfair Display: *"See every angle. Find your stylist. Step out flawless."*
-- A thin gold accent line runs vertically through the composition.
-- **Pros:** Shows 3 hairstyles simultaneously (no waiting for crossfade). Feels very modern, editorial, and fashion-forward. Naturally responsive.
-- **Cons:** Less "tech-interactive" than Option B. The wow comes from composition, not animation.
+  4. Once the center image has consumed the screen, it dissolves into the dark background of Section 2.
+- **The Crossfade Animation (from Option A):** While the zoom is happening, the center portrait **rapidly crossfades** through 5-6 different hairstyles (Natural → Braids → Locs → Silk Press → Short Cut) at ~600-800ms intervals. The effect is like a "slot machine" of styles — mesmerizing and inclusive.
+- **The Result:** By the time the image fills the viewport, the user has subconsciously seen every style category. The inclusivity message lands without reading a word.
 
 ---
 
@@ -153,20 +128,22 @@ This applies across ALL sections:
 | Technique | Source | Application |
 |-----------|--------|-------------|
 | Heavy smooth scroll (Lenis) | Obsidian, Tiwis | Global — the entire page feels weighted and cinematic |
-| Scroll-linked zoom/scale | Tiwis | Headlines grow as you approach, shrink as you pass |
+| Scroll-linked zoom/scale | Obsidian, Tiwis | Hero zoom-mask transition |
+| Rapid crossfade (AnimatePresence) | Apple AirPods | Hero portrait cycling (layered on top of zoom) |
 | Self-drawing SVG path | GetQuoti | Section 3 booking journey line |
-| Parallax depth layers | Fourmula | Hero (Option C) + Gallery cards |
+| Parallax depth layers | Obsidian, Fourmula | Hero 3-layer depth + Gallery cards |
 | Word-by-word text reveal | Nikola Radeski | Section 2 narrative |
-| Crossfade/AnimatePresence | Apple AirPods | Hero (Option A) image transitions |
 | ClipPath inset reveals | Tiwis | Image sections expanding as they enter viewport |
 
 ---
 
-## What I Need From You
+## Decisions Locked ✅
 
-1. **Hero: A, B, or C?** (You can also say "combine A and B" or "start with B, then crossfade like A" — I can hybrid them.)
-2. **Section 3 (Booking Journey):** Does the self-drawing gold SVG path line with static mockup illustrations work? This eliminates the need for you to source 3 videos.
-3. **Section 5 (Mobile Waitlist):** Keep full mockup, replace with slim CTA strip, or cut?
-4. **Anything else you want to add or remove?**
-
-Make your picks. Zero code until you say go.
+| Decision | Choice |
+|----------|--------|
+| Hero Section | B+A Hybrid (Zoom-Through + Rapid Crossfade) |
+| Section 2 (Story) | Scroll-scrub word-by-word text reveal |
+| Section 3 (Booking) | Self-drawing gold SVG path with static mockups |
+| Section 4 (Gallery) | Curved reel carousel with Ken Burns fallback |
+| Section 5 (Value Props) | Glassmorphic feature cards (The Closer) |
+| Mobile Waitlist | ❌ Cut |
