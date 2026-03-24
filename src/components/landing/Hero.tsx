@@ -1,114 +1,160 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import styles from "./Hero.module.css";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import styles from './Hero.module.css';
 
-// The categories listed in Handover
-const HAIRSTYLES = [
-  { id: "natural", label: "Natural Edge", src: "https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=2000&auto=format&fit=crop" },
-  { id: "silk", label: "Silk Press", src: "https://images.unsplash.com/photo-1589255476380-4545b7fb6a02?q=80&w=2000&auto=format&fit=crop" },
-  { id: "locs", label: "Locs", src: "https://images.unsplash.com/photo-1596550190729-23dc031cc20d?q=80&w=2000&auto=format&fit=crop" },
-  { id: "braids", label: "Braids", src: "https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=2000&auto=format&fit=crop" },
-  { id: "cuts", label: "Short Cuts", src: "https://images.unsplash.com/photo-1512407421160-b6f70cbac62a?q=80&w=2000&auto=format&fit=crop" },
+// Using high-quality placeholder images of different hairstyles for the "Slot Machine" crossfade
+const HERO_STYLES = [
+  {
+    id: 'natural',
+    name: 'Natural',
+    image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 'braids',
+    name: 'Braids',
+    image: 'https://images.unsplash.com/photo-1595959183082-7b570b7e1e6b?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 'silk-press',
+    name: 'Silk Press',
+    image: 'https://images.unsplash.com/photo-1611432579699-484f7990b127?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 'short-cut',
+    name: 'Short Cut',
+    image: 'https://images.unsplash.com/photo-1588514532298-25088f723bba?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 'locs',
+    name: 'Locs',
+    image: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1000&auto=format&fit=crop'
+  }
 ];
 
-export function Hero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export const Hero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // 1. The Zoom-Through Math (Scroll Parallax)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end']
+  });
+
+  // Background Text scales up hugely and fades out
+  const bgScale = useTransform(scrollYProgress, [0, 0.6], [1, 4]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.4], [0.15, 0]);
+
+  // Center Portrait scales up to consume the screen (acts as a mask)
+  // Scaling by 7 ensures a 30vw element easily covers 100vw and 100vh
+  const centerScale = useTransform(scrollYProgress, [0, 0.8], [1, 7]);
+  
+  // The dark overlay inside the portrait fades in at the very end of the scroll 
+  // to transition smoothly into the dark background of Section 2
+  const transitionMaskOpacity = useTransform(scrollYProgress, [0.75, 1], [0, 1]);
+
+  // Flanking images drift outwards and fade
+  const leftX = useTransform(scrollYProgress, [0, 0.6], ['0%', '-150%']);
+  const rightX = useTransform(scrollYProgress, [0, 0.6], ['0%', '150%']);
+  const flankingOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+
+  // Foreground fades out relatively quickly so it doesn't block the visual
+  const foregroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  // 2. The Slot Machine Effect (Time-based Crossfade)
+  const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % HAIRSTYLES.length);
-    }, 4500);
-    return () => clearInterval(timer);
+    // Cycles very quickly (800ms) to create energy while zooming
+    const interval = setInterval(() => {
+      setCurrentStyleIndex((prev) => (prev + 1) % HERO_STYLES.length);
+    }, 800);
+    
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className={styles.hero}>
-      <div className={styles.backgroundContainer}>
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className={styles.backgroundImage}
+    <section ref={containerRef} className={styles.heroContainer}>
+      <div className={styles.stickyWrapper}>
+        
+        {/* LAYER 1: Background Typography */}
+        <motion.div 
+          className={styles.backgroundTextLayer}
+          style={{ scale: bgScale, opacity: bgOpacity }}
+        >
+          <h1 className={styles.backgroundText}>YOUR HAIR</h1>
+        </motion.div>
+
+        {/* LAYER 2: The Images */}
+        <div className={styles.imagesLayer}>
+          
+          {/* Left Flanking Image */}
+          <motion.div 
+            className={`${styles.flankingImage} ${styles.flankingImageLeft}`}
+            style={{ x: leftX, opacity: flankingOpacity }}
           >
-            <Image
-              src={HAIRSTYLES[currentIndex].src}
-              alt={HAIRSTYLES[currentIndex].label}
-              fill
-              priority
-              style={{ objectFit: "cover" }}
+            <img 
+              src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop" 
+              alt="Hair styling detail" 
+              className={styles.flankingImgElement}
             />
           </motion.div>
-        </AnimatePresence>
-      </div>
-      
-      <div className={styles.gradientOverlay} />
-      
-      <div className={styles.content}>
-        <motion.h1 
-          className={styles.headline}
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Whatever your style is, <br />
-          we have <AnimatePresence mode="wait">
-            <motion.em
-              key={HAIRSTYLES[currentIndex].id}
-              initial={{ y: 15, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -15, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            >
-              {HAIRSTYLES[currentIndex].label}
-            </motion.em>
-          </AnimatePresence>
-        </motion.h1>
-        
-        <motion.p 
-          className={styles.subtitle}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        >
-          The premium destination for visual hair discovery and seamless booking. See every angle, find your perfect stylist, and step out feeling flawless.
-        </motion.p>
 
-        <motion.div 
-          className={styles.actions}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <Link href="/gallery" className="btn-primary">
-            Explore All Styles
-            <ArrowRight size={18} style={{ marginLeft: 8, display: "inline-block", verticalAlign: "middle" }} />
-          </Link>
-          <Link href="/auth/register" className="btn-secondary">
-            Join the Waitlist
-          </Link>
-        </motion.div>
-      </div>
-      
-      <div className={styles.styleIndicators}>
-        {HAIRSTYLES.map((style, i) => (
-          <div 
-            key={style.id} 
-            className={`${styles.indicator} ${i === currentIndex ? styles.active : ""}`}
-            onClick={() => setCurrentIndex(i)}
+          {/* Center Portrait (The Zoom Mask) */}
+          <motion.div 
+            className={styles.centerPortrait}
+            style={{ scale: centerScale }}
           >
-            <div className={styles.indicatorDot} />
-            <span className={styles.indicatorText}>{style.label}</span>
+            {/* The rapidly crossfading portraits */}
+            <AnimatePresence mode="popLayout">
+              <motion.img
+                key={HERO_STYLES[currentStyleIndex].id}
+                src={HERO_STYLES[currentStyleIndex].image}
+                alt={HERO_STYLES[currentStyleIndex].name}
+                className={styles.centerImgElement}
+                initial={{ opacity: 0, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, filter: 'blur(4px)' }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+              />
+            </AnimatePresence>
+
+            {/* The final fade to black before next section */}
+            <motion.div 
+              className={styles.transitionMask}
+              style={{ opacity: transitionMaskOpacity }}
+            />
+          </motion.div>
+
+          {/* Right Flanking Image */}
+          <motion.div 
+            className={`${styles.flankingImage} ${styles.flankingImageRight}`}
+            style={{ x: rightX, opacity: flankingOpacity }}
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=800&auto=format&fit=crop" 
+              alt="Hair styling detail" 
+              className={styles.flankingImgElement}
+            />
+          </motion.div>
+        </div>
+
+        {/* LAYER 3: Foreground UI */}
+        <motion.div 
+          className={styles.foregroundLayer}
+          style={{ opacity: foregroundOpacity }}
+        >
+          <div className={styles.headerRow}>
+            <div className={styles.logo}>GlamGo.</div>
+            <button className={styles.bookButton}>Book Now</button>
           </div>
-        ))}
+          <div className={styles.taglineWrapper}>
+            <h2 className={styles.tagline}>Your Way.</h2>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
-}
+};

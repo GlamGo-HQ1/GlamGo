@@ -1,0 +1,180 @@
+.bookingContainer {
+  position: relative;
+  min-height: 200vh;
+  background-color: var(--bg-surface);
+  padding: var(--space-20) var(--space-4);
+  overflow: hidden;
+}
+
+.headingWrapper {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-20);
+}
+
+.subheading {
+  font-family: var(--font-body), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.875rem;
+  color: var(--accent-primary);
+  margin-bottom: var(--space-4);
+}
+
+.heading {
+  font-family: var(--font-display), serif;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 4rem;
+  }
+}
+
+.timelineGrid {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  padding-left: var(--space-12); /* Room for the line on mobile */
+}
+
+@media (min-width: 768px) {
+  .timelineGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    padding-left: 0;
+  }
+}
+
+.svgWrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 32px; /* Center of the 64px padding-left on mobile */
+  width: 4px;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .svgWrapper {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* For desktop snaking line */
+  }
+}
+
+.svgLine {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pathBg {
+  fill: none;
+  stroke: var(--glass-border);
+  stroke-width: 4;
+  stroke-dasharray: 4 8; /* Dotted background line */
+}
+
+.pathDraw {
+  fill: none;
+  stroke: var(--accent-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  /* stroke-dasharray/offset handled by framer-motion */
+  filter: drop-shadow(0 0 10px rgba(201,169,110,0.5));
+}
+
+.stepCard {
+  position: relative;
+  z-index: 10;
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  opacity: 0.5; /* Fade out inactive steps */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.stepCard.active {
+  opacity: 1;
+  transform: translateY(-8px);
+  border-color: rgba(201,169,110,0.3);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.1);
+}
+
+@media (min-width: 768px) {
+  .stepCard:nth-child(odd) {
+    grid-column: 1;
+    margin-right: var(--space-16);
+    text-align: right;
+  }
+  .stepCard:nth-child(even) {
+    grid-column: 2;
+    margin-left: var(--space-16);
+    margin-top: 50%; /* Stagger */
+  }
+}
+
+.stepNumber {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-primary);
+  color: var(--accent-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display), serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  .stepCard:nth-child(odd) .stepNumber {
+    left: auto;
+    right: -20px;
+  }
+  .stepCard:nth-child(even) .stepNumber {
+    left: -20px;
+  }
+}
+
+.stepTitle {
+  font-family: var(--font-display), serif;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.stepDesc {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.mockupImage {
+  width: 100%;
+  height: 200px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-6);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
