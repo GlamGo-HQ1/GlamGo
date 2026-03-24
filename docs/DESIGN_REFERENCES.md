@@ -6,13 +6,43 @@
 
 ## 📱 Section: Landing Page / App Anticipation
 
+**Concept Name:** "Cinematic Typography Mask (The Obsidian & Tiwis Effect)"
+
+**1. Reference URL:** `https://obsidianassembly.com/` & `https://www.tiwis.fr/en`
+**2. The Vibe:**
+
+- **The Inspiration:** A masterclass in scroll-linked micro-interactions and "heavy" smooth scrolling. Unlike standard websites, these sites feel incredibly robust and physical to navigate.
+- **The Interaction (Zoom Mask):** The Obsidian site uses massive, screen-filling typography that masks a video layer beneath it. As the user scrubs downward, words (or letters) expand/zoom continuously until the open space of a letter completely swallows the screen, revealing the full video.
+- **The Application:** We use this as a potential high-impact Hero variant (Variant B in our Strategy doc) to make the GlamGo title expand into our own high-definition haircut/transformation video.
+
+---
+
 **Concept Name:** "Fresha Mobile Mockup Section"
 
 **1. Reference Image:** `download_fresha_app.png` (captured from chat)
-**2. The Vibe:** 
+**2. The Vibe:**
+
 - A clean "social proof" section that shows the platform's future as a native mobile app.
 - **Layout:** Left side features a bold headline ("Coming Soon to Mobile") and a QR code for "Beta Access" or "Early Waitlist". Right side features 2-3 overlapping mobile phone frames.
 - **Micro-Motion:** The phone frames should have a subtle floating animation (up and down) and the screens inside the phones can have short, silent looping videos of the booking flow.
+
+---
+
+**Concept Name:** "Integrated Booking Visualization (The Quoti.ai Approach)"
+
+**1. Reference URL:** `https://www.getquoti.ai/`
+**2. The Vibe:**
+- **The Inspiration:** It visually demonstrates the logistics, flexibility, and utility of the platform (finding a client, locking in a hairstyle, checking out).
+- **The Layout:** A sophisticated interface mock-up embedded into the landing page that shows the ease of the booking flow (e.g., selecting in-salon vs. mobile, picking a time, and paying via Interswitch). It proves to the judges that GlamGo is a fully integrated ecosystem, not just an image gallery.
+
+---
+
+**Concept Name:** "Asymmetric Video Grid (The Fourmula.ai Layout)"
+
+**1. Reference URL:** `https://fourmula.ai/`
+**2. The Vibe:**
+- **The Inspiration:** Three short, auto-playing video clips that loop continuously. They are different sizes, positioned asymmetrically (staggered), with no major translational movement but possessing a very fluid layout that feels incredible to scroll past.
+- **The Application:** We use this to anchor the "Logistics/Booking" section or the "Gallery Sneak Peek". Instead of flat rectangles, we have these elegant, differently sized video frames running smoothly as the user scrubs down the page.
 
 ---
 
@@ -26,14 +56,12 @@
 
 ---
 
-**Concept Name:** "AirPods Max Color-Switch & Rotation (The Hero Video)"
+**Concept Name:** "AirPods Max Color-Switch (The Hero Video)"
 
 **1. Reference URL:** `https://www.apple.com/airpods/` (AirPods Max section)
 **2. The Vibe:**
-- **The Inspiration:** Apple uses multiple *distinct* video sections. One section shows AirPods Max switching colors while standing still. Another section shows AirPods Pro rotating 360 degrees smoothly as you scroll.
+- **The Inspiration:** Apple uses multiple *distinct* video sections. One section shows AirPods Max switching colors while standing still. 
 - **The Hero Section (Style Switcher):** This is CRUCIAL for the narrative. We cannot just show braids, or we alienate non-braid users. We use a sequence of high-quality portraits (different faces/models with vastly different hairstyles: Natural, Silk Press, Locs, Braids, Short Cuts) seamlessly switching or crossfading in the center of the screen. It instantly communicates: "Whatever your style is, we have it."
-- **The Feature Section (360° Scroll):** Completely separate from the Hero. Lower down on the landing page, we have a different video of *one* hairstyle that rotates 360° smoothly, tied to the user's mouse scroll wheel.
-- **Why it's better:** Separating these keeps the engineering simple but the visual impact massive, avoiding the trap of making one overloaded, complicated 3D model.
 
 ---
 
