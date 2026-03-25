@@ -106,6 +106,7 @@ export async function getBookingById(bookingId: string) {
     .from('bookings')
     .select(`
       id,
+      client_id,
       appointment_date,
       time_slot,
       client_address,
