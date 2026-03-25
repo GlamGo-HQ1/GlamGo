@@ -137,6 +137,7 @@ The following architectural gaps were identified by the Product Manager during t
 | Date | Contributor | Contribution |
 | --- | --- | --- |
 | 2026-03-25 | Product Designer (Oyewole) | Conducted comprehensive UI/UX validation across all platform pages — landing, gallery, style detail, stylist profiles, booking flow, client dashboard, stylist dashboard, and authentication screens. Verified visual consistency with dark luxury editorial direction. |
+| 2026-03-25 | Product Designer (Oyewole) | Defined hairstyle category taxonomy with 7 primary categories: **Braids**, **Kids Hairstyles**, **Locs (Dreads & Faux Locs)**, **Natural Hair Styling**, **Twists**, **Weaving (Cornrows & Stitch Styles)**, **Wigs & Installation**. Categories structured for intuitive client navigation and stylist service organization. |
 
 ---
 
