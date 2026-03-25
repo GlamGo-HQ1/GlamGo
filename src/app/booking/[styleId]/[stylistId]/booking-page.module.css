@@ -1,0 +1,45 @@
+/* ==============================================
+   BOOKING PAGE LAYOUT
+   ============================================== */
+
+.bookingPage {
+  min-height: 100vh;
+  padding-top: 128px;
+  padding-bottom: 96px;
+  background: var(--bg-primary);
+}
+
+.container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.errorMessage {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-6);
+}

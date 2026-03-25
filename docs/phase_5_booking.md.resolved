@@ -1,0 +1,201 @@
+# Phase 5: Booking Flow — Implementation Plan
+
+> **Phase:** 5 of 8
+> **Owner:** Product Engineer (Beloved)
+> **Estimated Time:** ~3 hours
+> **Depends on:** Phase 4B complete (gallery, style detail, stylist profile pages)
+> **Design Reference:** `design/booking flow/` (Stitch mockup)
+
+---
+
+## Overview
+
+The booking flow is the conversion point where users commit to a hairstyle appointment. This page must:
+1. Display the selected style and stylist information
+2. Allow date and time slot selection
+3. Capture client location (for mobile stylists)
+4. Show price breakdown with booking fee
+5. Create a pending booking record and redirect to payment
+
+---
+
+## Design Requirements (from Stitch Mockup)
+
+| Element | Specification |
+|---------|---------------|
+| **Layout** | Two-column on desktop (calendar left, time/location right), single column mobile |
+| **Header** | Style image (3:4 ratio), style name (Playfair italic), price, stylist card |
+| **Service Toggle** | Pill toggle: "Salon Visit" / "Home Service" |
+| **Calendar** | Custom glassmorphism calendar with gold selected state, month navigation |
+| **Time Slots** | Morning (8am-12pm), Afternoon (12pm-5pm), Evening (5pm-9pm) with icons |
+| **Location** | Address input with map preview (gold pin marker) |
+| **Price Summary** | Service price + ₦500 booking fee = Total |
+| **CTA** | "Proceed to Payment" — gradient gold button |
+
+---
+
+## Task Breakdown
+
+| # | Task | File(s) | Priority | Status |
+|---|------|---------|----------|--------|
+| 5.1 | Create `/booking/[styleId]/[stylistId]/page.tsx` scaffold | `src/app/booking/[styleId]/[stylistId]/page.tsx` | High | Pending |
+| 5.2 | Create `booking-flow.module.css` with glassmorphism styles | `src/app/booking/[styleId]/[stylistId]/booking-flow.module.css` | High | Pending |
+| 5.3 | Build `BookingSummary` component (header with style + stylist) | `src/components/booking/BookingSummary.tsx` | High | Pending |
+| 5.4 | Build `ServiceTypeToggle` component | `src/components/booking/ServiceTypeToggle.tsx` | High | Pending |
+| 5.5 | Build `DatePicker` component (custom calendar) | `src/components/booking/DatePicker.tsx` | High | Pending |
+| 5.6 | Build `TimeSlotPicker` component | `src/components/booking/TimeSlotPicker.tsx` | High | Pending |
+| 5.7 | Build `LocationInput` component | `src/components/booking/LocationInput.tsx` | Medium | Pending |
+| 5.8 | Build `PriceSummary` component | `src/components/booking/PriceSummary.tsx` | High | Pending |
+| 5.9 | Create `src/lib/actions/bookings.ts` with createBooking action | `src/lib/actions/bookings.ts` | High | Pending |
+| 5.10 | Wire up page with form state and submit handler | `src/app/booking/[styleId]/[stylistId]/page.tsx` | High | Pending |
+| 5.11 | Test booking flow end-to-end | N/A | High | Pending |
+
+---
+
+## Component Specifications
+
+### 5.3 BookingSummary
+```
+Props:
+  - style: Hairstyle (from getHairstyleById)
+  - stylist: StylistForStyle (from getStylistById with price)
+  - price: number (stylist_price or style.price_min)
+
+Layout:
+  - Left: Style image (192px width, 3:4 aspect ratio)
+  - Right: "RESERVATION DETAILS" label, style name (h1 italic), price
+  - Below: Stylist mini-card (avatar, name, service mode badge)
+```
+
+### 5.4 ServiceTypeToggle
+```
+Props:
+  - value: 'salon' | 'home'
+  - onChange: (value) => void
+  - stylistServiceMode: 'salon' | 'mobile' | 'both'
+
+Visual:
+  - Pill container with glassmorphism
+  - Active option: gold background
+  - Disabled if stylist only offers one mode
+```
+
+### 5.5 DatePicker
+```
+Props:
+  - selectedDate: Date | null
+  - onSelect: (date: Date) => void
+  - minDate: Date (default: tomorrow)
+
+Visual:
+  - Glassmorphism container
+  - Month/year header with chevron navigation
+  - 7-column grid (S M T W T F S)
+  - Selected date: gold background with glow shadow
+  - Past dates: dimmed and unclickable
+```
+
+### 5.6 TimeSlotPicker
+```
+Props:
+  - selectedSlot: 'morning' | 'afternoon' | 'evening' | null
+  - onSelect: (slot) => void
+
+Visual:
+  - Three vertical cards
+  - Icons: wb_twilight (morning), light_mode (afternoon), bedtime (evening)
+  - Selected: gold border + gold background tint
+```
+
+### 5.7 LocationInput
+```
+Props:
+  - value: string
+  - onChange: (value: string) => void
+  - serviceType: 'salon' | 'home'
+
+Visual:
+  - Text input with location_on icon
+  - Map preview below (static image placeholder for hackathon)
+  - Only shown when serviceType is 'home'
+```
+
+### 5.8 PriceSummary
+```
+Props:
+  - servicePrice: number
+  - bookingFee: number (default: 500)
+  - onProceed: () => void
+  - isValid: boolean
+
+Visual:
+  - Service price row
+  - Booking fee row
+  - Hairline separator
+  - Total row (Playfair italic + gold price)
+  - "Proceed to Payment" button (gradient gold)
+  - "Secure checkout..." disclaimer
+```
+
+---
+
+## Data Flow
+
+```
+1. User lands on /booking/[styleId]/[stylistId]
+2. Server component fetches:
+   - Style via getHairstyleById(styleId)
+   - Stylist via getStylistById(stylistId)
+   - Stylist price via getStylistsForStyle(styleId) filtered to this stylist
+3. Client component manages state:
+   - serviceType: 'salon' | 'home'
+   - selectedDate: Date | null
+   - selectedSlot: 'morning' | 'afternoon' | 'evening' | null
+   - location: string
+4. On submit:
+   - Validate all fields
+   - Call createBooking() server action
+   - Redirect to /payment?bookingId=xxx
+```
+
+---
+
+## Database: Booking Creation
+
+```sql
+INSERT INTO bookings (
+  client_id,        -- from auth session
+  stylist_id,       -- from URL param
+  style_id,         -- from URL param
+  appointment_date, -- from form
+  time_slot,        -- 'morning' | 'afternoon' | 'evening'
+  client_address,   -- from form (if home service)
+  status,           -- 'pending'
+  payment_status,   -- 'unpaid'
+  amount,           -- service price + booking fee
+  confirmation_code -- generate 4-digit random
+) RETURNING id, confirmation_code;
+```
+
+---
+
+## Verification Checklist
+
+- [ ] Booking page loads with correct style and stylist data
+- [ ] Calendar shows correct month, disables past dates
+- [ ] Time slots are selectable with visual feedback
+- [ ] Location input only appears for home service
+- [ ] Price summary calculates correctly
+- [ ] Form validation prevents submit without required fields
+- [ ] Booking is created in Supabase with pending status
+- [ ] Redirect to payment page works with booking ID
+- [ ] Mobile responsive layout matches mockup
+
+---
+
+## Notes
+
+- **Google Maps API:** Deferred for hackathon. Using static map image placeholder. Can add Places Autocomplete post-MVP.
+- **Booking Fee:** Hardcoded at ₦500 per Stitch mockup
+- **Confirmation Code:** 4-digit numeric, generated server-side
+- **Authentication:** Required for booking. Middleware should redirect unauthenticated users to login.
