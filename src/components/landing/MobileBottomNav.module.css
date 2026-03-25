@@ -1,0 +1,50 @@
+/* === MobileBottomNav — Fixed Bottom Tab Bar (mobile only) === */
+
+.bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(19, 19, 24, 0.6);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(77, 70, 58, 0.15);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Hidden on desktop */
+@media (min-width: 768px) {
+  .bar {
+    display: none;
+  }
+}
+
+.inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  color: rgba(228, 225, 233, 0.4);
+  transition: color 0.3s ease;
+}
+.tab:hover {
+  color: #e6c487;
+}
+
+.tabActive {
+  color: #e6c487;
+  background: rgba(230, 196, 135, 0.1);
+  border-radius: 50%;
+  transform: scale(1.1);
+}

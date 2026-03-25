@@ -1,85 +1,72 @@
-'use client';
-
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+/* eslint-disable @next/next/no-img-element */
 import styles from './GalleryPreview.module.css';
 
-const GALLERY_ITEMS = [
-  { id: 1, title: 'Knotless Braids', stylist: 'Sarah J.', img: 'https://images.unsplash.com/photo-1595959183082-7b570b7e1e6b?q=80&w=800&auto=format&fit=crop' },
-  { id: 2, title: 'Voluminous Silk Press', stylist: 'Elena M.', img: 'https://images.unsplash.com/photo-1611432579699-484f7990b127?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, title: 'Goddess Locs', stylist: 'Nia T.', img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop' },
-  { id: 4, title: 'Textured Afro', stylist: 'Chloe B.', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop' },
-  { id: 5, title: 'Blonde Highlights', stylist: 'Jessica R.', img: 'https://images.unsplash.com/photo-1588514532298-25088f723bba?q=80&w=800&auto=format&fit=crop' },
-  { id: 6, title: 'Sleek Ponytail', stylist: 'Ashley C.', img: 'https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=800&auto=format&fit=crop' }
+const EXHIBITS = [
+  {
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBBLsZpaujGYZfIlXy3DTS_ARfKTqtRoBMiwUng_bkE0IMWL_aDfqWeMZr6aEkZOEZz6sx8DINnKqUt1k0ok2lV7g6hy0TTZUzpiFoLHoJHRqzUDPvDhJYj7qUIrYTJrF-v2vkZtILKTQClwEgkRRtnaY5_mEnq9VcbV0fsGxJxrqqr8SlRcBd2wGE4UHppJeFgj_qLD5VRNOOS0iGtetuVpG1_fwiSrY6dggKV_zSZ70x6oqhFWD60wtjca3qzotClPnhrSXm7O68',
+    tag: 'Sculptural Form',
+    name: 'The Obsidian Wave',
+    brightness: '75',
+  },
+  {
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBrBwV-YmKzyWb2CueHJ4Zecm4XHuT9GsoW4umROSm1SoVLI_E-mRL-zOhjloQoI35qt6WqjPmNRcbC_vFPqPyP-exHJsZLsN-KbU1NkAoZBQkkSET-GyZtb6AOSj68KqBEGPVrzK9Aji4fGV6nTr41gdGpjFhbKnF6p3lEiaYMh5UKm8UiRN7VC8sDp0xCAcNk_9Aok_1JgyC7mDB5_LC6Fu2dDerTOnC3c99ENJSeL3Gbb8-cfJk9TrGv-WjyxstUugUW_SIk27E',
+    tag: 'Textural Study',
+    name: 'Lattice Platinum',
+    brightness: '50',
+    offset: true,
+  },
+  {
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDN3OjsSEVxPfYAH54UQxPnRTnQMNXeCCFHMRBlH22caznTypWL5aocp9-Me6MrbOa5aNhTC1tfB1prioy28ui_TV3CyVfmr6tDNVokFjBZZc4FWwzGz7iDpVAUlLw8IvmVR8TJwSvkXqrNH6cEjItUO4AXPyRO8epb2lTU0SIMQdVNm9qjjIbOIhhRQZehOWgcj8He5HMkQKIlBagHzweLRdPN93xyaRU7EeskQ-7PWvOxCWDaIn07zs2W9laJAbQmx4oNpZSOIZY',
+    tag: 'Minimalist Motion',
+    name: 'Liquid Silk',
+    brightness: '100',
+  },
 ];
 
 export const GalleryPreview = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // P3-6 FIX: Tightened scroll offset so animation only happens when section is prominently in view
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start 0.8', 'end 0.2']
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-40%']);
-
-  const smoothX = useSpring(x, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
-    <section ref={containerRef} className={styles.galleryContainer}>
-      
-      <div className={styles.header}>
-        <h2 className={styles.heading}>The Gallery</h2>
-        <p className={styles.subheading}>A glimpse of what&apos;s waiting for you.</p>
-      </div>
+    <div className={`${styles.wrapper} spotlight-radial`}>
+      {/* Header */}
+      <section className={styles.header}>
+        <div className={styles.headerInner}>
+          <span className={styles.volumeTag}>Curated Volume I</span>
+          <h2 className={styles.heading}>
+            The <span className={styles.headingItalic}>Curator&apos;s</span><br />Choice
+          </h2>
+          <div className={styles.quoteCol}>
+            <p className={styles.quote}>
+              &quot;Style is not about following trends; it is about the structural integrity of one&apos;s own identity.&quot;
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className={styles.reelWrapper}>
-        <motion.div 
-          className={styles.reelTrack}
-          style={{ x: smoothX }}
-        >
-          {GALLERY_ITEMS.map((item, index) => {
-            // P3-1: Calculate a static rotation for coverflow effect
-            // Cards at edges are more rotated, center cards are flat
-            const totalCards = GALLERY_ITEMS.length;
-            const center = (totalCards - 1) / 2;
-            const offset = index - center;
-            const rotateY = offset * 8; // degrees per position from center
-
-            return (
-              <motion.div 
-                key={item.id} 
-                className={styles.galleryCard}
-                style={{ 
-                  rotateY: `${rotateY}deg`,
-                  z: -Math.abs(offset) * 20 
-                }}
-                whileHover={{ rotateY: 0, z: 50, scale: 1.05 }}
-                transition={{ duration: 0.4 }}
-              >
-                <img 
-                  src={item.img} 
-                  alt={item.title} 
-                  className={styles.cardImage} 
-                  loading="lazy"
+      {/* Exhibit Grid */}
+      <section className={styles.exhibitSection}>
+        <div className={styles.exhibitGrid}>
+          {EXHIBITS.map((ex, i) => (
+            <div key={i} className={`${styles.exhibit} ${ex.offset ? styles.exhibitOffset : ''}`}>
+              <div className={styles.imgWrap}>
+                <img
+                  src={ex.img}
+                  alt={ex.name}
+                  className={styles.exhibitImg}
+                  style={{ filter: `grayscale(1) brightness(${Number(ex.brightness) / 100})` }}
                 />
-                <div className={styles.cardOverlay}>
-                  <div>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
-                    <p className={styles.cardSubtitle}>By {item.stylist}</p>
-                  </div>
+                <div className={styles.imgFade} />
+                <div className={styles.imgCard}>
+                  <span className={styles.exhibitTag}>{ex.tag}</span>
+                  <h3 className={styles.exhibitName}>{ex.name}</h3>
                 </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
-
-    </section>
+              </div>
+              <div className={styles.exhibitMeta}>
+                <span />
+                <span className={styles.exploreLink}>Explore Piece</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };

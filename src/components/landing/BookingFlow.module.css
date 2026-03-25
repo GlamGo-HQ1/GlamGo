@@ -1,183 +1,140 @@
-.bookingContainer {
+/* === BookingFlow — 4 Full-Viewport Steps + Gold SVG Path === */
+
+.container {
   position: relative;
-  min-height: 200vh;
-  background-color: var(--bg-surface);
-  padding: var(--space-20) var(--space-4);
+  min-height: 4000px;
   overflow: hidden;
+  background: #0A0A0F;
 }
 
-.headingWrapper {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto var(--space-20);
-}
-
-.subheading {
-  font-family: var(--font-body), sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.875rem;
-  color: var(--accent-primary);
-  margin-bottom: var(--space-4);
-}
-
-.heading {
-  font-family: var(--font-display), serif;
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-@media (min-width: 768px) {
-  .heading {
-    font-size: 4rem;
-  }
-}
-
-/* P2-4 FIX: SVG is in a separate wrapper, positioned absolutely,
-   so it doesn't count as a grid child and break nth-child selectors */
-.timelineWrapper {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.svgWrapper {
+/* Gold Dashed SVG Path */
+.goldPath {
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 32px;
-  width: 4px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@media (min-width: 768px) {
-  .svgWrapper {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-  }
-}
-
-.svgLine {
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.pathBg {
-  fill: none;
-  stroke: var(--glass-border);
-  stroke-width: 3;
-  stroke-dasharray: 4 8;
-}
-
-.pathDraw {
-  fill: none;
-  stroke: var(--accent-primary);
-  stroke-width: 3;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 10px rgba(201,169,110,0.5));
-}
-
-.timelineGrid {
+/* Each step = full viewport */
+.step {
   position: relative;
-  z-index: 10;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-  padding-left: var(--space-12);
-}
-
-@media (min-width: 768px) {
-  .timelineGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-16);
-    padding-left: 0;
-  }
-}
-
-.stepCard {
-  position: relative;
-  z-index: 10;
-  background: var(--bg-elevated);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-md);
-}
-
-/* P2-4 FIX: Using nth-of-type on the grid children (no SVG mixed in) */
-@media (min-width: 768px) {
-  .stepCard:nth-child(odd) {
-    grid-column: 1;
-    margin-right: var(--space-8);
-    text-align: right;
-  }
-  .stepCard:nth-child(even) {
-    grid-column: 2;
-    margin-left: var(--space-8);
-    margin-top: 40%;
-  }
-}
-
-.stepNumber {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 40px;
-  height: 40px;
-  background: var(--bg-primary);
-  border: 2px solid var(--accent-primary);
-  color: var(--accent-primary);
-  border-radius: 50%;
+  height: 100vh;
   display: flex;
   align-items: center;
+  padding: 2rem;
+}
+
+.stepInner {
+  position: relative;
+  z-index: 10;
+}
+
+.maskNum {
+  font-family: var(--font-display), 'Playfair Display', serif;
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+/* Alignment variants */
+.alignCenter {
   justify-content: center;
-  font-family: var(--font-display), serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  z-index: 20;
+}
+.alignCenter .stepInner {
+  text-align: center;
 }
 
-@media (min-width: 768px) {
-  .stepCard:nth-child(odd) .stepNumber {
-    left: auto;
-    right: -20px;
-  }
-  .stepCard:nth-child(even) .stepNumber {
-    left: -20px;
-  }
+.alignRight {
+  justify-content: flex-end;
+  padding-right: 8rem;
+}
+.alignRight .stepInner {
+  text-align: right;
 }
 
+.alignLeft {
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding-left: 10rem;
+  padding-bottom: 12rem;
+}
+
+/* Typography */
 .stepTitle {
-  font-family: var(--font-display), serif;
-  font-size: 1.75rem;
-  color: var(--text-primary);
-  margin-bottom: var(--space-2);
+  font-family: var(--font-display), 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 10vw, 10rem);
+  color: #e6c487;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0 0 0.75rem;
+  white-space: pre-line;
 }
 
 .stepDesc {
-  color: var(--text-secondary);
-  line-height: 1.6;
+  font-family: var(--font-body), 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(228, 225, 233, 0.6);
+  max-width: 28rem;
+  margin: 0;
 }
 
-.mockupImage {
-  width: 100%;
-  height: 200px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-sm);
-  margin-top: var(--space-6);
-  border: 1px solid var(--glass-border);
-  display: flex;
+.alignCenter .stepDesc {
+  margin: 0 auto;
+}
+.alignRight .stepDesc {
+  margin-left: auto;
+  margin-top: 1.25rem;
+}
+
+/* Step 3 CTA */
+.ctaRow {
+  margin-top: 5rem;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 1.5rem;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.ctaRow:hover {
+  background: rgba(201, 169, 110, 0.05);
+}
+.ctaRow:hover svg {
+  transform: translateX(0.75rem);
+}
+.ctaRow svg {
+  transition: transform 0.3s ease;
 }
 
-.mockupLabel {
-  color: var(--text-muted);
+.ctaText {
+  font-family: var(--font-body), 'DM Sans', sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   font-size: 0.875rem;
-  font-style: italic;
-  opacity: 0.5;
+  color: #e6c487;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .container {
+    min-height: 3200px;
+  }
+  .step {
+    padding: 1.25rem;
+  }
+  .alignRight {
+    padding-right: 1.25rem;
+  }
+  .alignLeft {
+    padding-left: 1.25rem;
+    padding-bottom: 6rem;
+  }
+  .stepTitle {
+    font-size: 3rem;
+  }
 }

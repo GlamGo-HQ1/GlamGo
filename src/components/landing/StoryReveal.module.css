@@ -1,51 +1,45 @@
-.storyContainer {
-  position: relative;
-  min-height: 250vh; /* Generous scroll distance for contemplative pace */
-  background-color: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-10) var(--space-4);
+/* === StoryReveal — "Every Crown Has a Story" === */
+
+.story {
+  width: 100%;
+  padding: 40px 1.5rem;
+  background: #0A0A0F;
+  text-align: center;
 }
 
-.stickyTextLayer {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 var(--space-6);
-  max-width: 1200px;
+.inner {
+  max-width: 56rem;
   margin: 0 auto;
 }
 
-.storyText {
-  font-family: var(--font-body), sans-serif;
-  font-size: 2rem;
-  line-height: 1.4;
-  color: var(--text-primary);
-  text-align: center;
-  font-weight: 400;
+.title {
+  font-family: var(--font-display), 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.15;
+  color: #F5F0EB;
+  margin: 0;
 }
 
-@media (min-width: 768px) {
-  .storyText {
-    font-size: 3.5rem;
-    line-height: 1.3;
-    padding: 0 var(--space-12);
-  }
-}
-
-.word {
-  display: inline-flex;
-  margin-right: 0.25em;
-  opacity: 0.15;
-  transition: opacity 0.1s ease;
-  will-change: opacity;
-}
-
-.goldHighlight {
-  color: var(--accent-primary);
+.titleGold {
+  font-family: var(--font-display), 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.15;
+  color: #C9A96E;
   font-style: italic;
+  margin: 0;
+}
+
+.gap {
+  height: 40px;
+}
+
+.body {
+  font-family: var(--font-body), 'DM Sans', sans-serif;
+  font-size: 1.125rem;
+  color: #9A9A9A;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
 }

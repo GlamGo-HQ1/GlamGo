@@ -1,41 +1,46 @@
-import { Hero } from "@/components/landing/Hero";
+import { HeroEditorial } from "@/components/landing/HeroEditorial";
 import { StoryReveal } from "@/components/landing/StoryReveal";
+import { EditorialGrid } from "@/components/landing/EditorialGrid";
 import { BookingFlow } from "@/components/landing/BookingFlow";
 import { GalleryPreview } from "@/components/landing/GalleryPreview";
-import { ValueProps } from "@/components/landing/ValueProps";
+import { CommissionCTA } from "@/components/landing/CommissionCTA";
+import { MobileBottomNav } from "@/components/landing/MobileBottomNav";
 
 export default function LandingPage() {
   return (
     <>
-      {/* 
-        Section 1: The Hero (The Hook)
-        B+A Hybrid: Zoom-Through Mask + High-Speed Portrait Crossfade 
-      */}
-      <Hero />
-      
-      {/* 
-        Section 2: The Story Reveal
-        Word-by-word scroll-scrub opacity reveal
-      */}
+      {/* S1: Hero — The Art of the Crown */}
+      <HeroEditorial />
+
+      {/* Hairline Separator */}
+      <div className="hairline-separator" />
+
+      {/* S2: Story — Every Crown Has a Story */}
       <StoryReveal />
 
-      {/* 
-        Section 3: The Booking Journey
-        Self-drawing SVG line with staggered mockups 
-      */}
+      {/* S3: Editorial Mosaic Grid */}
+      <EditorialGrid />
+
+      {/* Hairline Separator */}
+      <div className="hairline-separator" />
+
+      {/* S4: Booking Flow — 4 Full-Viewport Steps */}
       <BookingFlow />
 
-      {/* 
-        Section 4: The Gallery Sneak Peek
-        Horizontal scrolling coverflow reel 
-      */}
+      {/* Hairline Separator */}
+      <div className="hairline-separator" />
+
+      {/* S5: Gallery — The Curator's Choice */}
       <GalleryPreview />
 
-      {/* 
-        Section 5: The Closer (Value Props)
-        Glassmorphic feature cards with staggered reveal
-      */}
-      <ValueProps />
+      {/* Hairline Separator */}
+      <div className="hairline-separator" />
+
+      {/* S6: CTA — Commission Your Vision */}
+      <CommissionCTA />
+
+      {/* Mobile Bottom Nav */}
+      <MobileBottomNav />
     </>
   );
 }

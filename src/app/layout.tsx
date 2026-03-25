@@ -17,8 +17,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "GlamGo | Your Hair, Your Way",
-  description: "The premium visual booking platform for discovering and booking top hair stylists near you.",
+  title: "GlamGo | Discover Top Independent Stylists",
+  description: "Book high-end independent hair stylists and salons. Seamless scheduling, transparent pricing, flawless results.",
 };
 
 export default function RootLayout({

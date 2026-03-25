@@ -1,125 +1,69 @@
-'use client';
-
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
 import styles from './BookingFlow.module.css';
 
 const STEPS = [
   {
-    num: "1",
-    title: "Browse Styles",
-    desc: "See every angle before you commit.",
-    mockup: "Style Grid"
+    num: '1',
+    title: 'Browse Styles',
+    desc: 'See every angle before you commit.',
+    align: 'center' as const,
   },
   {
-    num: "2",
-    title: "Find Your Stylist",
-    desc: "Verified stylists near you — salon or mobile.",
-    mockup: "Map & Stylist Cards"
+    num: '2',
+    title: 'Find Your\nStylist',
+    desc: 'Verified stylists near you — salon or mobile.',
+    align: 'right' as const,
   },
   {
-    num: "3",
-    title: "Book Instantly",
-    desc: "Pick your time. No back-and-forth.",
-    mockup: "Calendar Picker"
+    num: '3',
+    title: 'Book Instantly',
+    desc: 'Pick your time. No back-and-forth.',
+    align: 'center' as const,
+    cta: 'Secure your slot',
   },
   {
-    num: "4",
-    title: "Pay Securely",
-    desc: "Protected checkout. Pay when you're satisfied.",
-    mockup: "Checkout Screen"
-  }
+    num: '4',
+    title: 'Pay Securely',
+    desc: 'Protected checkout. Powered by Interswitch.',
+    align: 'left' as const,
+    star: true,
+  },
 ];
 
 export const BookingFlow = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start center', 'end center']
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
-    <section ref={containerRef} className={styles.bookingContainer}>
-      
-      <div className={styles.headingWrapper}>
-        <h3 className={styles.subheading}>How It Works</h3>
-        <h2 className={styles.heading}>The smoothest route to flawless hair.</h2>
-      </div>
+    <div className={styles.container}>
+      {/* Gold SVG Path */}
+      <svg className={styles.goldPath} fill="none" viewBox="0 0 1440 4000" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M720 0V450 C720 450 720 750 350 750 C-20 750 -20 300 350 300 C720 300 720 750 720 750 L720 1100 L1350 1400 L150 1400 L1300 2200 L720 2800 L100 3600 C100 3600 -100 3800 150 3950 C400 4100 650 3950 650 3700 C650 3450 400 3200 150 3450"
+          stroke="#C9A96E"
+          strokeDasharray="6 6"
+          strokeWidth="1.5"
+        />
+      </svg>
 
-      {/* P2-4 FIX: SVG is now absolutely positioned OUTSIDE the grid, so it 
-          doesn't interfere with nth-child selectors on the step cards. */}
-      <div className={styles.timelineWrapper}>
-        
-        {/* The SVG Line (absolutely positioned, not in the grid) */}
-        <div className={styles.svgWrapper}>
-          <svg 
-            className={styles.svgLine} 
-            viewBox="0 0 100 1000" 
-            preserveAspectRatio="none"
-          >
-            {/* Background dotted line */}
-            <path 
-              className={styles.pathBg}
-              d="M50,0 C10,100 90,200 50,300 C10,400 90,500 50,600 C10,700 90,800 50,900 L50,1000"
-              vectorEffect="non-scaling-stroke"
-            />
-            {/* P3-2 FIX: Dramatic snaking path that visibly curves left-to-right */}
-            <motion.path 
-              className={styles.pathDraw}
-              d="M50,0 C10,100 90,200 50,300 C10,400 90,500 50,600 C10,700 90,800 50,900 L50,1000"
-              vectorEffect="non-scaling-stroke"
-              style={{ pathLength: smoothProgress }}
-            />
-          </svg>
-        </div>
+      {STEPS.map((step) => (
+        <section
+          key={step.num}
+          className={`${styles.step} ${styles[`align${step.align.charAt(0).toUpperCase()}${step.align.slice(1)}`]}`}
+        >
+          <div className={styles.stepInner}>
+            <span className={`text-mask-number ${styles.maskNum}`}>{step.num}</span>
 
-        {/* The Steps Grid (only card children, no SVG mixed in) */}
-        <div className={styles.timelineGrid}>
-          {STEPS.map((step, idx) => {
-            const triggerPoint = (idx + 1) / STEPS.length;
-            return (
-              <Card 
-                key={step.num}
-                step={step}
-                progress={smoothProgress}
-                activateAt={triggerPoint}
-              />
-            );
-          })}
-        </div>
+            {step.star && <div className="star-four-pointed" style={{ marginBottom: '4rem', transform: 'scale(1.5)' }} />}
 
-      </div>
-    </section>
-  );
-};
+            <h2 className={styles.stepTitle}>{step.title}</h2>
+            <p className={styles.stepDesc}>{step.desc}</p>
 
-const Card = ({ step, progress, activateAt }: { step: typeof STEPS[number]; progress: MotionValue<number>; activateAt: number }) => {
-  const opacity = useTransform(progress, [activateAt - 0.25, activateAt], [0.5, 1]);
-  const y = useTransform(progress, [activateAt - 0.25, activateAt], [20, 0]);
-  const borderColor = useTransform(
-    progress, 
-    [activateAt - 0.25, activateAt], 
-    ['rgba(255, 255, 255, 0.1)', 'rgba(201, 169, 110, 0.3)']
-  );
-
-  return (
-    <motion.div 
-      className={styles.stepCard}
-      style={{ opacity, y, borderColor, borderWidth: 1, borderStyle: 'solid' }}
-    >
-      <div className={styles.stepNumber}>{step.num}</div>
-      <h3 className={styles.stepTitle}>{step.title}</h3>
-      <p className={styles.stepDesc}>{step.desc}</p>
-      <div className={styles.mockupImage}>
-        <span className={styles.mockupLabel}>{step.mockup}</span>
-      </div>
-    </motion.div>
+            {step.cta && (
+              <div className={styles.ctaRow}>
+                <span className={styles.ctaText}>{step.cta}</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
   );
 };

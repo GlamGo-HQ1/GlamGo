@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700;900&family=Manrope:wght@200;300;400;600;800&display=swap");
+
 :root {
-  /* 1. Color Tokens */
   --bg-primary: #0A0A0F;
   --bg-surface: #141419;
   --bg-elevated: #1E1E26;
@@ -184,6 +185,65 @@ a {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
+}
+
+/* === Stitch Design Utilities === */
+
+.hairline-separator {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 120px 0;
+}
+
+.editorial-grid-box {
+  background-color: #141419;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.crown-glow {
+  position: relative;
+  z-index: 1;
+}
+.crown-glow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(230, 196, 135, 0.05) 0%, transparent 70%);
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.text-mask-number {
+  position: absolute;
+  font-size: 20rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.08;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  color: #C9A96E;
+}
+
+.star-four-pointed {
+  width: 40px;
+  height: 40px;
+  background: #C9A96E;
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+}
+
+.spotlight-radial {
+  background: radial-gradient(circle at 50% 0%, rgba(230, 196, 135, 0.08) 0%, transparent 70%);
 }
 
 /* P4-2: Reduced motion support */
