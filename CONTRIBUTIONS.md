@@ -62,8 +62,37 @@ The following architectural gaps were identified by the Product Manager during t
 
 ---
 
-## Phase 4A: Landing Page & 3D UI
+## Phase 4A: Landing Page & Editorial Design
 
 > **Session handover:** Product Engineer (Beloved) taking over Phase 4A while Lead Developer (Overcomer) resumes from where Beloved stops.
 
-*[To be filled as work is completed]*
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-24 | Product Engineer (Beloved) | Initial scroll-driven hero exploration — attempted 7-image orbital gallery with Framer Motion zoom transitions. Identified architectural complexity issues. |
+| 2026-03-24 | Product Engineer (Beloved) | Created comprehensive `SCROLL_TRANSITION_SPEC.md` documenting desired animation behavior for future reference. |
+| 2026-03-24 | Product Engineer (Beloved) | Pivoted to Google Stitch for rapid prototyping — built complete editorial landing page design externally. |
+| 2026-03-25 | Product Engineer (Beloved) | Integrated Stitch design into Next.js: `HeroEditorial` (full-bleed hero with integrated nav), `StoryReveal` (centered editorial headings), `EditorialGrid` (3-column mosaic), `BookingFlow` (4 full-viewport steps with gold SVG path), `GalleryPreview` (Curator's Choice exhibit cards), `CommissionCTA` (final CTA section), `MobileBottomNav` (fixed mobile navigation). |
+| 2026-03-25 | Product Engineer (Beloved) | Added Stitch utility classes to `globals.css`: `.hairline-separator`, `.editorial-grid-box`, `.crown-glow`, `.text-mask-number`, `.star-four-pointed`, `.spotlight-radial`, `.film-grain`. |
+| 2026-03-25 | Product Engineer (Beloved) | Archived all motion/animation specs in `docs/MOTION_ARCHIVE.md` for potential future implementation. |
+| 2026-03-25 | Product Engineer (Beloved) | Added Stitch design reference files in `design/stitch_glamgo_landing_page/` (DESIGN.md, code.html, screen.png). |
+| 2026-03-25 | Product Engineer (Beloved) | Conducted 3 audit cycles: identified CSS variable bugs, missing images, unused components, and provided detailed fix lists. |
+| 2026-03-25 | Product Engineer (Beloved) | Cleanup: removed unused experimental components (`HeroGalleryTransition`, `GalleryEntrance`, `MediaSlot`) and obsolete spec documents. |
+
+### Phase 4A Design Decisions
+
+| Decision | Rationale |
+| --- | --- |
+| Pivoted from scroll-driven animations to static editorial design | Animation complexity was causing delays; static design achieves award-quality visuals faster and is more maintainable. |
+| Used Google Stitch for prototyping | Allowed rapid visual iteration outside the codebase, then clean integration. |
+| External image hosting (Google URLs) | Faster prototyping; will migrate to local hosting before production. |
+| Integrated nav in HeroEditorial | Creates seamless full-bleed hero experience matching luxury brand standards. |
+| 4000px BookingFlow section | Each booking step gets full viewport presence for dramatic editorial pacing. |
+| Archived motion specs | Preserves animation work for potential Phase 4B enhancement if time permits. |
+
+---
+
+## Phase 4B: Motion & Interactions (Optional)
+
+> **Status:** Deferred — motion specs archived in `docs/MOTION_ARCHIVE.md`. Can be implemented post-core phases if time permits.
+
+*[To be filled if motion work is added]*
