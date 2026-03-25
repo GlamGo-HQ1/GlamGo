@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GlamGo Client Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#131318",
+                        "primary-fixed": "#ffdea4",
+                        "on-surface-variant": "#d0c5b5",
+                        "on-background": "#e4e1e9",
+                        "on-surface": "#e4e1e9",
+                        "on-secondary": "#551e29",
+                        "background": "#131318",
+                        "tertiary-fixed-dim": "#b6c6ef",
+                        "on-secondary-container": "#f4a2ad",
+                        "outline": "#998f81",
+                        "surface-container-lowest": "#0e0e13",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#3a0915",
+                        "on-primary-fixed-variant": "#5a4312",
+                        "surface-container-high": "#2a292f",
+                        "on-tertiary-container": "#314163",
+                        "error": "#ffb4ab",
+                        "surface-container": "#1f1f25",
+                        "tertiary": "#b8c8f2",
+                        "secondary-container": "#733641",
+                        "tertiary-fixed": "#d8e2ff",
+                        "surface-container-highest": "#35343a",
+                        "on-primary-container": "#543d0c",
+                        "primary-fixed-dim": "#e4c285",
+                        "secondary-fixed": "#ffd9dd",
+                        "on-tertiary-fixed": "#081b3b",
+                        "outline-variant": "#4d463a",
+                        "surface-container-low": "#1b1b20",
+                        "surface-bright": "#39383e",
+                        "on-tertiary-fixed-variant": "#374669",
+                        "on-primary": "#412d00",
+                        "tertiary-container": "#9dadd5",
+                        "secondary-fixed-dim": "#ffb2bc",
+                        "surface-variant": "#35343a",
+                        "on-primary-fixed": "#261900",
+                        "inverse-primary": "#745a27",
+                        "secondary": "#ffb2bc",
+                        "primary-container": "#c9a96e",
+                        "primary": "#e6c487",
+                        "inverse-surface": "#e4e1e9",
+                        "surface": "#131318",
+                        "on-tertiary": "#203051",
+                        "surface-tint": "#e4c285",
+                        "on-secondary-fixed-variant": "#70343e",
+                        "inverse-on-surface": "#303036"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131318;
+            color: #e4e1e9;
+            font-family: 'Manrope', sans-serif;
+        }
+        .serif-italic {
+            font-family: 'Noto Serif', serif;
+            font-style: italic;
+        }
+        .glass-card {
+            background: rgba(31, 31, 37, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-[#131318]/60 backdrop-blur-xl flex justify-between items-center px-8 h-20 w-full">
+<div class="flex items-center gap-4">
+<div class="relative w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="User profile portrait" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqBjb_LCGl-wlqf_n5tZLwQ3pjAo7AXyJRzSBSIzBgeSixEzI9VhL7hSqv5bQLiJBVfStoPmxe76AY1BVMYzFVOpG_44NNNgqggsi6klp16m807QdabUlIRHbT-oCBgaxvU40-61Wb68XGKuMeCUj6eutW5SxHom7A_QHIeBNK0bfW0AULW7-sYoj9nC8jT8YtjEw8-kzIFYd59te3eHsvY1CKhDaTs0r8xOv36zKLvCpaiuqzv93f1M_m2p0F-7HdXh7wK1F06IQ"/>
+</div>
+<div>
+<h1 class="text-2xl font-serif tracking-tighter text-[#e6c487] dark:text-[#c9a96e] serif-italic">My Bookings</h1>
+</div>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<nav class="flex space-x-6 text-sm tracking-[0.2em] uppercase">
+<a class="text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Home</a>
+<a class="text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Gallery</a>
+<a class="text-[#e6c487] border-b-2 border-[#e6c487] pb-1" href="#">Bookings</a>
+<a class="text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Profile</a>
+</nav>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-[#e6c487] cursor-pointer hover:scale-95 duration-200">shopping_bag</span>
+<span class="material-symbols-outlined text-[#e6c487] cursor-pointer hover:scale-95 duration-200">notifications</span>
+</div>
+</div>
+<div class="md:hidden flex items-center gap-4">
+<span class="material-symbols-outlined text-[#e6c487]">notifications</span>
+</div>
+</header>
+<main class="pt-28 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Tabs Section -->
+<div class="flex items-center space-x-12 mb-12 overflow-x-auto no-scrollbar border-b border-outline-variant/10">
+<button class="pb-4 text-sm tracking-widest uppercase font-bold text-primary border-b-2 border-primary whitespace-nowrap">Upcoming</button>
+<button class="pb-4 text-sm tracking-widest uppercase font-medium text-on-surface/40 hover:text-on-surface/80 transition-colors whitespace-nowrap">Past Bookings</button>
+<button class="pb-4 text-sm tracking-widest uppercase font-medium text-on-surface/40 hover:text-on-surface/80 transition-colors whitespace-nowrap">Cancelled</button>
+</div>
+<!-- Content Grid (Asymmetric Editorial Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Featured Booking (Large) -->
+<div class="md:col-span-8 group">
+<div class="glass-card rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl transition-all duration-500 hover:translate-y-[-4px]">
+<div class="md:w-1/2 h-64 md:h-auto relative overflow-hidden">
+<img alt="Goddess Crown Braids" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="High fashion photograph of goddess crown braids" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBVakIDtVbsYBiPIQR50gW9ZDnxVKGLqwTtUmfXaU2KYPHSTt1TA209ivhXdPXf0A-GtGajBTDjxIP2mCr72Tyz3vxBhNI-QBeY4_LM9M4qY_AfburTHyRFnO9Axy__dp8ZSh-OGSRpsjPG9ztyrxd6EjyMYwNTyhCoNumcoS0bHglj9yeOdzS0y85VA1s90hvrfayAKw2SfIgSKAxGpjC2oCjFFeWXqr8_j6VMVM-WvNSr6qte_lSdOKbJmzGdw2vewi7RV86S4Y"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<span class="bg-primary/20 backdrop-blur-md text-primary px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase font-bold border border-primary/30">Confirmed</span>
+</div>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-secondary text-[10px] tracking-[0.3em] uppercase mb-1">Oct 14 • 10:30 AM</p>
+<h2 class="text-3xl font-headline italic tracking-tight text-on-surface mb-2">Goddess Crown Braids</h2>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-on-surface/40 uppercase tracking-widest mb-1">Check-in Code</p>
+<p class="text-xl font-mono font-bold text-primary tracking-widest">8824</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-lg mb-6 border border-outline-variant/5">
+<img alt="Amara Okoro" class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of professional hair stylist Amara Okoro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz-pW9j56hoTaAfUU0gWlX8SwOO46BCYF3vVFxifY_IuhyJXfO9_II4Il7WGtQGmdbvPlxLXdc00wUqH46ACSYNvjiOdGRPf_mp_ebNJzT4zUGnKSEv02yfKoy3wU_2lrL6YXlFG-xVuB7RZby1cMIRRJjNlgMx3FYzQIzE4OLQgv_-qEBJ35kNsd2ZS2kPQ09qbd7oXMi1GHvMkMsGZRJto34hSENJ9hsh9SdQRxpxiGHPaCJTANuU_N6kZ69722lH680CpEV3_k"/>
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface/50">Lead Stylist</p>
+<p class="text-sm font-semibold">Amara Okoro</p>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-3 rounded-md text-xs uppercase tracking-widest shadow-lg shadow-primary/10 active:scale-95 transition-transform">Reschedule</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant/20 rounded-md hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Card (Stats or Secondary Info) -->
+<div class="md:col-span-4 space-y-8">
+<div class="glass-card p-8 rounded-xl border border-outline-variant/10">
+<h3 class="font-headline italic text-xl mb-6">Booking Details</h3>
+<ul class="space-y-6">
+<li class="flex justify-between items-center">
+<span class="text-on-surface/40 text-xs uppercase tracking-widest">Duration</span>
+<span class="text-sm">4.5 Hours</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-on-surface/40 text-xs uppercase tracking-widest">Total Price</span>
+<span class="text-sm font-bold text-primary">$340.00</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-on-surface/40 text-xs uppercase tracking-widest">Deposit Paid</span>
+<span class="text-sm">$85.00</span>
+</li>
+</ul>
+<div class="mt-8 pt-6 border-t border-outline-variant/10">
+<p class="text-[10px] leading-relaxed text-on-surface/50 italic text-center">Please arrive 15 minutes before your appointment time for your consultation.</p>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden h-48 group">
+<img alt="Salon interior" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Modern luxury hair salon interior with gold accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYWjN204Y7_lbXYRC6jIcVRM7Q63GjtEgbdRLpnCbekYdDNq-Zu5ir_km-v-Q79p9Y4rS0YmcL6FSHJGItO-3V6kP_HdEi5xLvNBUPU2tp1uTf10Xg0Q3pznT-pwOHpC5RCgOv-YQ7v3JxjZJ7CSS7iTrlAnd1pG3x_pXKtgqxAHNqRoeLFYpqJpuyl5YQw0EFPeM5ODS8pGWVIc8rGWaS-XQlOzz5_jWNHWSXsaPkziqsnsXwkIw2Dhyu01450ZlIf87noOoWCHY"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+<span class="material-symbols-outlined text-3xl text-primary mb-2">auto_awesome</span>
+<h4 class="text-sm uppercase tracking-[0.3em] font-bold">New Collection</h4>
+<p class="text-[10px] opacity-60 mt-2">Explore the Autumn Braids Lookbook</p>
+</div>
+</div>
+</div>
+<!-- Past Bookings Section (Bento Style) -->
+<div class="md:col-span-12 mt-12">
+<h3 class="text-2xl font-headline italic mb-8">Recent Masterpieces</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Past Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden group border border-outline-variant/5">
+<div class="h-48 relative overflow-hidden">
+<img alt="Architectural Cornrows" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Intricate architectural cornrow hairstyle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA9zRfOPOfXJmz-IFD8PPgAZcPP-3KTd-oE4IB0bbbhc3zBtkooOzhwaj0Uk5Cp5FKPlWCYdU-VBqTMTd9uyaBbsS6-NPGWjooytSS3jmzU3runYD7-XsKLmrowKp0NhzP7qDMCyGdMHiYjUjo4w6gNzemD7JQ8jiR9HoqBLhKYvmMwDK3L5DjZQ-g7bNKr4OliWEXzIwNpwIZnjZ7iXHgOy44M5bSc5KS3FkR9M8dtsuSOhSrsw4fA285gE0AwMRTntPltvLFMlw"/>
+<div class="absolute top-4 right-4 bg-[#4ade80]/20 backdrop-blur-md text-[#4ade80] px-2 py-0.5 rounded text-[9px] tracking-widest uppercase font-bold border border-[#4ade80]/30">Completed</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline italic text-lg leading-tight">Architectural Cornrows</h4>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-[10px] text-on-surface/40 uppercase tracking-widest">Sept 12, 2024</p>
+<button class="text-[10px] uppercase tracking-widest text-primary font-bold hover:text-secondary transition-colors">Rebook</button>
+</div>
+</div>
+</div>
+<!-- Past Card 2 (Placeholder Style) -->
+<div class="bg-surface-container-low/40 rounded-xl flex flex-col items-center justify-center p-12 border-2 border-dashed border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-4xl text-on-surface/10 mb-4">history</span>
+<p class="text-xs uppercase tracking-[0.2em] text-on-surface/30">View full archive</p>
+<p class="text-[10px] text-on-surface/20 mt-2">See all 14 previous styles</p>
+</div>
+<!-- Past Card 3 (Promotional/Editorial) -->
+<div class="bg-gradient-to-br from-surface-container-high to-surface-container rounded-xl p-8 flex flex-col justify-between border border-primary/5">
+<div>
+<span class="material-symbols-outlined text-secondary mb-4">loyalty</span>
+<h4 class="text-xl font-headline italic mb-2">Member Rewards</h4>
+<p class="text-xs text-on-surface/60 leading-relaxed">You're 2 sessions away from a complimentary signature deep-conditioning treatment.</p>
+</div>
+<div class="mt-8">
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[80%]"></div>
+</div>
+<p class="text-[9px] uppercase tracking-widest text-secondary mt-3 font-bold">80% Progress</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 bg-[#131318]/80 dark:bg-[#131318]/80 backdrop-blur-lg border-t border-[#4d463a]/15 shadow-[0_-8px_30px_rgb(0,0,0,0.5)] rounded-t-3xl">
+<div class="flex flex-col items-center justify-center text-[#e4e1e9]/40 px-4 py-2 hover:text-[#ffb2bc] transition-all duration-300 scale-90 active:scale-100">
+<span class="material-symbols-outlined">home</span>
+<span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e4e1e9]/40 px-4 py-2 hover:text-[#ffb2bc] transition-all duration-300 scale-90 active:scale-100">
+<span class="material-symbols-outlined">subscriptions</span>
+<span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Gallery</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e6c487] bg-[#c9a96e]/10 rounded-xl px-4 py-2 scale-90 active:scale-100 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome_motion</span>
+<span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e4e1e9]/40 px-4 py-2 hover:text-[#ffb2bc] transition-all duration-300 scale-90 active:scale-100">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Profile</span>
+</div>
+</nav>
+<!-- Footer (Web Only) -->
+<footer class="hidden md:flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 w-full py-16 px-8 border-t border-[#4d463a]/15 bg-[#131318] dark:bg-[#131318]">
+<div class="text-[#e4e1e9]/40 font-sans text-[12px] uppercase tracking-[0.2em]">© 2024 GlamGo Digital Atelier. All Rights Reserved.</div>
+<div class="flex space-x-12">
+<a class="text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all font-sans text-[12px] uppercase tracking-[0.2em]" href="#">Privacy Policy</a>
+<a class="text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all font-sans text-[12px] uppercase tracking-[0.2em]" href="#">Terms of Service</a>
+<a class="text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all font-sans text-[12px] uppercase tracking-[0.2em]" href="#">Sustainability</a>
+<a class="text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all font-sans text-[12px] uppercase tracking-[0.2em]" href="#">Careers</a>
+</div>
+</footer>
+</body></html>

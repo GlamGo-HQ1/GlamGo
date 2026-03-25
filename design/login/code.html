@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "tertiary-fixed": "#d8e2ff",
+                "background": "#131318",
+                "surface-container-high": "#2a292f",
+                "surface-container-lowest": "#0e0e13",
+                "on-background": "#e4e1e9",
+                "on-secondary-fixed-variant": "#70343e",
+                "on-error-container": "#ffdad6",
+                "tertiary-container": "#9dadd5",
+                "secondary": "#ffb2bc",
+                "inverse-on-surface": "#303036",
+                "primary-fixed": "#ffdea4",
+                "on-primary-container": "#543d0c",
+                "on-secondary-container": "#f4a2ad",
+                "outline-variant": "#4d463a",
+                "on-primary": "#412d00",
+                "on-tertiary": "#203051",
+                "error-container": "#93000a",
+                "surface-container": "#1f1f25",
+                "on-error": "#690005",
+                "on-tertiary-container": "#314163",
+                "on-surface-variant": "#d0c5b5",
+                "surface-container-low": "#1b1b20",
+                "primary-fixed-dim": "#e4c285",
+                "surface-container-highest": "#35343a",
+                "surface": "#131318",
+                "on-secondary": "#551e29",
+                "on-primary-fixed-variant": "#5a4312",
+                "inverse-primary": "#745a27",
+                "surface-dim": "#131318",
+                "surface-variant": "#35343a",
+                "secondary-container": "#733641",
+                "primary": "#e6c487",
+                "tertiary-fixed-dim": "#b6c6ef",
+                "secondary-fixed-dim": "#ffb2bc",
+                "on-secondary-fixed": "#3a0915",
+                "surface-tint": "#e4c285",
+                "on-tertiary-fixed": "#081b3b",
+                "primary-container": "#c9a96e",
+                "on-tertiary-fixed-variant": "#374669",
+                "on-primary-fixed": "#261900",
+                "on-surface": "#e4e1e9",
+                "inverse-surface": "#e4e1e9",
+                "surface-bright": "#39383e",
+                "tertiary": "#b8c8f2",
+                "error": "#ffb4ab",
+                "outline": "#998f81",
+                "secondary-fixed": "#ffd9dd"
+              },
+              fontFamily: {
+                "headline": ["Noto Serif"],
+                "body": ["Manrope"],
+                "label": ["Manrope"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+<style>
+        body {
+            background: radial-gradient(circle at top right, #1a1a24, #0A0A0F 60%);
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(230, 196, 135, 0.08);
+        }
+        .mesh-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(115, 54, 65, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(230, 196, 135, 0.1) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface flex items-center justify-center p-6 selection:bg-primary selection:text-on-primary">
+<div class="mesh-gradient"></div>
+<!-- The Shell (Navigation suppressed per transactional rule) -->
+<main class="w-full max-w-md">
+<!-- Login Card -->
+<div class="glass-panel p-10 md:p-14 rounded-xl flex flex-col items-center shadow-2xl">
+<!-- Brand Identity -->
+<div class="mb-12 text-center">
+<span class="text-2xl font-headline italic text-primary tracking-tighter mb-4 block">GlamGo</span>
+<h1 class="text-4xl font-headline font-bold text-on-surface tracking-tight mb-2">Welcome Back</h1>
+<p class="text-on-surface-variant font-body text-xs uppercase tracking-[0.2em] font-light">Enter the Digital Atelier</p>
+</div>
+<!-- Form -->
+<form class="w-full space-y-8" onsubmit="return false;">
+<!-- Email Field -->
+<div class="space-y-2 group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-semibold px-1" for="email">Email Address</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low/40 border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 py-4 px-1 transition-all duration-300" id="email" placeholder="vogue@atelier.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2 group">
+<div class="flex justify-between items-end px-1">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-semibold" for="password">Password</label>
+<a class="text-[10px] uppercase tracking-widest text-primary/60 hover:text-primary transition-colors duration-300" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low/40 border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 py-4 px-1 transition-all duration-300" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Action -->
+<div class="pt-4">
+<button class="group relative w-full overflow-hidden bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-5 rounded-lg text-xs uppercase tracking-[0.3em] transition-all duration-500 hover:shadow-[0_0_30px_rgba(230,196,135,0.2)] active:scale-[0.98]" type="submit">
+<span class="relative z-10">Sign In</span>
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+</div>
+</form>
+<!-- Footer Links -->
+<div class="mt-12 text-center">
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
+                    Don't have an account? 
+                    <a class="text-on-surface hover:text-primary transition-colors duration-300 ml-2 font-bold underline underline-offset-4 decoration-primary/30" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="mt-12 flex justify-center gap-8 opacity-20 grayscale">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="face_5">face_5</span>
+</div>
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="brush">brush</span>
+</div>
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="content_cut">content_cut</span>
+</div>
+</div>
+</main>
+<!-- Global Footer (Transactional Page) -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex flex-col items-center pb-8 gap-4">
+<div class="flex gap-8">
+<a class="font-sans text-[10px] uppercase tracking-[0.2em] text-[#e4e1e9]/40 hover:text-[#e6c487] transition-opacity" href="#">Privacy Policy</a>
+<a class="font-sans text-[10px] uppercase tracking-[0.2em] text-[#e4e1e9]/40 hover:text-[#e6c487] transition-opacity" href="#">Terms of Service</a>
+<a class="font-sans text-[10px] uppercase tracking-[0.2em] text-[#e4e1e9]/40 hover:text-[#e6c487] transition-opacity" href="#">Contact Support</a>
+</div>
+<span class="font-sans text-[10px] uppercase tracking-[0.2em] text-[#e4e1e9]/40">© 2024 GlamGo Digital Atelier. All Rights Reserved.</span>
+</footer>
+</body></html>

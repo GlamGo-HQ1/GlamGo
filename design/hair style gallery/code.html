@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#314163",
+              "error": "#ffb4ab",
+              "primary-container": "#c9a96e",
+              "on-primary-fixed": "#261900",
+              "on-background": "#e4e1e9",
+              "surface": "#131318",
+              "surface-container-high": "#2a292f",
+              "on-surface": "#e4e1e9",
+              "on-primary": "#412d00",
+              "primary-fixed-dim": "#e4c285",
+              "surface-container-highest": "#35343a",
+              "on-tertiary-fixed-variant": "#374669",
+              "on-tertiary-fixed": "#081b3b",
+              "on-error": "#690005",
+              "surface-dim": "#131318",
+              "on-secondary-fixed-variant": "#70343e",
+              "surface-container": "#1f1f25",
+              "inverse-primary": "#745a27",
+              "inverse-surface": "#e4e1e9",
+              "surface-bright": "#39383e",
+              "on-tertiary": "#203051",
+              "inverse-on-surface": "#303036",
+              "secondary": "#ffb2bc",
+              "outline-variant": "#4d463a",
+              "on-primary-container": "#543d0c",
+              "outline": "#998f81",
+              "primary-fixed": "#ffdea4",
+              "primary": "#e6c487",
+              "secondary-fixed-dim": "#ffb2bc",
+              "tertiary-fixed-dim": "#b6c6ef",
+              "surface-variant": "#35343a",
+              "surface-tint": "#e4c285",
+              "secondary-fixed": "#ffd9dd",
+              "on-error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#5a4312",
+              "background": "#131318",
+              "secondary-container": "#733641",
+              "surface-container-low": "#1b1b20",
+              "on-surface-variant": "#d0c5b5",
+              "on-secondary-fixed": "#3a0915",
+              "on-secondary-container": "#f4a2ad",
+              "on-secondary": "#551e29",
+              "surface-container-lowest": "#0e0e13",
+              "tertiary": "#b8c8f2",
+              "tertiary-fixed": "#d8e2ff",
+              "tertiary-container": "#9dadd5",
+              "error-container": "#93000a"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(77, 70, 58, 0.15);
+        }
+        .editorial-gradient {
+            background: linear-gradient(to top, rgba(19, 19, 24, 0.95) 0%, rgba(19, 19, 24, 0.4) 50%, transparent 100%);
+        }
+        .card-hover:hover {
+            box-shadow: 0 0 30px rgba(230, 196, 135, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container/30">
+<!-- TopAppBar Navigation Shell -->
+<header class="bg-surface/60 dark:bg-[#131318]/60 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 w-full">
+<div class="text-2xl font-serif italic text-[#e6c487] tracking-tighter">GlamGo</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-[#e6c487] border-b-2 border-[#e6c487] pb-1 font-label text-sm tracking-wide transition-colors duration-300" href="#">Gallery</a>
+<a class="text-[#e4e1e9] opacity-70 font-label text-sm tracking-wide hover:text-[#e6c487] transition-colors duration-300" href="#">Stylists</a>
+<a class="text-[#e4e1e9] opacity-70 font-label text-sm tracking-wide hover:text-[#e6c487] transition-colors duration-300" href="#">Bookings</a>
+<a class="text-[#e4e1e9] opacity-70 font-label text-sm tracking-wide hover:text-[#e6c487] transition-colors duration-300" href="#">Concierge</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-label ml-2 w-48 text-on-surface-variant placeholder-on-surface-variant/40" placeholder="Search styles..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-[#e6c487] scale-110">account_circle</button>
+</div>
+</header>
+<main class="pt-32 pb-24 px-6 md:px-12 lg:px-24">
+<!-- Hero Section -->
+<section class="mb-16 md:mb-24 flex flex-col items-center text-center">
+<h1 class="font-headline text-5xl md:text-7xl lg:text-8xl tracking-tight mb-8">
+                Find Your <span class="italic text-primary">Next Look</span>
+</h1>
+<div class="w-24 h-px bg-primary/30 mb-12"></div>
+</section>
+<!-- Category Filters -->
+<section class="mb-16 -mx-6 px-6 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-4 min-w-max pb-4">
+<button class="px-8 py-3 rounded-full bg-primary-container text-on-primary font-label text-xs tracking-[0.15em] uppercase font-bold shadow-lg">All</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Braids</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Cornrows</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Locs</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Weaves</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Wigs</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Natural</button>
+<button class="glass-pill px-8 py-3 rounded-full text-on-surface font-label text-xs tracking-[0.15em] uppercase hover:bg-surface-container-high transition-all">Twists</button>
+</div>
+</section>
+<!-- Main Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 lg:gap-12">
+<!-- Card 1 -->
+<div class="group relative aspect-[3/4] overflow-hidden rounded-lg bg-surface-container-low card-hover transition-all duration-500 hover:scale-[1.05]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Intricate golden blonde braids high fashion editorial shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKcVfyeqWgVSOhqVNSCkZsItEFoYresKE3ZFW6LdxTfynLeJjjITA_Kl5tgbhsWuSxkTQNinFVR3JpC-O_0ohIWwIBZDe2DHY1PxsbobMJWfzNoG8WTBGajYekQJ-8c5wgEb6Ww1O0HYZ4mQFpGbu5cLcgf0oCtvEr1lF-gCl2WPKK-SxfjorqGqkaQ7qA30kv3lJEAJpKFx9S8Xp4Zo-Aay-d30CNpNUIafibp0ykssTJkBpjrsMU_znebFnEkQyZb4quhcLZObc"/>
+<div class="absolute inset-0 editorial-gradient flex flex-col justify-end p-6 md:p-8">
+<h3 class="font-headline text-xl md:text-2xl text-on-surface mb-2">Goddess Crown Braids</h3>
+<div class="flex flex-col gap-1">
+<span class="text-primary font-label text-sm font-medium">₦45,000 - ₦60,000</span>
+<div class="flex items-center gap-2 text-on-surface/60 text-xs font-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            4.5 hrs
+                        </div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative aspect-[3/4] overflow-hidden rounded-lg bg-surface-container-low card-hover transition-all duration-500 hover:scale-[1.05]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern geometric cornrows on model with dark skin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqZCYx60Gy9HHH2R546DFIZHY-agYZj8nI5_iHTtO4tVVouCs5hMLE2mrujn_G1e5BfcRsf88qqziHzMy8u6REklsV6VVbkg0U7XSagJZVPUgdMRBF9Q1yGocCJTakIr2IKYvp39HjMHjJh11ZbStVb3_F7VaQBwN8EdxEf_lY1AAyKHQbw-hbQSZpc6QntisNRELgqr-vo1sPHXfgH2mUVlWP-iisgjUflam6G599bIOqxVn8fs7mV1aS7zlFi8Qr7uadWbev_aE"/>
+<div class="absolute inset-0 editorial-gradient flex flex-col justify-end p-6 md:p-8">
+<h3 class="font-headline text-xl md:text-2xl text-on-surface mb-2">Architectural Cornrows</h3>
+<div class="flex flex-col gap-1">
+<span class="text-primary font-label text-sm font-medium">₦25,000 - ₦35,000</span>
+<div class="flex items-center gap-2 text-on-surface/60 text-xs font-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            3 hrs
+                        </div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative aspect-[3/4] overflow-hidden rounded-lg bg-surface-container-low card-hover transition-all duration-500 hover:scale-[1.05]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Long flowing copper waves luxury hair extension" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpgnUaC0nhrVhU6REzU5zodqxs3P3ftW4LtBs4ov7G5XoDclPwHIgDcKXFBn-xQ0QWfb00n4M2Bh2CP8JlgTIDOTHugS0EtNJOImqv8Y7bnnZ9kSryme91QsHHFTclLOqjbZfAThBswU6bdBXwuIAOMAXHszDutBqPUvGA9jbliCqrQHT3felNpC5CREH42FenWptkCyajRF1NngORyxZOuNSoa0elFnyq50xK8icSVm2uUX7W25EUseneMno7xXozCaEMkxc8XHg"/>
+<div class="absolute inset-0 editorial-gradient flex flex-col justify-end p-6 md:p-8">
+<h3 class="font-headline text-xl md:text-2xl text-on-surface mb-2">Silk Copper Weave</h3>
+<div class="flex flex-col gap-1">
+<span class="text-primary font-label text-sm font-medium">₦120,000 - ₦180,000</span>
+<div class="flex items-center gap-2 text-on-surface/60 text-xs font-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            2.5 hrs
+                        </div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative aspect-[3/4] overflow-hidden rounded-lg bg-surface-container-low card-hover transition-all duration-500 hover:scale-[1.05]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Micro locs styled in an elegant updo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd5AeBwKk1wrCH8RcrB_YyX1T4KoC8QnxVcBpSE7pfMkHwXc8Q5B8alTojajXSqLGosbfMDksH4TroXBKVJo7mgYLz00kN-dGeYhvnZxXa8ETlm-e0dhvYicn4yyUuAIYWlM15AIC7vJ0z059tOG9Pl5mwCASzBFKnsW05UwuwvvtYnvuoKKaeZ3EmP3dWrp227ZZBMP_7903qqfLfH0spBWAtazqOsrZXAuFKE43Fh041UcgnXf9aCmyVeSFCVjPdC30N5CMuf8Y"/>
+<div class="absolute inset-0 editorial-gradient flex flex-col justify-end p-6 md:p-8">
+<h3 class="font-headline text-xl md:text-2xl text-on-surface mb-2">Micro-Loc Artistry</h3>
+<div class="flex flex-col gap-1">
+<span class="text-primary font-label text-sm font-medium">₦200,000 - ₦350,000</span>
+<div class="flex items-center gap-2 text-on-surface/60 text-xs font-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            12 hrs
+                        </div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group relative aspect-[3/4] overflow-hidden rounded-lg bg-surface-container-low card-hover transition-all duration-500 hover:scale-[1.05]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Natural afro curls with gold hair accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEZAbKzO5D6vSJ__UEaGFwasLc94o7BWRlwvusv7q6nP7VATqQpv99ALoqV5kd1WWs_Co5mygpOPYlcFQgTGOlaBnoQFIegrz0FOxMmMpdIYEdDo7QLpYCQ3T_1jWjgHK4LhpUU9A_xe_FpyH-7hdJf4Xd3PZ-4SFvYC5rJtpOiDXBJ8D2jH6mWexMMH5KVd6I2s6ePXOjDFr1kSTE-wCrK96g1qQBBZvoQN7jktAchQlOKEL_9QWjP5ZRicmIcV_yaIDeJA_7Sro"/>
+<div class="absolute inset-0 editorial-gradient flex flex-col justify-end p-6 md:p-8">
+<h3 class="font-headline text-xl md:text-2xl text-on-surface mb-2">Natural Curls Glow</h3>
+<div class="flex flex-col gap-1">
+<span class="text-primary font-label text-sm font-medium">₦15,000 - ₦25,000</span>
+<div class="flex items-center gap-2 text-on-surface/60 text-xs font-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            1.5 hrs
+                        </div>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group relative aspect-[3/4] overflow-hidden rounded-lg bg-surface-container-low card-hover transition-all duration-500 hover:scale-[1.05]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Fulani inspired braids with intricate beads" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPj7Dr1ygrAIByS41L9CHG5vET10h6zqgE72I5DUsPaAFCdQ9Ic7pey43-Zf12mqfbXl2UdRZXOtd4D8wdr65OJ7X1uds_d_MkcYiV2xYXiKoqWgL7pBtMVUv9w_bYHvssxDBkiOWO6sbOD9p10fdTSpb2CzsNfO5E8VwSN1AQ85Gco5ncd3NnyKtbCn199lZ1luoW1tDlG6PZ_1yx0AoVbVdzEOGQWpQUVAmwuMpocGnbFFMZtdWAJDknAweyzXXQOpJ6NWa9Tmc"/>
+<div class="absolute inset-0 editorial-gradient flex flex-col justify-end p-6 md:p-8">
+<h3 class="font-headline text-xl md:text-2xl text-on-surface mb-2">Fulani Heritage Braids</h3>
+<div class="flex flex-col gap-1">
+<span class="text-primary font-label text-sm font-medium">₦55,000 - ₦75,000</span>
+<div class="flex items-center gap-2 text-on-surface/60 text-xs font-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            5 hrs
+                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-24 flex justify-center">
+<button class="px-12 py-4 border border-outline-variant/30 text-primary font-label text-sm tracking-[0.2em] uppercase hover:bg-primary hover:text-on-primary transition-all duration-500">
+                Explore More Styles
+            </button>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#131318] flex flex-col md:flex-row justify-between items-center px-12 gap-8 w-full py-12 border-t border-[#4d463a]/15">
+<div class="text-lg font-serif italic text-[#c9a96e]">GlamGo</div>
+<div class="flex gap-8 text-[#e4e1e9]/40 font-sans text-xs uppercase tracking-[0.2em]">
+<a class="hover:text-[#e6c487] transition-all" href="#">Privacy Policy</a>
+<a class="hover:text-[#e6c487] transition-all" href="#">Terms of Service</a>
+<a class="hover:text-[#e6c487] transition-all" href="#">Contact Us</a>
+<a class="hover:text-[#e6c487] transition-all" href="#">Press</a>
+</div>
+<div class="font-sans text-xs uppercase tracking-[0.2em] text-[#e4e1e9]/50">
+            © 2024 GlamGo Digital Atelier. All Rights Reserved.
+        </div>
+</footer>
+</body></html>

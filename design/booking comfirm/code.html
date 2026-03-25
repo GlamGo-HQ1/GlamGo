@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmed | GlamGo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "inverse-on-surface": "#303036",
+                "secondary": "#ffb2bc",
+                "outline-variant": "#4d463a",
+                "on-primary-container": "#543d0c",
+                "on-error": "#690005",
+                "surface-dim": "#131318",
+                "on-secondary-fixed-variant": "#70343e",
+                "surface-container": "#1f1f25",
+                "inverse-primary": "#745a27",
+                "inverse-surface": "#e4e1e9",
+                "surface-bright": "#39383e",
+                "on-tertiary": "#203051",
+                "on-primary": "#412d00",
+                "primary-fixed-dim": "#e4c285",
+                "surface-container-highest": "#35343a",
+                "on-tertiary-fixed-variant": "#374669",
+                "on-tertiary-fixed": "#081b3b",
+                "on-tertiary-container": "#314163",
+                "error": "#ffb4ab",
+                "primary-container": "#c9a96e",
+                "on-primary-fixed": "#261900",
+                "on-background": "#e4e1e9",
+                "surface": "#131318",
+                "surface-container-high": "#2a292f",
+                "on-surface": "#e4e1e9",
+                "on-secondary-container": "#f4a2ad",
+                "on-secondary": "#551e29",
+                "surface-container-lowest": "#0e0e13",
+                "tertiary": "#b8c8f2",
+                "tertiary-fixed": "#d8e2ff",
+                "tertiary-container": "#9dadd5",
+                "error-container": "#93000a",
+                "on-secondary-fixed": "#3a0915",
+                "surface-variant": "#35343a",
+                "surface-tint": "#e4c285",
+                "secondary-fixed": "#ffd9dd",
+                "on-error-container": "#ffdad6",
+                "on-primary-fixed-variant": "#5a4312",
+                "background": "#131318",
+                "secondary-container": "#733641",
+                "surface-container-low": "#1b1b20",
+                "on-surface-variant": "#d0c5b5",
+                "outline": "#998f81",
+                "primary-fixed": "#ffdea4",
+                "primary": "#e6c487",
+                "secondary-fixed-dim": "#ffb2bc",
+                "tertiary-fixed-dim": "#b6c6ef"
+              },
+              fontFamily: {
+                "headline": ["Noto Serif"],
+                "body": ["Manrope"],
+                "label": ["Manrope"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .success-glow {
+            box-shadow: 0 0 60px rgba(74, 222, 128, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 w-full bg-surface/60 backdrop-blur-xl dark:bg-[#131318]/60 shadow-[0_4px_40px_rgba(228,225,233,0.04)]">
+<div class="text-2xl font-headline italic text-[#e6c487] tracking-tighter">GlamGo</div>
+<div class="flex items-center gap-8">
+<div class="hidden md:flex gap-8 font-label tracking-widest uppercase text-xs">
+<a class="text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Atelier</a>
+<a class="text-[#e6c487] border-b-2 border-[#e6c487] pb-1 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Bookings</a>
+<a class="text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Stylists</a>
+</div>
+<div class="flex items-center gap-4 text-[#e6c487]">
+<span class="material-symbols-outlined cursor-pointer hover:scale-95 duration-200 ease-in-out" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-24 px-6 flex flex-col items-center max-w-4xl mx-auto">
+<!-- Success Indicator -->
+<div class="mb-12 relative">
+<div class="w-24 h-24 rounded-full bg-green-500/10 flex items-center justify-center success-glow border border-green-500/20">
+<span class="material-symbols-outlined text-green-400 text-6xl" style="font-variation-settings: 'wght' 600;">check_circle</span>
+</div>
+</div>
+<!-- Heading -->
+<h1 class="font-headline text-4xl md:text-6xl text-center mb-16 tracking-tight text-on-surface">Booking Confirmed!</h1>
+<!-- Asymmetric Layout Container -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full items-start">
+<!-- Left: Service Details (Editorial Style) -->
+<div class="md:col-span-7 bg-surface-container-low p-10 rounded-xl space-y-12">
+<div class="space-y-2">
+<p class="font-label text-xs uppercase tracking-[0.2em] text-primary/70">Service Selection</p>
+<h2 class="font-headline text-3xl text-on-surface italic">Goddess Crown Braids</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="Portrait of professional hairstylist Amara Okoro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN0Szx03kWqKB1uFY4xpEQ7Ig5Wy-cEzcOCXJabewjcpJ9W1Xlf6m_X695jefSuUFq0x-_3xXa3uD8yIdaA0Bse97eQY0iv_8swCExL4xN2HN7YawMQfK90Wv_WB0RS_bdOrB6DWthB_qnEgXXKCU3jJrlDnBtiu2Q2ZZsuxVsZ6DcJFlTU-v1Ro_dQkVi1wzfvXS1vG9uifm5KV5HMLcKgie4U8G9zsruUPY9RLmpz7S7gm9KeSQwgpteivZEz1OXOZOyOH-EIzQ"/>
+</div>
+<div>
+<p class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">Lead Stylist</p>
+<p class="text-xl font-medium text-on-surface">Amara Okoro</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/10">
+<div>
+<p class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-1">Date</p>
+<p class="text-lg text-on-surface">Oct 14, 2024</p>
+</div>
+<div>
+<p class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-1">Window</p>
+<p class="text-lg text-on-surface">12pm - 5pm</p>
+</div>
+</div>
+</div>
+<!-- Right: Confirmation Code (Glassmorphism) -->
+<div class="md:col-span-5 flex flex-col gap-6">
+<div class="bg-surface-variant/40 backdrop-blur-2xl p-8 rounded-xl border border-outline-variant/10 shadow-2xl relative overflow-hidden">
+<!-- Subtle background decorative gradient -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+<p class="font-label text-[10px] uppercase tracking-[0.3em] text-primary text-center mb-8">Verification Code</p>
+<div class="flex justify-between items-center px-4 mb-8">
+<span class="text-5xl font-headline font-bold text-on-surface">8</span>
+<span class="text-5xl font-headline font-bold text-on-surface">4</span>
+<span class="text-5xl font-headline font-bold text-on-surface">2</span>
+<span class="text-5xl font-headline font-bold text-on-surface">1</span>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<p class="text-xs text-on-surface-variant text-center leading-relaxed">
+                            Share this code with your stylist after service is complete to finalize payment.
+                        </p>
+</div>
+</div>
+<!-- Secondary CTA -->
+<button class="w-full py-5 rounded-md border border-outline-variant/20 text-primary font-label text-xs uppercase tracking-widest hover:bg-surface-container-highest transition-all duration-300">
+                    View My Bookings
+                </button>
+</div>
+</div>
+<!-- Artistic Footer Flourish -->
+<div class="mt-24 opacity-20 select-none pointer-events-none">
+<p class="font-headline italic text-8xl md:text-[12rem] text-outline tracking-tighter whitespace-nowrap overflow-hidden">GlamGo Experience</p>
+</div>
+</main>
+<!-- Floating Back to Atelier (Functional but Editorial) -->
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 z-40">
+<a class="flex items-center gap-3 bg-primary text-on-primary px-8 py-4 rounded-full font-label text-xs uppercase tracking-[0.2em] shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+            Return to Atelier
+        </a>
+</div>
+</body></html>

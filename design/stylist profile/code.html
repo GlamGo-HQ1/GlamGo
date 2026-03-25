@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#35343a",
+              "surface-bright": "#39383e",
+              "inverse-primary": "#745a27",
+              "surface-tint": "#e4c285",
+              "secondary-fixed": "#ffd9dd",
+              "secondary-fixed-dim": "#ffb2bc",
+              "on-error": "#690005",
+              "on-secondary-fixed": "#3a0915",
+              "surface-container-low": "#1b1b20",
+              "primary-fixed": "#ffdea4",
+              "outline-variant": "#4d463a",
+              "on-tertiary-container": "#314163",
+              "on-tertiary-fixed-variant": "#374669",
+              "tertiary-fixed-dim": "#b6c6ef",
+              "background": "#131318",
+              "secondary-container": "#733641",
+              "primary": "#e6c487",
+              "on-secondary-fixed-variant": "#70343e",
+              "surface-container-highest": "#35343a",
+              "surface-container-high": "#2a292f",
+              "inverse-on-surface": "#303036",
+              "surface-dim": "#131318",
+              "secondary": "#ffb2bc",
+              "on-secondary-container": "#f4a2ad",
+              "outline": "#998f81",
+              "inverse-surface": "#e4e1e9",
+              "on-primary-fixed": "#261900",
+              "on-primary-fixed-variant": "#5a4312",
+              "on-surface": "#e4e1e9",
+              "on-primary-container": "#543d0c",
+              "surface": "#131318",
+              "tertiary": "#b8c8f2",
+              "surface-container-lowest": "#0e0e13",
+              "on-secondary": "#551e29",
+              "on-background": "#e4e1e9",
+              "on-tertiary-fixed": "#081b3b",
+              "error": "#ffb4ab",
+              "on-error-container": "#ffdad6",
+              "on-tertiary": "#203051",
+              "on-surface-variant": "#d0c5b5",
+              "error-container": "#93000a",
+              "tertiary-fixed": "#d8e2ff",
+              "tertiary-container": "#9dadd5",
+              "primary-fixed-dim": "#e4c285",
+              "on-primary": "#412d00",
+              "surface-container": "#1f1f25",
+              "primary-container": "#c9a96e"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(31, 31, 37, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl flex justify-between items-center px-8 py-6 max-w-full">
+<div class="text-2xl font-black tracking-tighter text-[#e6c487]">GlamGo</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-noto-serif text-sm tracking-widest uppercase text-[#e4e1e9]/60 hover:text-[#e4e1e9] transition-colors" href="#">Gallery</a>
+<a class="font-noto-serif text-sm tracking-widest uppercase text-[#e6c487] border-b-2 border-[#e6c487] pb-1" href="#">Stylists</a>
+<a class="font-noto-serif text-sm tracking-widest uppercase text-[#e4e1e9]/60 hover:text-[#e4e1e9] transition-colors" href="#">Bookings</a>
+<a class="font-noto-serif text-sm tracking-widest uppercase text-[#e4e1e9]/60 hover:text-[#e4e1e9] transition-colors" href="#">Concierge</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#e6c487]">account_circle</span>
+</div>
+</nav>
+<main class="pt-24 pb-32 max-w-7xl mx-auto px-6 lg:px-12">
+<!-- Hero Header Section -->
+<header class="flex flex-col md:flex-row items-center md:items-start gap-10 py-16">
+<div class="relative">
+<div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-outline-variant/20 shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Professional stylist portrait Amara Okoro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDn4DQ5S_lp4SuRTSM44rkafYmlED3X0gWCMuB-TcEeRbil4vak8UjhMWNaSCEDT72vfLB3P7MxHMEcYU8XHv2zxk8yfaVXhrr7ZG8bjsYgoHgd4EuvPEDVD8vCR1Q8uJCrxXNZwmMvPVQwx3dbQcZEWm3mrp9qcDto99VFtBD6cXWVikrwzl7StEc76URhwe01HK159k1snx3Jqy71bhi46RpJnSJpyPdAzWs4PIkj6jNl7DoQ6aItynPBxgKIx4NGUuMfVzQVBc"/>
+</div>
+<div class="absolute -bottom-2 right-4 bg-primary text-on-primary px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">Elite</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-end gap-4 mb-4">
+<h1 class="text-5xl md:text-7xl font-headline font-bold tracking-tight text-on-surface">Amara Okoro</h1>
+<div class="flex items-center justify-center md:justify-start gap-2 pb-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-lg">4.8</span>
+<span class="text-on-surface-variant text-sm font-medium tracking-wide">(124 REVIEWS)</span>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed max-w-2xl text-lg mb-8 font-light italic">
+                    Specializing in high-definition natural hair artistry and architectural braiding. My mission is to elevate the heritage of African styling into a modern, editorial luxury experience tailored uniquely to your silhouette.
+                </p>
+<div class="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
+<span class="bg-surface-container-high text-primary px-5 py-2 rounded-full text-xs font-bold tracking-widest border border-outline-variant/30 uppercase">Braids</span>
+<span class="bg-surface-container-high text-primary px-5 py-2 rounded-full text-xs font-bold tracking-widest border border-outline-variant/30 uppercase">Cornrows</span>
+<span class="bg-surface-container-high text-primary px-5 py-2 rounded-full text-xs font-bold tracking-widest border border-outline-variant/30 uppercase">Natural Hair</span>
+</div>
+<div class="inline-flex items-center gap-2 bg-secondary-container/20 text-secondary px-4 py-2 rounded-lg border border-secondary/10">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-sm font-bold tracking-widest uppercase">Comes to you</span>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Portfolio Gallery (Left Col) -->
+<section class="lg:col-span-7">
+<div class="mb-10 flex justify-between items-end">
+<h2 class="text-3xl font-headline font-bold">Portfolio</h2>
+<span class="text-xs tracking-[0.3em] uppercase text-on-surface-variant">Selected Works</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Intricate braid pattern on model" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6S1CwSvacf_-Sd-ALDvOAznIEE-CDUfs7N0QeKo3-9MqsC2V36GvOb4yBxSocAEQBlH-NCgvO7XRI6z7Y94hvjV4bAbiR0XH_fNVP4mBf6jWcbFWW_lnZRGObgaqTJL0XiAiOn7g_Equtsn1ihOMtUZKtTWsSputnkupsYV6wt4cyz3ypzqQp-BEQoyb1lKvgHdmmgLgugxpy9sfZiQJtXWHdqaOxldX9kI4MYjWyh1KaTCdubEVfWjos4Vq4uiK8vC40zXw0ta0"/>
+</div>
+<div class="aspect-square overflow-hidden bg-surface-container-low translate-y-8">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Artistic cornrows style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9m5zMDFPmV57wUc9N6Gb9bTL4An5k1GWfZfua5Su62oUur3ghy-pm6vDkscrTT4IQLvhfEKwONX4VMEZdnSYEpJR0Z3ietNB6rMQ_7fc17X_fBFanO5JAgX_xnGgcyfWefU5-b90_6b0uqs4MG1xY19IY8k7LcCIBBfQYrKrAJK90Fcq8mRnJQ87_JjdRtPYhPr1ghb-js_cGDOqWSwSEvEyq6KMpoc0nsT5kmUfIyxoN_A0AhfZFtyZp0QyWq1HK14kj7Vcqnn8"/>
+</div>
+<div class="aspect-square overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Natural afro hair styling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbsCm-3P2sKKC-5q6pCKvnZahXnAE73VyXhu_MYJjzUe7jXZRyzC_7EZXA7ibhOfcyYPPjr8Z9En8VY9JuN92IcvW8cOL45ne00GPFOiNpdiAb7zc5YVIjHF_JrA0aSEWafLBgZAPoNqABslAlv33v379ryKGcAuQbCGiLyMVcZ2ORLvunX6S2rD0NwAzS4UhuRz0YAep0HUX09YQqeFecZWgDdbs1KuwPLTn05sKEqEhXd9taZ3kFNZUSUB1EdULqHP_G71AK_kA"/>
+</div>
+<div class="aspect-square overflow-hidden bg-surface-container-low translate-y-8">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Premium goddess braids hairstyle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKeAbN9sdTDqE7mS660D-eyLt75wPUd4PZelPq_HjLYUJceX8ow2MQpu4VA860TvB7m0cWhO0UjJlmYdDfjAwsq3h8YcHRPfg87Cxuo2lCxlGRLbpRBHv4p5FOzvy7cJXbzlErXrf5vn8OqvZltdAuR0cZV5-cfmLG-kpLW--rDZYvb9P6ix6dxCz2sh3VPbUfaLv_yUOD_wo3zOLwsw3E2qSf4SrqOgTARZmX3FaF6I-W4PjTDwvNyq3FbUrXHlYEouz2JFSSNR4"/>
+</div>
+</div>
+</section>
+<!-- Service Menu (Right Col) -->
+<section class="lg:col-span-5 space-y-16">
+<div>
+<h2 class="text-3xl font-headline font-bold mb-10">Signature Services</h2>
+<div class="space-y-6">
+<div class="flex justify-between items-center py-4 border-b border-outline-variant/10 group">
+<div>
+<h4 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Fulani Braids</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">4 - 6 Hours</p>
+</div>
+<span class="text-xl font-headline font-bold text-primary">₦45,000</span>
+</div>
+<div class="flex justify-between items-center py-4 border-b border-outline-variant/10 group">
+<div>
+<h4 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Architectural Cornrows</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">2 - 3 Hours</p>
+</div>
+<span class="text-xl font-headline font-bold text-primary">₦25,000</span>
+</div>
+<div class="flex justify-between items-center py-4 border-b border-outline-variant/10 group">
+<div>
+<h4 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Natural Coil Definition</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">1.5 Hours</p>
+</div>
+<span class="text-xl font-headline font-bold text-primary">₦18,500</span>
+</div>
+<div class="flex justify-between items-center py-4 border-b border-outline-variant/10 group">
+<div>
+<h4 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Silk Press Treatment</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">2 Hours</p>
+</div>
+<span class="text-xl font-headline font-bold text-primary">₦30,000</span>
+</div>
+</div>
+</div>
+<!-- Client Reviews -->
+<div>
+<h2 class="text-3xl font-headline font-bold mb-10">Client Testimonials</h2>
+<div class="space-y-6">
+<div class="glass-card p-8 rounded-xl border border-white/5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-bold text-on-surface">Zainab Al-Mansoori</h5>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">Oct 12, 2023</p>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-light italic leading-relaxed">"Amara is a true artisan. The precision of my cornrows is unmatched, and her professionalism was beyond my expectations. A master of her craft."</p>
+</div>
+<div class="glass-card p-8 rounded-xl border border-white/5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-bold text-on-surface">Chioma E.</h5>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">Sep 28, 2023</p>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-light italic leading-relaxed">"Loved the convenience of the home service. She arrived exactly on time and treated my natural hair with such care. Highly recommend for naturalistas!"</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky Booking Footer -->
+<div class="fixed bottom-0 left-0 w-full p-6 md:p-8 flex justify-center z-50 pointer-events-none">
+<div class="w-full max-w-xl pointer-events-auto">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-5 rounded-xl text-sm font-black tracking-[0.2em] uppercase shadow-[0_20px_50px_rgba(230,196,135,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                Book Amara
+            </button>
+</div>
+</div>
+<!-- Main Footer -->
+<footer class="bg-[#131318] w-full border-t border-[#4d463a]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8">
+<div class="text-lg font-bold text-[#c9a96e]">GlamGo</div>
+<div class="flex gap-8">
+<a class="font-manrope text-xs tracking-widest uppercase text-[#e4e1e9]/40 hover:text-[#e6c487] transition-colors" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs tracking-widest uppercase text-[#e4e1e9]/40 hover:text-[#e6c487] transition-colors" href="#">Terms of Service</a>
+<a class="font-manrope text-xs tracking-widest uppercase text-[#e4e1e9]/40 hover:text-[#e6c487] transition-colors" href="#">Press</a>
+<a class="font-manrope text-xs tracking-widest uppercase text-[#e4e1e9]/40 hover:text-[#e6c487] transition-colors" href="#">Contact</a>
+</div>
+<p class="font-manrope text-xs tracking-widest uppercase text-[#e4e1e9]/40">© 2024 GlamGo Digital Atelier. All Rights Reserved.</p>
+</footer>
+</body></html>

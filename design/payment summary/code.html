@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GlamGo - Payment Summary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-on-surface": "#303036",
+                        "secondary": "#ffb2bc",
+                        "outline-variant": "#4d463a",
+                        "on-primary-container": "#543d0c",
+                        "on-error": "#690005",
+                        "surface-dim": "#131318",
+                        "on-secondary-fixed-variant": "#70343e",
+                        "surface-container": "#1f1f25",
+                        "inverse-primary": "#745a27",
+                        "inverse-surface": "#e4e1e9",
+                        "surface-bright": "#39383e",
+                        "on-tertiary": "#203051",
+                        "on-primary": "#412d00",
+                        "primary-fixed-dim": "#e4c285",
+                        "surface-container-highest": "#35343a",
+                        "on-tertiary-fixed-variant": "#374669",
+                        "on-tertiary-fixed": "#081b3b",
+                        "on-tertiary-container": "#314163",
+                        "error": "#ffb4ab",
+                        "primary-container": "#c9a96e",
+                        "on-primary-fixed": "#261900",
+                        "on-background": "#e4e1e9",
+                        "surface": "#131318",
+                        "surface-container-high": "#2a292f",
+                        "on-surface": "#e4e1e9",
+                        "on-secondary-container": "#f4a2ad",
+                        "on-secondary": "#551e29",
+                        "surface-container-lowest": "#0e0e13",
+                        "tertiary": "#b8c8f2",
+                        "tertiary-fixed": "#d8e2ff",
+                        "tertiary-container": "#9dadd5",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3a0915",
+                        "surface-variant": "#35343a",
+                        "surface-tint": "#e4c285",
+                        "secondary-fixed": "#ffd9dd",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#5a4312",
+                        "background": "#131318",
+                        "secondary-container": "#733641",
+                        "surface-container-low": "#1b1b20",
+                        "on-surface-variant": "#d0c5b5",
+                        "outline": "#998f81",
+                        "primary-fixed": "#ffdea4",
+                        "primary": "#e6c487",
+                        "secondary-fixed-dim": "#ffb2bc",
+                        "tertiary-fixed-dim": "#b6c6ef"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(31, 31, 37, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface/60 backdrop-blur-xl fixed top-0 w-full z-50 no-border bg-[#1b1b20] shadow-[0_4px_40px_rgba(228,225,233,0.04)]">
+<div class="flex justify-between items-center px-8 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-on-surface/60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-2xl font-noto-serif italic text-[#e6c487] tracking-tighter">GlamGo</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="font-manrope tracking-widest uppercase text-xs text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Atelier</a>
+<a class="font-manrope tracking-widest uppercase text-xs text-[#e6c487] border-b-2 border-[#e6c487] pb-1" href="#">Bookings</a>
+<a class="font-manrope tracking-widest uppercase text-xs text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300" href="#">Stylists</a>
+</nav>
+<div class="text-[#e6c487]">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28 px-6 max-w-2xl mx-auto">
+<!-- Title Section -->
+<section class="mb-10">
+<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-2 block">Final Step</span>
+<h2 class="font-headline text-4xl md:text-5xl text-on-surface leading-tight">Payment Summary</h2>
+</section>
+<!-- Booking Recap Card -->
+<section class="glass-card rounded-xl overflow-hidden mb-8 border border-outline-variant/10">
+<div class="md:flex">
+<div class="md:w-1/3 h-48 md:h-auto relative overflow-hidden">
+<img alt="Goddess Crown Braids" class="w-full h-full object-cover" data-alt="Intricate goddess crown braids hairstyle close-up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPbKPReEiGb6hs3ye8siUsL8nWIMbcfTkGR8GEbM80akCaRciUAlr4siC6k9xfjKS1N-awwbqLsd0hpf324olFOzuY-fALziNwSF-NmJrjVX-u2MhoZsWx_7cAlfu0LVFv4wW4pXRla-0SzvCHqtN62fGNgrlHhOYiQsGounNKxTNYMEK3cbrtAFvYZq57laTZagrMw3f4DeUF9QLDc4NyrcjZdWrikGk9Z3y9izlZGkm9a2w5UDGrciRL8hCzvKabL1L8lWBkAD0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent md:bg-gradient-to-r"></div>
+</div>
+<div class="p-6 md:p-8 flex-1">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-2xl text-on-surface mb-1">Goddess Crown Braids</h3>
+<p class="text-on-surface-variant text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+                                Victoria Island, Lagos
+                            </p>
+</div>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-primary/20">
+                            Premium
+                        </div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/30">
+<img alt="Amara Okoro" class="w-full h-full object-cover" data-alt="Professional female hair stylist portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAuPUEQQi7FBhn98N8GvWMfDAL0CJLp13rcOPt66jcRqqzHat-5fb0auDfqQhxxVBCnRSsHPT1538n6TlrA9fIEugQr_XOOZnbFq_Rl2CK-wSsUDKB0dG3BxFQ5OE1SbkjQsWVE5B6KFRDgxLQjfu7cNoWvurqUdZbuba6C78TWAldmfSyKm8lpPIJnXzJu08ltjOfkUFR7JchSzOYM_EfR0j-PfH7tT555aDutmCgdXYydEhgcz6bv0gHn1_xaipGj1JEa-hESVc"/>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface/40 font-bold">Stylist</p>
+<p class="font-semibold text-on-surface">Amara Okoro</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-outline-variant/10">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface/40 font-bold mb-1">Date</p>
+<p class="text-sm font-medium">Oct 14, 2024</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface/40 font-bold mb-1">Time</p>
+<p class="text-sm font-medium">12pm - 5pm</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Price Breakdown Section -->
+<section class="space-y-6 mb-12">
+<h4 class="font-label text-xs tracking-widest uppercase text-on-surface/60 px-2">Investment Detail</h4>
+<div class="surface-container-low rounded-xl p-8 space-y-4 shadow-sm">
+<div class="flex justify-between items-center">
+<span class="text-on-surface/70">Service price</span>
+<span class="font-medium">₦45,000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface/70">Booking fee</span>
+<span class="font-medium">₦500</span>
+</div>
+<div class="pt-6 mt-2 border-t border-outline-variant/20 flex justify-between items-end">
+<div>
+<span class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold block mb-1">Total Amount</span>
+<span class="text-on-surface/40 text-xs">VAT Inclusive</span>
+</div>
+<span class="text-4xl font-headline text-primary tracking-tight">₦45,500</span>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="space-y-6">
+<button class="w-full py-5 rounded-xl bg-gradient-to-br from-[#e6c487] to-[#c9a96e] text-on-primary font-bold text-lg flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(230,196,135,0.2)] hover:scale-[0.98] transition-transform duration-200">
+<span>Pay with Interswitch</span>
+<div class="bg-white/20 p-1 rounded-sm">
+<span class="material-symbols-outlined text-[20px] align-middle" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</button>
+<!-- Trust Badges -->
+<div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 pt-4">
+<div class="flex items-center gap-2 text-on-surface/40">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="text-[11px] uppercase tracking-widest font-bold">Secure Payment</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface/40">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span class="text-[11px] uppercase tracking-widest font-bold">Money-Back Guarantee</span>
+</div>
+</div>
+</section>
+<!-- Footer / Notes -->
+<section class="mt-16 text-center">
+<p class="text-[10px] text-on-surface/30 uppercase tracking-[0.3em] max-w-xs mx-auto leading-relaxed">
+                By completing this payment, you agree to the GlamGo terms of service and cancellation policy.
+            </p>
+</section>
+</main>
+<!-- Navigation Shadow Element -->
+<div class="fixed bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface to-transparent pointer-events-none z-40"></div>
+<!-- Hidden bottom nav shell logic for mobile layout alignment -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-end px-6 pb-6 pt-2 bg-[#131318]/40 backdrop-blur-2xl z-50 rounded-t-[2rem] shadow-[0_-8px_40px_rgba(0,0,0,0.5)]">
+<div class="flex flex-col items-center justify-center text-[#e4e1e9]/40 p-2">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-manrope text-[10px] font-medium tracking-widest uppercase mt-1">Atelier</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#e6c487] to-[#c9a96e] text-[#131318] rounded-full p-3 scale-110 -translate-y-2">
+<span class="material-symbols-outlined" data-icon="calendar_today" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e4e1e9]/40 p-2">
+<span class="material-symbols-outlined" data-icon="content_cut">content_cut</span>
+<span class="font-manrope text-[10px] font-medium tracking-widest uppercase mt-1">Stylists</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e4e1e9]/40 p-2">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-manrope text-[10px] font-medium tracking-widest uppercase mt-1">Profile</span>
+</div>
+</footer>
+</body></html>

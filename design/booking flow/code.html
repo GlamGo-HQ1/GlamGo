@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb2bc",
+                        "primary-fixed-dim": "#e4c285",
+                        "surface-container": "#1f1f25",
+                        "on-surface-variant": "#d0c5b5",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a292f",
+                        "on-tertiary-fixed": "#081b3b",
+                        "surface-container-low": "#1b1b20",
+                        "on-secondary-container": "#f4a2ad",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e4e1e9",
+                        "tertiary-container": "#9dadd5",
+                        "secondary": "#ffb2bc",
+                        "inverse-on-surface": "#303036",
+                        "surface-variant": "#35343a",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#39383e",
+                        "primary": "#e6c487",
+                        "on-surface": "#e4e1e9",
+                        "surface": "#131318",
+                        "surface-container-lowest": "#0e0e13",
+                        "on-background": "#e4e1e9",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-primary-fixed": "#261900",
+                        "outline-variant": "#4d463a",
+                        "tertiary-fixed-dim": "#b6c6ef",
+                        "on-primary": "#412d00",
+                        "on-tertiary-fixed-variant": "#374669",
+                        "on-secondary-fixed-variant": "#70343e",
+                        "surface-container-highest": "#35343a",
+                        "on-tertiary-container": "#314163",
+                        "on-secondary": "#551e29",
+                        "primary-container": "#c9a96e",
+                        "outline": "#998f81",
+                        "tertiary": "#b8c8f2",
+                        "inverse-primary": "#745a27",
+                        "background": "#131318",
+                        "secondary-fixed": "#ffd9dd",
+                        "secondary-container": "#733641",
+                        "surface-tint": "#e4c285",
+                        "on-tertiary": "#203051",
+                        "primary-fixed": "#ffdea4",
+                        "on-primary-container": "#543d0c",
+                        "surface-dim": "#131318",
+                        "on-secondary-fixed": "#3a0915",
+                        "on-primary-fixed-variant": "#5a4312"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(77, 70, 58, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary">
+<!-- Top Navigation (Shell Implementation) -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 w-full bg-surface/60 dark:bg-[#131318]/60 backdrop-blur-xl no-border bg-surface-container-low/40">
+<div class="text-2xl font-serif tracking-tighter text-[#e6c487] dark:text-[#c9a96e] font-headline italic">GlamGo</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300 cursor-pointer" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined text-[#e4e1e9]/60 hover:text-[#ffb2bc] transition-colors duration-300 cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+<!-- Header Section: Booking Summary -->
+<header class="flex flex-col md:flex-row gap-8 items-start mb-12">
+<div class="relative w-full md:w-48 aspect-[3/4] overflow-hidden rounded-lg shadow-2xl">
+<img alt="Goddess Crown Braids" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL4vq-hUH5AZ8RQmqCQsqYwYrX_HzCLI7vmvYeHGagiQG4eNEj6CZ474Uo7esAiwoXxNrQV9ZSNnG1GPAK5dZljDKNhuRo0b-U7Q0iiF6CcTrmrUYs5QqfQlMnNW9-VxHAALje7pvPtLixN6areL_ZTCKWiUZ1qu6b1NkT3gUJpSUTLpuWlHp9AmYKy4NxTMO4pv9LVXoN9D9P8nIjWH-cjxk2FU6Is9zHu7xQ1Lt_MDcY5FJhej7lLTLDpBkJz4yCb4Q8qcHhnes"/>
+</div>
+<div class="flex-1 space-y-6">
+<div>
+<span class="text-[10px] uppercase tracking-[0.4em] text-primary mb-2 block">Reservation Details</span>
+<h1 class="text-4xl md:text-5xl font-headline italic mb-2 tracking-tight">Goddess Crown Braids</h1>
+<p class="text-primary text-2xl font-light tracking-wide">₦45,000</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl max-w-sm">
+<img alt="Stylist Amara Okoro" class="w-12 h-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2G2q0BeJ7N8vF-mFGTqqyuPENSkYK9G2pcTbP1i-u43PSgizvAl1K4nOLqo36jdKWdG6EFsJxeyGZ5G8w_ubmY3tRVUl2J0VmdmwsCCCoSiXvau-jGVai8wZqHXCk4Ks7b-auUVJRYYZhTMGQNVVQmOjcma_M-hzgMnn1qkhgSW4XnsDqfPfOzMIjFaCHfk1oNs4wYJaPwaqHueKRM4Oa-bv4VKQV6KB6a4SIr9L0mpODwXyYIo6Dm90QWJjdmGdN4dARwFslOsg"/>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface/40">Stylist</p>
+<p class="font-medium text-on-surface">Amara Okoro</p>
+<p class="text-[9px] uppercase tracking-widest text-primary/80 mt-1 font-bold">Salon &amp; Mobile Available</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[10px] uppercase tracking-[0.3em] text-on-surface/40">Service Type</span>
+<div class="inline-flex p-1 bg-surface-container-low rounded-full w-fit glass-card">
+<button class="px-6 py-2 rounded-full text-[11px] uppercase tracking-widest font-bold bg-primary text-on-primary shadow-lg transition-all duration-300">
+            Salon Visit
+        </button>
+<button class="px-6 py-2 rounded-full text-[11px] uppercase tracking-widest font-bold text-on-surface/60 hover:text-on-surface transition-all duration-300">
+            Home Service
+        </button>
+</div>
+</div></div>
+</header>
+<!-- Service Type Selection Section -->
+<!-- Booking Form Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+<!-- Date Picker -->
+<section class="glass-card p-8 rounded-xl">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline italic text-lg">October 2024</h3>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer text-on-surface/60 hover:text-primary transition-colors" data-icon="chevron_left">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface/60 hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-[10px] uppercase tracking-widest text-on-surface/40 mb-4">
+<span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+</div>
+<div class="grid grid-cols-7 gap-y-2 text-center">
+<div class="py-2 text-on-surface/20">29</div>
+<div class="py-2 text-on-surface/20">30</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">1</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">2</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">3</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">4</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">5</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">6</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">7</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">8</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">9</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">10</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">11</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">12</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">13</div>
+<div class="py-2 bg-primary text-on-primary font-bold rounded-lg shadow-[0_0_20px_rgba(230,196,135,0.3)]">14</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">15</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">16</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">17</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">18</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">19</div>
+<div class="py-2 text-on-surface cursor-pointer hover:bg-primary/10 rounded-lg">20</div>
+</div>
+</section>
+<!-- Time Slot & Location -->
+<div class="space-y-8">
+<section>
+<h3 class="font-headline italic text-lg mb-6">Select Time</h3>
+<div class="space-y-4">
+<button class="w-full glass-card p-4 rounded-xl flex justify-between items-center group hover:border-primary/50 transition-all duration-300">
+<div class="text-left">
+<p class="text-xs uppercase tracking-widest text-on-surface/40 group-hover:text-primary transition-colors">Morning</p>
+<p class="font-medium">8am - 12pm</p>
+</div>
+<span class="material-symbols-outlined text-on-surface/20 group-hover:text-primary" data-icon="wb_twilight">wb_twilight</span>
+</button>
+<button class="w-full bg-primary/10 border border-primary/40 p-4 rounded-xl flex justify-between items-center group">
+<div class="text-left">
+<p class="text-xs uppercase tracking-widest text-primary">Afternoon</p>
+<p class="font-medium text-on-surface">12pm - 5pm</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="light_mode" data-weight="fill" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+</button>
+<button class="w-full glass-card p-4 rounded-xl flex justify-between items-center group hover:border-primary/50 transition-all duration-300">
+<div class="text-left">
+<p class="text-xs uppercase tracking-widest text-on-surface/40 group-hover:text-primary transition-colors">Evening</p>
+<p class="font-medium">5pm - 9pm</p>
+</div>
+<span class="material-symbols-outlined text-on-surface/20 group-hover:text-primary" data-icon="bedtime">bedtime</span>
+</button>
+</div>
+</section>
+<section>
+<h3 class="font-headline italic text-lg mb-6">Location</h3>
+<div class="relative mb-4">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="location_on">location_on</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 text-on-surface focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-on-surface/30" type="text" value="Victoria Island, Lagos"/>
+</div>
+<div class="h-32 rounded-xl overflow-hidden glass-card relative">
+<div class="absolute inset-0 bg-surface-container-high/40 grayscale mix-blend-overlay"></div>
+<img alt="Map Preview" class="w-full h-full object-cover opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7B0owdQs4hszzz2QZ747hbOXNlkSXXS1DygMCNNSwN5rfCGxSkho9xDs-sH_42mm9zS0mn5MDJzAbhupZ7D43kN_8UoZyyQZpV7_gz9aC_0ZkZDsuzFAJUVQxdoOhwGmy1JbR7vC0dCzwe7sd8uisFwWtpuJCsPwVtkW6jqsom6qEImBLI_WKFbURv7K2SnZ6cCV9TAWN6rXermHgw2IB_xUKw9wPYfZ0SKAyASGfa9nW7ckiKLU0FOAVpnya5Pls_oLB3C81EBw"/>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-primary text-3xl drop-shadow-[0_0_10px_rgba(230,196,135,0.6)]" data-icon="location_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Price Breakdown & Checkout -->
+<section class="max-w-md mx-auto space-y-6 pt-12 border-t border-outline-variant/15">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-on-surface/60">
+<span class="text-sm">Service price</span>
+<span class="font-medium">₦45,000</span>
+</div>
+<div class="flex justify-between items-center text-on-surface/60">
+<span class="text-sm">Booking fee</span>
+<span class="font-medium">₦500</span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/5">
+<span class="font-headline italic text-xl">Total</span>
+<span class="text-2xl font-bold text-primary">₦45,500</span>
+</div>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-5 rounded-lg font-bold text-sm uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(230,196,135,0.15)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+                Proceed to Payment
+            </button>
+<p class="text-center text-[10px] uppercase tracking-widest text-on-surface/30">
+                Secure checkout encrypted with 256-bit SSL
+            </p>
+</section>
+</main>
+<!-- Footer (Shell Implementation) -->
+<footer class="w-full py-16 px-8 border-t border-[#4d463a]/15 bg-[#131318] flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 tonal-shift-bg-surface-container-low">
+<div class="font-sans text-[12px] uppercase tracking-[0.2em] Manrope text-[#e4e1e9]/40 opacity-80">
+            © 2024 GlamGo Digital Atelier. All Rights Reserved.
+        </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-sans text-[12px] uppercase tracking-[0.2em] Manrope text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-sans text-[12px] uppercase tracking-[0.2em] Manrope text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-sans text-[12px] uppercase tracking-[0.2em] Manrope text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all opacity-80 hover:opacity-100" href="#">Sustainability</a>
+<a class="font-sans text-[12px] uppercase tracking-[0.2em] Manrope text-[#e4e1e9]/40 hover:text-[#e6c487] transition-all opacity-80 hover:opacity-100" href="#">Careers</a>
+</div>
+</footer>
+</body></html>
