@@ -156,19 +156,22 @@
 
 > [!CAUTION]
 > This is the CORE differentiator. Payment must work end-to-end for the demo.
+> Technical reference: `docs/interswitch-workshop-intel.md`
 
 | # | Task | Details |
 | --- | --- | --- |
-| 6.1 | Set up Interswitch sandbox credentials | Register on Interswitch developer portal, get test merchant code, API keys |
-| 6.2 | Build `PaymentSummary` component | Booking details + total price + "Pay with Interswitch" button |
-| 6.3 | Create POST `/api/payment/initiate/route.ts` | Generates Interswitch payment request: transaction ref, amount, redirect URL, hash |
-| 6.4 | Build `/payment` page | Shows PaymentSummary → on click, redirects to Interswitch hosted payment page |
-| 6.5 | Create GET `/api/payment/verify/route.ts` | Interswitch redirects back here with transaction ref → verify payment status via Interswitch API → update booking `payment_status` to `paid` and `status` to `confirmed` |
-| 6.6 | Build `PaymentStatus` component | Shows success ✅ / failure ❌ / pending ⏳ states |
-| 6.7 | Build `/payment/callback` page | Receives Interswitch redirect → calls verify API → shows PaymentStatus → link to booking confirmation |
-| 6.8 | Build `BookingConfirmation` page `/booking/confirm` | Shows "Booking Confirmed!" + booking details + 4-digit confirmation code + "View My Bookings" button |
+| 6.1 | Set up QuickTeller Business sandbox | Register as **"Start-up business"** (bypasses KYC). Obtain: **Merchant Code**, **Pay Item ID** (Payable Code — must allow Card + Transfer), **Client ID**, **Client Secret**. Add all to `.env.local`. |
+| 6.2 | Build `src/lib/interswitch.ts` utility | OAuth token generator: Base64-encode `CLIENT_ID:CLIENT_SECRET`, POST to Passport URL with `grant_type=client_credentials`. Cache token, auto-refresh before 1-hour expiry. Also: generate unique transaction references, compute SHA-512 hashes. |
+| 6.3 | Build `PaymentSummary` component | Booking details + total price + "Pay with Interswitch" button + **warning notice** for bank transfer users: "Transfer the exact amount — 1 kobo difference will bounce the transaction" |
+| 6.4 | Create POST `/api/payment/initiate/route.ts` | Generates Interswitch **inline checkout** payload: transaction ref, amount (kobo), merchant code, pay item ID, site redirect URL, MAC hash. Returns config object for the client-side checkout popup. |
+| 6.5 | Build `/payment/[bookingId]` page | Client Component: fetches booking → renders `PaymentSummary` → on click, launches **Interswitch Inline Checkout popup** (keeps user on our site). On popup close/success → redirect to callback. |
+| 6.6 | Create POST `/api/payment/webhook/route.ts` | Receives Interswitch webhook POST. **Must return HTTP 200 instantly** (Interswitch retries 5× if no 200). **SHA-512 security**: hash incoming JSON body with our Secret Key, compare to `Signature` header. If valid → update booking `payment_status` to `paid` and `status` to `confirmed`. If invalid → reject with 401. |
+| 6.7 | Create GET `/api/payment/verify/route.ts` | **Requery fallback**: if webhook is delayed, client-side calls this endpoint with transaction ref → hits Interswitch "check transaction status" API → response code `00` = success, `09` = pending (retry), others = failure. Updates booking accordingly. |
+| 6.8 | Build `PaymentStatus` component | Shows success ✅ / failure ❌ / pending ⏳ states with appropriate messaging and next-step CTAs |
+| 6.9 | Build `/payment/callback` page | Receives Interswitch redirect after payment → calls verify API as fallback → shows `PaymentStatus` → link to booking confirmation |
+| 6.10 | Build `BookingConfirmation` page `/booking/confirm/[bookingId]` | Shows "Booking Confirmed!" + booking details + 4-digit confirmation code + "View My Bookings" button |
 
-**✅ Phase 6 Done = Client pays via Interswitch sandbox, money is "escrowed", booking status updates, confirmation code displayed**
+**✅ Phase 6 Done = Client pays via Interswitch inline checkout, webhook verifies with SHA-512, booking status updates, confirmation code displayed**
 
 ---
 
