@@ -91,6 +91,44 @@ The following architectural gaps were identified by the Product Manager during t
 
 ---
 
+## Phase 4B: Platform Gallery & Discovery
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-25 | Product Engineer (Beloved) | Built server actions for data fetching: `getHairstyles()`, `getHairstyleById()`, `getStylistsForStyle()`, `getStylistById()`, `getStylesForStylist()`, `getReviewsForStylist()`. |
+| 2026-03-25 | Product Engineer (Beloved) | Built Gallery page (`/gallery`) with `GalleryHero`, `CategoryFilter`, `HairstyleCard`, `HairstyleGrid` — all matching Stitch mockup with glassmorphism styling. |
+| 2026-03-25 | Product Engineer (Beloved) | Built Style Detail page (`/styles/[id]`) with `StyleImageGallery`, `StyleInfo`, `StylistList` — split-view layout with sticky image column. |
+| 2026-03-25 | Product Engineer (Beloved) | Built Stylist Profile page (`/stylists/[id]`) with `StylistHeader`, `StylistPortfolio`, `StylistStyles`, `StylistReviews` components. |
+| 2026-03-25 | Product Engineer (Beloved) | Created `/api/stylists` endpoint with category/area/availability filters. |
+| 2026-03-25 | Product Engineer (Beloved) | Conducted Phase 4B audit — scored 8.5/10, documented in `docs/PHASE_4B_AUDIT_REPORT.md`. |
+
+---
+
+## Phase 5: Booking Flow
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `BookingSummary` component — style image (3:4 aspect), name (Playfair italic), price, stylist mini-card with avatar and service mode badge. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `ServiceTypeToggle` component — Salon Visit / Home Service pill toggle with glassmorphism container. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `DatePicker` component — custom calendar with month navigation, gold selected state with glow, past dates disabled. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `TimeSlotPicker` component — Morning/Afternoon/Evening cards with sunrise/sun/moon icons. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `LocationInput` component — address input with location icon, map preview placeholder (Google Maps deferred for hackathon). |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `PriceSummary` component — service price + ₦500 booking fee = total, gradient gold "Proceed to Payment" button. |
+| 2026-03-25 | Lead Dev (Overcomer) | Wired up `/booking/[styleId]/[stylistId]` page — server component fetches style + stylist data, client form manages state. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `createBooking()` server action — validates input, generates 4-digit confirmation code, creates booking with `pending` status. |
+| 2026-03-25 | Lead Dev (Overcomer) | All booking UI matches Stitch mockup (`design/booking flow/`) — glassmorphism cards, editorial typography, gold accents. |
+
+### Phase 5 Technical Notes
+
+| Item | Details |
+| --- | --- |
+| Google Maps API | Deferred — using static placeholder map for hackathon demo. Can add Places Autocomplete post-MVP. |
+| Booking fee | Hardcoded at ₦500 per Stitch mockup specification. |
+| Server action vs API route | Used modern server action pattern instead of `/api/bookings` route — same functionality, cleaner code. |
+| Confirmation code | 4-digit numeric code generated server-side, stored in `confirmation_code` column. |
+
+---
+
 ## Phase 4B: Motion & Interactions (Optional)
 
 > **Status:** Deferred — motion specs archived in `docs/MOTION_ARCHIVE.md`. Can be implemented post-core phases if time permits.
