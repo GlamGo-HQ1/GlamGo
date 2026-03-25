@@ -1,0 +1,88 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mainImage {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 500px;
+}
+
+.image {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.thumbnails {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  background: var(--bg-primary);
+}
+
+.thumbnail {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  padding: 0;
+  background: none;
+}
+
+.thumbActive {
+  border-color: var(--accent-primary);
+}
+
+.thumbImage {
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.thumbInactive {
+  filter: grayscale(100%);
+  opacity: 0.4;
+}
+
+.thumbnail:hover .thumbInactive {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.mobileTitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-10) var(--space-6);
+  background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .mobileTitle {
+    display: none;
+  }
+}
+
+.mobileTitleText {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+  line-height: 1.1;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60vh;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+}

@@ -1,0 +1,411 @@
+# GlamGo — Phase 4B: Platform Gallery & Discovery
+
+> **Purpose:** Build the core in-app experience — the gallery where users browse hairstyles, view style details, and discover stylists.
+> This is the HOOK. If the gallery doesn't feel premium, users won't book.
+> **Depends on:** Phase 2 (hairstyles seeded) + Phase 3 (auth working)
+> **Estimated Time:** ~4 hours
+
+---
+
+## Phase 4B.1: Gallery Page Foundation
+**Owner:** Product Engineer (Beloved)
+**Time:** ~30 minutes
+**Depends on:** Nothing — this is the foundation of the gallery
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.1.1 | Create gallery page layout | `src/app/gallery/page.tsx` — Server Component that fetches hairstyles from Supabase |
+| 4B.1.2 | Create gallery module styles | `src/app/gallery/gallery.module.css` — dark luxury aesthetic matching landing page |
+| 4B.1.3 | Add page metadata | Title: "Hairstyle Gallery | GlamGo", description for SEO |
+
+**✅ 4B.1 Done = Gallery page renders with Supabase connection, matches design system**
+
+---
+
+## Phase 4B.2: Gallery Hero Section
+**Owner:** Product Engineer (Beloved)
+**Time:** ~20 minutes
+**Depends on:** 4B.1 (gallery page exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.2.1 | Build `GalleryHero` component | `src/components/gallery/GalleryHero.tsx` — "Find Your Next Look" headline |
+| 4B.2.2 | Add search bar UI | Text input with search icon, placeholder "Search styles..." (functionality in 4B.6) |
+| 4B.2.3 | Style hero section | Full-width, gradient overlay, Playfair Display heading, DM Sans body |
+
+**✅ 4B.2 Done = Gallery has premium hero with search input (non-functional yet)**
+
+---
+
+## Phase 4B.3: Category Filter
+**Owner:** Product Engineer (Beloved)
+**Time:** ~25 minutes
+**Depends on:** 4B.1 (gallery page exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.3.1 | Build `CategoryFilter` component | `src/components/gallery/CategoryFilter.tsx` — horizontal scrolling pills |
+| 4B.3.2 | Define category list | All, Braids, Cornrows, Locs, Weaves, Wigs, Natural, Twists, Crochet, Updos (matches `hairstyle_category` enum) |
+| 4B.3.3 | Add active state styling | Gold border + text for selected category, white/muted for others |
+| 4B.3.4 | Wire up URL params | Client Component: clicking category updates `?category=braids` in URL |
+
+**✅ 4B.3 Done = Category pills render, clicking updates URL (filtering in 4B.6)**
+
+---
+
+## Phase 4B.4: Hairstyle Card
+**Owner:** Product Engineer (Beloved)
+**Time:** ~30 minutes
+**Depends on:** Nothing — reusable component
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.4.1 | Build `HairstyleCard` component | `src/components/gallery/HairstyleCard.tsx` — displays single hairstyle |
+| 4B.4.2 | Card content | Image (next/image), style name, price range (₦), duration, category tag |
+| 4B.4.3 | Add hover animation | Scale up slightly, gold border glow, image brightness increase |
+| 4B.4.4 | Add trending badge | Gold "TRENDING" badge for `is_trending: true` styles |
+| 4B.4.5 | Link to detail page | Wraps entire card in `<Link href="/styles/[id]">` |
+
+**✅ 4B.4 Done = Reusable card component ready for grid**
+
+---
+
+## Phase 4B.5: Hairstyle Grid
+**Owner:** Product Engineer (Beloved)
+**Time:** ~20 minutes
+**Depends on:** 4B.4 (card component exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.5.1 | Build `HairstyleGrid` component | `src/components/gallery/HairstyleGrid.tsx` — responsive CSS grid |
+| 4B.5.2 | Grid layout | 1 column mobile, 2 columns tablet, 3-4 columns desktop |
+| 4B.5.3 | Empty state | "No styles found" message when array is empty |
+| 4B.5.4 | Loading skeleton | Use existing `LoadingSkeleton` component for loading state |
+
+**✅ 4B.5 Done = Grid renders cards responsively**
+
+---
+
+## Phase 4B.6: Gallery Data Fetching & Filtering
+**Owner:** Product Engineer (Beloved)
+**Time:** ~30 minutes
+**Depends on:** 4B.1-4B.5 (all gallery components exist)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.6.1 | Create `getHairstyles` server action | `src/lib/actions/hairstyles.ts` — fetches from Supabase with optional category filter |
+| 4B.6.2 | Wire up category filtering | Read `searchParams.category` → pass to query → filter results |
+| 4B.6.3 | Wire up search filtering | Read `searchParams.q` → filter by name (ilike) |
+| 4B.6.4 | Add sorting | Default: trending first, then by name alphabetically |
+| 4B.6.5 | Assemble gallery page | GalleryHero + CategoryFilter + HairstyleGrid with real data |
+
+**✅ 4B.6 Done = Gallery shows real hairstyles from DB, filtering works**
+
+---
+
+## Phase 4B.7: Style Detail — Image Gallery
+**Owner:** Product Engineer (Beloved)
+**Time:** ~25 minutes
+**Depends on:** 4B.6 (hairstyles fetching works)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.7.1 | Create style detail page | `src/app/styles/[id]/page.tsx` — Server Component |
+| 4B.7.2 | Build `StyleImageGallery` component | `src/components/styles/StyleImageGallery.tsx` — main image + thumbnails |
+| 4B.7.3 | Image interaction | Click thumbnail → updates main image (Client Component) |
+| 4B.7.4 | Fallback for single image | If only 1 image, show full-width without thumbnails |
+
+**✅ 4B.7 Done = Style detail page shows image gallery**
+
+---
+
+## Phase 4B.8: Style Detail — Info Section
+**Owner:** Product Engineer (Beloved)
+**Time:** ~20 minutes
+**Depends on:** 4B.7 (style detail page exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.8.1 | Build `StyleInfo` component | `src/components/styles/StyleInfo.tsx` — name, category, description |
+| 4B.8.2 | Price display | Format as "₦25,000 - ₦45,000" using Intl.NumberFormat |
+| 4B.8.3 | Duration display | "~4.5 hours" with clock icon |
+| 4B.8.4 | Category tag | Use existing `CategoryTag` component |
+
+**✅ 4B.8 Done = Style info renders with proper formatting**
+
+---
+
+## Phase 4B.9: Stylist Mini Card
+**Owner:** Product Engineer (Beloved)
+**Time:** ~25 minutes
+**Depends on:** Nothing — reusable component
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.9.1 | Build `StylistCard` component | `src/components/stylists/StylistCard.tsx` — compact stylist preview |
+| 4B.9.2 | Card content | Avatar, name, rating (stars), their price for style, service mode badge |
+| 4B.9.3 | Service mode badge | "Salon" / "Mobile" / "Both" with icon |
+| 4B.9.4 | Link to profile | Wraps in `<Link href="/stylists/[id]">` |
+
+**✅ 4B.9 Done = Reusable stylist card for style detail and search**
+
+---
+
+## Phase 4B.10: Stylists Who Do This Style
+**Owner:** Product Engineer (Beloved)
+**Time:** ~30 minutes
+**Depends on:** 4B.9 (stylist card exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.10.1 | Build `StylistList` component | `src/components/styles/StylistList.tsx` — "Available Stylists" section |
+| 4B.10.2 | Create `getStylistsForStyle` action | Fetches from `stylist_styles` joined with `stylist_profiles` and `users` |
+| 4B.10.3 | Sort by rating | Highest rated stylists first |
+| 4B.10.4 | Empty state | "No stylists offer this style yet" message |
+
+**✅ 4B.10 Done = Style detail shows available stylists**
+
+---
+
+## Phase 4B.11: Style Detail Page Assembly
+**Owner:** Product Engineer (Beloved)
+**Time:** ~15 minutes
+**Depends on:** 4B.7-4B.10 (all style components exist)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.11.1 | Wire up `/styles/[id]` page | Fetch style + stylists → render StyleImageGallery + StyleInfo + StylistList |
+| 4B.11.2 | Add back navigation | "← Back to Gallery" link |
+| 4B.11.3 | Handle 404 | If style ID not found, redirect to `/gallery` |
+| 4B.11.4 | Add page metadata | Dynamic title: "[Style Name] | GlamGo" |
+
+**✅ 4B.11 Done = Style detail page fully functional**
+
+---
+
+## Phase 4B.12: Stylist Profile — Header
+**Owner:** Product Engineer (Beloved)
+**Time:** ~25 minutes
+**Depends on:** 4B.9 (stylist card pattern established)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.12.1 | Create stylist profile page | `src/app/stylists/[id]/page.tsx` — Server Component |
+| 4B.12.2 | Build `StylistHeader` component | `src/components/stylists/StylistHeader.tsx` — full profile header |
+| 4B.12.3 | Header content | Large avatar, full name, bio, average rating, total reviews, specialties tags |
+| 4B.12.4 | Service mode badge | Prominent display of salon/mobile/both |
+| 4B.12.5 | Service area display | List of areas they serve (from `service_area[]`) |
+
+**✅ 4B.12 Done = Stylist profile header renders**
+
+---
+
+## Phase 4B.13: Stylist Profile — Portfolio
+**Owner:** Product Engineer (Beloved)
+**Time:** ~20 minutes
+**Depends on:** 4B.12 (stylist profile page exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.13.1 | Build `StylistPortfolio` component | `src/components/stylists/StylistPortfolio.tsx` — image grid |
+| 4B.13.2 | Grid layout | Masonry-style or uniform grid of portfolio images |
+| 4B.13.3 | Lightbox (optional) | Click to expand image (stretch goal) |
+| 4B.13.4 | Empty state | "No portfolio images yet" if array empty |
+
+**✅ 4B.13 Done = Stylist portfolio renders**
+
+---
+
+## Phase 4B.14: Stylist Profile — Reviews
+**Owner:** Product Engineer (Beloved)
+**Time:** ~30 minutes
+**Depends on:** 4B.12 (stylist profile page exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.14.1 | Build `ReviewCard` component | `src/components/stylists/ReviewCard.tsx` — single review display |
+| 4B.14.2 | Review content | Client name/avatar, star rating, comment, date |
+| 4B.14.3 | Build `StylistReviews` component | `src/components/stylists/StylistReviews.tsx` — list of ReviewCards |
+| 4B.14.4 | Create `getReviewsForStylist` action | Fetches reviews joined with client user data |
+| 4B.14.5 | Empty state | "No reviews yet. Be the first!" |
+
+**✅ 4B.14 Done = Stylist reviews render**
+
+---
+
+## Phase 4B.15: Stylist Profile — Styles Offered
+**Owner:** Product Engineer (Beloved)
+**Time:** ~25 minutes
+**Depends on:** 4B.12 (stylist profile page exists)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.15.1 | Build `StylistStyles` component | `src/components/stylists/StylistStyles.tsx` — styles this stylist offers |
+| 4B.15.2 | Create `getStylesForStylist` action | Fetches from `stylist_styles` joined with `hairstyles` |
+| 4B.15.3 | Display stylist-specific pricing | Show their price, not the hairstyle's generic price range |
+| 4B.15.4 | Link to booking | Each style card links to `/booking/[styleId]/[stylistId]` |
+
+**✅ 4B.15 Done = Stylist's offered styles render with their prices**
+
+---
+
+## Phase 4B.16: Stylist Profile Page Assembly
+**Owner:** Product Engineer (Beloved)
+**Time:** ~15 minutes
+**Depends on:** 4B.12-4B.15 (all stylist components exist)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.16.1 | Wire up `/stylists/[id]` page | Fetch profile + styles + reviews → render all sections |
+| 4B.16.2 | Add CTA button | "Book [Stylist Name]" floating button or prominent CTA |
+| 4B.16.3 | Handle 404 | If stylist ID not found, redirect to `/gallery` |
+| 4B.16.4 | Add page metadata | Dynamic title: "[Stylist Name] | GlamGo Stylist" |
+
+**✅ 4B.16 Done = Stylist profile page fully functional**
+
+---
+
+## Phase 4B.17: Stylists API Endpoint
+**Owner:** Product Engineer (Beloved)
+**Time:** ~20 minutes
+**Depends on:** 4B.9-4B.16 (stylist components exist)
+
+| # | Task | Details |
+| --- | --- | --- |
+| 4B.17.1 | Create GET `/api/stylists/route.ts` | Query stylists with optional filters |
+| 4B.17.2 | Filter by category | `?category=braids` → stylists who do braids |
+| 4B.17.3 | Filter by area | `?area=Lekki` → stylists serving that area |
+| 4B.17.4 | Filter by availability | `?available=true` → only available stylists |
+| 4B.17.5 | Sort options | `?sort=rating` or `?sort=reviews` |
+
+**✅ 4B.17 Done = Stylists API ready for future search/filter features**
+
+---
+
+## File Structure After Phase 4B
+
+```
+src/
+├── app/
+│   ├── gallery/
+│   │   ├── page.tsx              # Gallery page (Server Component)
+│   │   └── gallery.module.css
+│   ├── styles/
+│   │   └── [id]/
+│   │       └── page.tsx          # Style detail page
+│   ├── stylists/
+│   │   └── [id]/
+│   │       └── page.tsx          # Stylist profile page
+│   └── api/
+│       └── stylists/
+│           └── route.ts          # Stylists API
+├── components/
+│   ├── gallery/
+│   │   ├── GalleryHero.tsx
+│   │   ├── CategoryFilter.tsx
+│   │   ├── HairstyleCard.tsx
+│   │   └── HairstyleGrid.tsx
+│   ├── styles/
+│   │   ├── StyleImageGallery.tsx
+│   │   ├── StyleInfo.tsx
+│   │   └── StylistList.tsx
+│   └── stylists/
+│       ├── StylistCard.tsx
+│       ├── StylistHeader.tsx
+│       ├── StylistPortfolio.tsx
+│       ├── StylistReviews.tsx
+│       ├── StylistStyles.tsx
+│       └── ReviewCard.tsx
+└── lib/
+    └── actions/
+        └── hairstyles.ts         # Server actions for data fetching
+```
+
+---
+
+## Commit Strategy
+
+One commit per logical unit:
+
+1. `feat(gallery): add gallery page foundation and hero`
+2. `feat(gallery): add category filter with URL params`
+3. `feat(gallery): add hairstyle card and grid components`
+4. `feat(gallery): wire up data fetching and filtering`
+5. `feat(styles): add style detail page with image gallery`
+6. `feat(styles): add style info and stylist list`
+7. `feat(stylists): add stylist card component`
+8. `feat(stylists): add stylist profile page with header`
+9. `feat(stylists): add portfolio and reviews sections`
+10. `feat(stylists): add styles offered section`
+11. `feat(api): add stylists endpoint with filters`
+
+---
+
+## Design Requirements (Apply to All Components)
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| Background | `#0A0A0F` | Page backgrounds |
+| Surface | `rgba(255,255,255,0.03)` | Cards, containers |
+| Border | `rgba(255,255,255,0.08)` | Card borders, dividers |
+| Gold Accent | `#C9A96E` | CTAs, highlights, badges |
+| Text Primary | `#FAFAFA` | Headings |
+| Text Secondary | `rgba(255,255,255,0.7)` | Body text |
+| Text Muted | `rgba(255,255,255,0.4)` | Captions, metadata |
+| Font Display | Playfair Display | Headings |
+| Font Body | DM Sans | Body, UI |
+
+---
+
+## Database Queries Reference
+
+**Hairstyles with category filter:**
+```sql
+SELECT * FROM hairstyles 
+WHERE ($1::hairstyle_category IS NULL OR category = $1)
+ORDER BY is_trending DESC, name ASC;
+```
+
+**Stylists for a style:**
+```sql
+SELECT sp.*, u.full_name, u.avatar_url, ss.stylist_price
+FROM stylist_styles ss
+JOIN stylist_profiles sp ON ss.stylist_id = sp.id
+JOIN users u ON sp.user_id = u.id
+WHERE ss.hairstyle_id = $1 AND sp.is_available = true
+ORDER BY sp.average_rating DESC;
+```
+
+**Stylist profile with user data:**
+```sql
+SELECT sp.*, u.full_name, u.avatar_url, u.city, u.area
+FROM stylist_profiles sp
+JOIN users u ON sp.user_id = u.id
+WHERE sp.id = $1;
+```
+
+---
+
+## Phase 4B Completeness Check
+
+| Roadmap Task | Implementation | Status |
+| --- | --- | --- |
+| 4B.1 GalleryHero | `GalleryHero.tsx` | Covered |
+| 4B.2 CategoryFilter | `CategoryFilter.tsx` | Covered |
+| 4B.3 HairstyleCard | `HairstyleCard.tsx` | Covered |
+| 4B.4 HairstyleGrid | `HairstyleGrid.tsx` | Covered |
+| 4B.5 Gallery page wiring | `gallery/page.tsx` | Covered |
+| 4B.6 Category filtering | URL params + query | Covered |
+| 4B.7 StyleImageGallery | `StyleImageGallery.tsx` | Covered |
+| 4B.8 StyleInfo | `StyleInfo.tsx` | Covered |
+| 4B.9 StylistCard (mini) | `StylistCard.tsx` | Covered |
+| 4B.10 StylistList | `StylistList.tsx` | Covered |
+| 4B.11 Style detail wiring | `styles/[id]/page.tsx` | Covered |
+| 4B.12 StylistHeader | `StylistHeader.tsx` | Covered |
+| 4B.13 StylistPortfolio | `StylistPortfolio.tsx` | Covered |
+| 4B.14 StylistReviews + ReviewCard | Both components | Covered |
+| 4B.15 StylistStyles | `StylistStyles.tsx` | Covered |
+| 4B.16 Stylist profile wiring | `stylists/[id]/page.tsx` | Covered |
+| 4B.17 GET /api/stylists | `api/stylists/route.ts` | Covered |
+
+**All 17 tasks mapped. Nothing missing.** ✅

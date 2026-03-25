@@ -1,24 +1,36 @@
-export default function GalleryPage() {
+import { Suspense } from 'react'
+import type { Metadata } from 'next'
+import { getHairstyles, type HairstyleCategory } from '@/lib/actions/hairstyles'
+import { GalleryHero } from '@/components/gallery/GalleryHero'
+import { CategoryFilter } from '@/components/gallery/CategoryFilter'
+import { HairstyleGrid } from '@/components/gallery/HairstyleGrid'
+import styles from './gallery.module.css'
+
+export const metadata: Metadata = {
+  title: 'Gallery | GlamGo',
+  description: 'Explore our curated collection of stunning hairstyles. From braids to locs, find your next look.',
+}
+
+interface GalleryPageProps {
+  searchParams: Promise<{ category?: string; q?: string }>
+}
+
+export default async function GalleryPage({ searchParams }: GalleryPageProps) {
+  const params = await searchParams
+  const category = params.category as HairstyleCategory | undefined
+  const search = params.q
+
+  const hairstyles = await getHairstyles(category, search)
+
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'var(--bg-primary)',
-      color: 'var(--text-secondary)',
-    }}>
-      <div style={{ textAlign: 'center' }}>
-        <h1 style={{ 
-          fontFamily: 'var(--font-display), serif', 
-          fontSize: '3rem',
-          color: 'var(--text-primary)',
-          marginBottom: '1rem'
-        }}>
-          Gallery Coming Soon
-        </h1>
-        <p>Explore every hairstyle from every angle.</p>
-      </div>
+    <div className={styles.page}>
+      <Suspense>
+        <GalleryHero />
+      </Suspense>
+      <Suspense>
+        <CategoryFilter />
+      </Suspense>
+      <HairstyleGrid hairstyles={hairstyles} />
     </div>
-  );
+  )
 }

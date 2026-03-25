@@ -1,0 +1,66 @@
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-family: var(--font-display), serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-6);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-3);
+}
+
+.clientName {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.date {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+}
+
+.stars {
+  display: flex;
+  gap: 1px;
+}
+
+.comment {
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.empty {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: var(--space-8) 0;
+}

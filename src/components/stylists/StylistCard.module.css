@@ -1,0 +1,126 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  background: var(--bg-elevated);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar {
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.7s ease;
+}
+
+.card:hover .avatar {
+  filter: grayscale(0);
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  color: var(--accent-primary);
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stars {
+  display: flex;
+  gap: 1px;
+}
+
+.reviewCount {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modeBadges {
+  display: flex;
+  gap: var(--space-2);
+  padding-top: 2px;
+}
+
+.modeBadge {
+  padding: 2px 8px;
+  background: var(--bg-elevated);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  border-radius: 2px;
+}
+
+.right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.price {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--accent-primary);
+}
+
+.bookLink {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.card:hover .bookLink {
+  color: var(--accent-primary);
+}
