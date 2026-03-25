@@ -134,3 +134,52 @@ The following architectural gaps were identified by the Product Manager during t
 > **Status:** Deferred — motion specs archived in `docs/MOTION_ARCHIVE.md`. Can be implemented post-core phases if time permits.
 
 *[To be filled if motion work is added]*
+
+---
+
+## Phase 6: Payment Integration (Interswitch)
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `src/lib/interswitch.ts` — Interswitch OAuth token acquisition and SHA-512 transaction hash generation for QuickTeller Business sandbox. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `PaymentSummary` component — booking breakdown with service fee, booking fee (₦500), and total. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `POST /api/payment/initiate` — generates Interswitch payment reference, stores `interswitch_ref` on booking. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `/payment/[bookingId]` page — inline QuickTeller checkout integration. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `POST /api/payment/webhook` — SHA-512 verified webhook handler for Interswitch payment notifications. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `GET /api/payment/verify` — requery fallback for payment status verification. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `PaymentStatus` component and `/payment/callback` page for post-payment UX. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `BookingConfirmation` page — displays confirmation code, booking summary, and next steps after successful payment. |
+
+---
+
+## Phase 7: Dashboards & Service Completion
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-25 | Lead Dev (Overcomer) | Built stylist dashboard page (`/dashboard/stylist`) — hero greeting, stats grid (Revenue MTD, Experiences Delivered, Portfolio count), upcoming appointments list, services list. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built client dashboard page (`/dashboard/client`) — greeting, featured booking card with check-in code, past bookings grid ("Recent Masterpieces"). |
+| 2026-03-25 | Lead Dev (Overcomer) | Implemented role-based redirect — clients redirected from stylist dashboard and vice versa. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `PendingBookings` component — stylist sees incoming booking requests with Accept/Decline buttons, wired to `PATCH /api/bookings/{id}/accept` and `/decline`. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `PATCH /api/bookings/[id]/accept` — transitions booking from `pending → confirmed`, verifies stylist ownership. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `PATCH /api/bookings/[id]/decline` — transitions booking from `pending → declined`, simulates refund via `payment_status: 'refunded'`. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `BookingCodeInput` component — 4-digit PIN entry with auto-advance, calls `verifyBookingCode` server action. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `verifyBookingCode` server action — stylist enters client's 4-digit code to transition booking to `in_progress`. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built `ServiceRenderedButton` component — client confirms service completion, calls `PATCH /api/bookings/{id}/complete`, then redirects to review page. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `PATCH /api/bookings/[id]/complete` — client triggers escrow release: marks booking `completed`, credits stylist `wallet_balance` via admin client. |
+| 2026-03-25 | Lead Dev (Overcomer) | Created `POST /api/reviews` — client submits rating (1-5) + comment for completed booking, auto-updates stylist `average_rating` via DB trigger. |
+| 2026-03-25 | Lead Dev (Overcomer) | Built dashboard server actions (`getDashboardBookings`, `getDashboardStats`) with role-aware filtering (client sees stylist info, stylist sees client info). |
+
+### Phase 7 Lifecycle Fix (Critical)
+
+| Item | Details |
+| --- | --- |
+| Bug found | `verifyBookingCode` was jumping straight to `completed`, skipping `in_progress` — this broke the escrow flow because `ServiceRenderedButton` requires `in_progress` status. |
+| Fix applied | Changed `verifyBookingCode` to transition to `in_progress` instead of `completed`. Client must now explicitly confirm "Service Rendered" to trigger escrow release and complete the booking. |
+| Correct lifecycle | `pending → confirmed → in_progress → completed (escrow released)` |
+
+### Phase 7 Remaining (Product Engineer)
+
+| Task | Owner | Status |
+| --- | --- | --- |
+| 7.9 Review page (`/review/[bookingId]`) | Product Engineer (Beloved) | Pending — API route (`POST /api/reviews`) is ready, UI page needs to be built |
+

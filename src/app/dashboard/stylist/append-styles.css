@@ -1,0 +1,64 @@
+
+/* --- Pending Bookings Additions --- */
+.pendingSection {
+  margin-bottom: 3rem;
+}
+
+.pendingBadge {
+  background: var(--accent-primary, #c9a96e);
+  color: #0a0a0a;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 0.75rem;
+  vertical-align: middle;
+}
+
+.pendingAmount {
+  color: var(--accent-primary, #c9a96e);
+  font-weight: 600;
+}
+
+.pendingActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.acceptBtn {
+  background: var(--accent-primary, #c9a96e);
+  color: #0a0a0a;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.acceptBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.declineBtn {
+  background: transparent;
+  color: var(--text-muted, rgba(255, 255, 255, 0.4));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.declineBtn:hover:not(:disabled) {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.acceptBtn:disabled, .declineBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

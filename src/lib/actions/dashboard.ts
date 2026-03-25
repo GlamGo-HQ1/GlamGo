@@ -151,13 +151,10 @@ export async function verifyBookingCode(
     return { success: false, error: 'Invalid code or booking not found' }
   }
 
-  // Update booking status
+  // Transition to in_progress — client must confirm "Service Rendered" to complete & release escrow
   const { error: updateError } = await supabase
     .from('bookings')
-    .update({
-      status: 'completed',
-      payment_status: 'paid',
-    })
+    .update({ status: 'in_progress' })
     .eq('id', booking.id)
 
   if (updateError) {

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { getDashboardBookings } from '@/lib/actions/dashboard'
+import { ServiceRenderedButton } from './ServiceRenderedButton'
 import styles from './client-dashboard.module.css'
 
 export const metadata = {
@@ -56,12 +57,13 @@ export default async function ClientDashboardPage() {
 
   const firstName = userData?.full_name?.split(' ')[0] ?? 'there'
 
-  const [upcomingBookings, pastBookings] = await Promise.all([
+  const [upcomingBookings, inProgressBookings, pastBookings] = await Promise.all([
     getDashboardBookings('client', user.id, 'confirmed'),
+    getDashboardBookings('client', user.id, 'in_progress'),
     getDashboardBookings('client', user.id, 'completed'),
   ])
 
-  const featuredBooking = upcomingBookings[0]
+  const featuredBooking = inProgressBookings[0] ?? upcomingBookings[0]
 
   return (
     <div className={styles.page}>
@@ -124,7 +126,11 @@ export default async function ClientDashboardPage() {
               </div>
 
               <div className={styles.actionRow}>
-                <button className={styles.rescheduleBtn}>Reschedule</button>
+                {featuredBooking.status === 'in_progress' ? (
+                  <ServiceRenderedButton bookingId={featuredBooking.id} />
+                ) : (
+                  <button className={styles.rescheduleBtn}>Reschedule</button>
+                )}
               </div>
             </div>
           </div>

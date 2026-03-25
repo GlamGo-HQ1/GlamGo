@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { getDashboardBookings, getDashboardStats } from '@/lib/actions/dashboard'
 import { getStylesForStylist } from '@/lib/actions/stylists'
 import { BookingCodeInput } from './BookingCodeInput'
+import { PendingBookings } from './PendingBookings'
 import styles from './stylist-dashboard.module.css'
 
 export const metadata = {
@@ -66,7 +67,8 @@ export default async function StylistDashboardPage() {
 
   const stylistId = stylistProfile?.id ?? ''
 
-  const [upcomingBookings, stats, stylistStyles] = await Promise.all([
+  const [pendingBookings, upcomingBookings, stats, stylistStyles] = await Promise.all([
+    getDashboardBookings('stylist', stylistId, 'pending'),
     getDashboardBookings('stylist', stylistId, 'confirmed'),
     getDashboardStats('stylist', stylistId),
     stylistId ? getStylesForStylist(stylistId) : Promise.resolve([]),
@@ -81,6 +83,9 @@ export default async function StylistDashboardPage() {
           <p className={styles.heroSub}>Your salon is curated and ready for today&apos;s excellence.</p>
         </div>
       </section>
+
+      {/* New booking requests — Accept / Decline */}
+      <PendingBookings bookings={pendingBookings} />
 
       {/* Booking code verification */}
       <BookingCodeInput stylistId={stylistId} />

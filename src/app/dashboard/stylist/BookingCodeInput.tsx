@@ -43,7 +43,7 @@ export function BookingCodeInput({ stylistId }: BookingCodeInputProps) {
     const res = await verifyBookingCode(code, stylistId)
 
     if (res.success) {
-      setResult({ success: true, message: 'Payment released successfully!' })
+      setResult({ success: true, message: 'Service started — client will confirm completion to release payment.' })
       setDigits(['', '', '', ''])
     } else {
       setResult({ success: false, message: res.error ?? 'Verification failed' })
