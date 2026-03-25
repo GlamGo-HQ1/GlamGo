@@ -4,8 +4,7 @@
 import Link from 'next/link';
 import styles from './HeroEditorial.module.css';
 
-const HERO_IMAGE =
-  'https://lh3.googleusercontent.com/aida/ADBb0ug4meiRUF9JD9AZMPCTf_nn1KTee6gYHALEVTwUQIfJ3c-mTNkXfWVFCwl_TaAEicJaK5BR4kNSKFfeXKLNp7WZBEKAkaQvhtZ2sHj5etcWF2PU4-vDSESBzUEca-3a7OJh7cACRDNNXaUln1_2CcIyeUwBo57n1tsdHMBNwMZD7rMy9622oRv020RVqymTcqreuMDoWcHYzdUzX41uRGHK1E7c3M_yPaS1nF2Mpox3KiYSaGt8nh61oHZjhwpg11fBb5pj0e0tHA';
+const HERO_IMAGE = '/images/hero-bg.png';
 
 export const HeroEditorial = () => {
   return (
