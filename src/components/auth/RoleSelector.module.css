@@ -1,0 +1,73 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid rgba(77, 70, 58, 0.1);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.card:hover {
+  border-color: rgba(201, 169, 110, 0.4);
+}
+
+.cardActive {
+  border-color: rgba(201, 169, 110, 0.4);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  transition: background 0.3s ease;
+}
+
+.card:hover .iconWrap,
+.cardActive .iconWrap {
+  background: rgba(201, 169, 110, 0.1);
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+.cardLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.cardActive .indicator {
+  transform: scaleX(1);
+}

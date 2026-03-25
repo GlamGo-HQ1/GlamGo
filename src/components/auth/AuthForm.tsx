@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import { RoleSelector } from './RoleSelector'
 import { login, register } from '@/app/auth/actions'
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
+import styles from '../../app/auth/auth.module.css'
 
 export function AuthForm({ view }: { view: 'login' | 'register' }) {
   const [error, setError] = useState<string | null>(null)
@@ -13,11 +12,10 @@ export function AuthForm({ view }: { view: 'login' | 'register' }) {
   async function handleSubmit(formData: FormData) {
     setLoading(true)
     setError(null)
-    
-    // Call the corresponding server action directly
+
     const action = view === 'login' ? login : register
     const result = await action(formData)
-    
+
     if (result?.error) {
       setError(result.error)
       setLoading(false)
@@ -25,54 +23,67 @@ export function AuthForm({ view }: { view: 'login' | 'register' }) {
   }
 
   return (
-    <form action={handleSubmit} className="w-full space-y-6">
+    <form action={handleSubmit} className={styles.form}>
       {error && (
-        <div className="p-4 bg-red-500/10 border border-red-500/50 rounded-lg text-red-200 text-sm">
+        <div className={styles.error}>
           {error}
         </div>
       )}
 
       {view === 'register' && (
         <>
-          <div className="space-y-3">
-            <label className="text-sm font-medium text-white/80">I am joining as a...</label>
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>I am joining as a...</label>
             <RoleSelector onChange={() => {}} />
           </div>
 
-          <Input 
-            label="Full Name" 
-            name="full_name" 
-            placeholder="Jane Doe" 
-            required 
-          />
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>Full Name</label>
+            <input
+              className={styles.input}
+              name="full_name"
+              placeholder="Alexandra Vogue"
+              required
+            />
+          </div>
         </>
       )}
 
-      <Input 
-        label="Email Address" 
-        type="email" 
-        name="email" 
-        placeholder="you@example.com" 
-        required 
-      />
-      
-      <Input 
-        label="Password" 
-        type="password" 
-        name="password" 
-        placeholder="••••••••" 
-        required 
-        minLength={6}
-      />
+      <div className={styles.fieldGroup}>
+        <label className={styles.label}>Email Address</label>
+        <input
+          className={styles.input}
+          type="email"
+          name="email"
+          placeholder="vogue@atelier.com"
+          required
+        />
+      </div>
 
-      <Button 
-        type="submit" 
-        variant="primary" 
-        className="w-full h-12 text-lg mt-4"
+      <div className={styles.fieldGroup}>
+        <div className={styles.passwordHeader}>
+          <label className={styles.label}>Password</label>
+          {view === 'login' && (
+            <span className={styles.forgotLink}>Forgot?</span>
+          )}
+        </div>
+        <input
+          className={styles.input}
+          type="password"
+          name="password"
+          placeholder="••••••••"
+          required
+          minLength={6}
+        />
+      </div>
+
+      <button
+        type="submit"
+        className={styles.submitBtn}
         disabled={loading}
       >
         {loading ? 'Please wait...' : (view === 'login' ? 'Sign In' : 'Create Account')}
-      </Button>
+      </button>
     </form>
   )
 }
