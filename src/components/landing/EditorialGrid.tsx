@@ -2,10 +2,10 @@ import Image from 'next/image';
 import styles from './EditorialGrid.module.css';
 
 const GRID_IMAGES = [
-  '/images/hairstyles/Braids/Doll Braids/Using_the_attached_202603252107.jpg', // Left Tall
-  '/images/hairstyles/Locs (Dreads & Faux Locs)/Butterfly Locs/Based_on_the_202603261224.jpg', // Left Short
-  '/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Classic Shukwu/Using_the_attached_202603252107 (1).jpg', // Center Large
-  '/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Zig zag Braids/front.jpg', // Center Bottom
+  '/images/hairstyles/Twists/Island twist braids/front.jpg', // Left Tall (Island Twist Braids)
+  '/images/hairstyles/Locs (Dreads & Faux Locs)/Boho Locs/_Based_on_the_202603261239.jpg', // Left Short (Side Profile Locs)
+  '/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Classic Shukwu/front.jpg', // Center Large
+  '/images/hairstyles/Twists/Island twist braids/_Based_on_the_202603261608.png', // Center Bottom
   '/images/hairstyles/Braids/Lemonade Braids/front.jpg', // Right Top
   '/images/hairstyles/Weaving (Cornrows & Stitch Styles)/shukwu with Bond/front.jpg', // Right Mid
   '/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Bald Braids/front.jpg', // Right Bottom

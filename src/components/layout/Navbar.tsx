@@ -1,14 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import { Container } from '../ui/Container'
-import { Button } from '../ui/Button'
 import styles from './Navbar.module.css'
 import { createClient } from '@/lib/supabase/server'
 import { logout } from '@/app/auth/actions'
 
 export async function Navbar() {
   const supabase = createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data: { session } } = await supabase.auth.getSession()
+  const user = session?.user ?? null
 
   return (
     <nav className={styles.topNav}>
