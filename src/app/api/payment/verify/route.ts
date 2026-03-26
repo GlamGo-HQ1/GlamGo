@@ -23,12 +23,14 @@ export async function GET(req: Request) {
     // 1. Get auth token
     const token = await getInterswitchToken()
 
-    // 2. Call Interswitch Requery API
-    const env = process.env.NEXT_PUBLIC_INTERSWITCH_ENV === 'LIVE'
-      ? 'https://live.interswitchng.com'
+    // 2. Call Interswitch WebPay Requery API (collections endpoint)
+    const baseUrl = process.env.NEXT_PUBLIC_INTERSWITCH_ENV === 'LIVE'
+      ? 'https://webpay.interswitchng.com'
       : 'https://qa.interswitchng.com'
 
-    const url = `${env}/api/v3/purchases?merchantCode=${merchantCode}&transactionReference=${transactionRef}&amount=${amountKobo}`
+    const url = `${baseUrl}/collections/api/v1/gettransaction.json?merchantcode=${merchantCode}&transactionreference=${transactionRef}&amount=${amountKobo}`
+
+    console.log('[Requery] Calling:', url)
 
     const response = await fetch(url, {
       method: 'GET',
@@ -39,7 +41,15 @@ export async function GET(req: Request) {
     if (!response.ok) {
       const text = await response.text()
       console.error('[Requery] Failed:', response.status, text)
-      return NextResponse.json({ status: 'failed', code: response.status }, { status: response.status })
+      // Try to parse JSON error from Interswitch for more detail
+      let errorMessage = `Interswitch requery failed (HTTP ${response.status})`
+      try {
+        const errJson = JSON.parse(text)
+        errorMessage = errJson.message || errJson.error?.message || errJson.ResponseDescription || errorMessage
+      } catch {
+        if (text) errorMessage = text
+      }
+      return NextResponse.json({ status: 'failed', code: response.status, message: errorMessage }, { status: 200 })
     }
 
     const data = await response.json()

@@ -13,7 +13,6 @@ function CallbackContent() {
 
   const txnRef = searchParams.get('ref')
   const bookingId = searchParams.get('booking')
-  const callbackStatus = searchParams.get('status')
 
   // Memoize the client so it doesn't trigger re-renders
   const supabase = useMemo(() => createClient(), [])
@@ -28,11 +27,8 @@ function CallbackContent() {
         return
       }
 
-      if (callbackStatus === 'failed') {
-        setStatus('failed')
-        setMessage('Payment was unsuccessful or cancelled.')
-        return
-      }
+      // Always verify server-side — the inline checkout's client-side
+      // response can be unreliable. The requery API is the source of truth.
 
       try {
         const { data: booking, error: dbError } = await supabase
@@ -74,7 +70,7 @@ function CallbackContent() {
     verifyPayment()
 
     return () => { cancelled = true }
-  }, [txnRef, bookingId, callbackStatus, router, supabase])
+  }, [txnRef, bookingId, router, supabase])
 
   return (
     <div className={styles.callbackContainer}>

@@ -46,8 +46,8 @@ export function PaymentSummary({
       // Dynamically load the Interswitch inline checkout script
       const scriptUrl =
         process.env.NEXT_PUBLIC_INTERSWITCH_ENV === 'LIVE'
-          ? 'https://newwebpay.interswitchng.com/inline-scripts/pay.js'
-          : 'https://newwebpay.qa.interswitchng.com/inline-scripts/pay.js'
+          ? 'https://newwebpay.interswitchng.com/inline-checkout.js'
+          : 'https://newwebpay.qa.interswitchng.com/inline-checkout.js'
 
       const existing = document.getElementById('isw-inline-script')
 
@@ -84,11 +84,15 @@ export function PaymentSummary({
     const paymentRequest = {
       merchant_code: process.env.NEXT_PUBLIC_INTERSWITCH_MERCHANT_CODE!,
       pay_item_id: process.env.NEXT_PUBLIC_INTERSWITCH_PAY_ITEM_ID!,
+      site_redirect_url: `${window.location.origin}/payment/callback?ref=${data.transactionRef}&booking=${bookingId}`,
       txn_ref: data.transactionRef,
       amount: data.amountKobo,
       currency: 566, // NGN
       onComplete(response: Record<string, string>) {
-        const status = response.resp === '00' ? 'success' : 'failed'
+        // Interswitch may return code in resp, resp_code, responseCode, or ResponseCode
+        const respCode = response.resp ?? response.resp_code ?? response.responseCode ?? response.ResponseCode
+        console.log('[WebPay] onComplete response:', JSON.stringify(response))
+        const status = respCode === '00' ? 'success' : 'pending'
         router.push(
           `/payment/callback?ref=${data.transactionRef}&booking=${bookingId}&status=${status}`
         )
