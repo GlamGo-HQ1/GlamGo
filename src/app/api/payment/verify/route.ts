@@ -26,7 +26,7 @@ export async function GET(req: Request) {
     // 2. Call Interswitch Requery API
     const env = process.env.NEXT_PUBLIC_INTERSWITCH_ENV === 'LIVE'
       ? 'https://live.interswitchng.com'
-      : 'https://sandbox.interswitchng.com'
+      : 'https://qa.interswitchng.com'
 
     const url = `${env}/api/v3/purchases?merchantCode=${merchantCode}&transactionReference=${transactionRef}&amount=${amountKobo}`
 
