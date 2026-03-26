@@ -43,3 +43,95 @@
   font-size: 0.875rem;
   margin-bottom: var(--space-6);
 }
+
+/* Hair Profile Section */
+.hairProfileSection {
+  margin-bottom: var(--space-12);
+  padding: var(--space-8);
+  background: rgba(31, 31, 37, 0.3);
+  border: 1px solid rgba(230, 196, 135, 0.06);
+  border-radius: var(--radius-lg);
+}
+
+.hairProfileHeading {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.hairProfileHint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.hairProfileGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .hairProfileGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hairProfileField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hairProfileLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.hairProfileSelect {
+  width: 100%;
+  background: rgba(27, 27, 32, 0.4);
+  border: none;
+  border-bottom: 1px solid rgba(77, 70, 58, 0.3);
+  padding: 12px 4px;
+  color: var(--text-primary);
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  appearance: none;
+}
+
+.hairProfileSelect:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.hairProfileTextarea {
+  width: 100%;
+  background: rgba(27, 27, 32, 0.4);
+  border: none;
+  border-bottom: 1px solid rgba(77, 70, 58, 0.3);
+  padding: 12px 4px;
+  color: var(--text-primary);
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.3s ease;
+}
+
+.hairProfileTextarea::placeholder {
+  color: rgba(228, 225, 233, 0.2);
+}
+
+.hairProfileTextarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+

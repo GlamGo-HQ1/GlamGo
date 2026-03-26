@@ -10,20 +10,42 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 2px;
   align-items: start;
 }
 
 .col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
   width: 100%;
 }
 
+/* ── Shared tile wrapper (replaces inline styles) ── */
+.imgWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.tileImg {
+  object-fit: cover;
+}
+
 /* Box Sizes */
-.boxTall   { height: 320px; }
-.boxShort  { height: 200px; }
+.boxTall {
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.boxShort {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
 .boxCenter {
   height: 380px;
   display: flex;
@@ -32,42 +54,63 @@
   justify-content: center;
   background: #1b1b20;
   box-shadow: inset 0 0 80px rgba(230, 196, 135, 0.03);
+  position: relative;
+  overflow: hidden;
 }
-.boxBottom { height: 200px; }
-.boxSmall  { height: 175px; }
+
+.boxBottom {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.boxSmall {
+  height: 175px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Center Portrait Crossfade Stack ── */
+.portraitStack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.portraitSlide {
+  position: absolute;
+  inset: 0;
+}
 
 /* Center Card Content */
-.viewLabel {
-  font-family: var(--font-display), 'Playfair Display', serif;
-  font-size: 1.125rem;
-  color: #F5F0EB;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 3rem;
-}
+/* viewLabel removed */
 
 .navBtns {
   display: flex;
   align-items: center;
   gap: 3rem;
   margin-bottom: 2rem;
+  z-index: 10;
+  position: relative;
 }
 
 .arrowBtn {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #1E1E26;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(30, 30, 38, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: rgba(228, 225, 233, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
 }
 .arrowBtn:hover {
   color: #e6c487;
+  border-color: rgba(230, 196, 135, 0.3);
 }
 .arrowBtn:active {
   transform: scale(0.9);
@@ -78,6 +121,9 @@
   font-size: 11px;
   color: #9A9A9A;
   letter-spacing: 0.2em;
+  z-index: 10;
+  position: relative;
+  transition: opacity 0.5s ease;
 }
 
 /* Decorative Elements */
@@ -87,6 +133,7 @@
   pointer-events: none;
   overflow: hidden;
   opacity: 0.2;
+  z-index: 10;
 }
 .crossLine1, .crossLine2 {
   position: absolute;
@@ -113,6 +160,7 @@
   position: absolute;
   top: 50%;
   left: 25%;
+  z-index: 10;
 }
 
 .goldBar {
@@ -122,6 +170,7 @@
   width: 2rem;
   height: 1px;
   background: #e6c487;
+  z-index: 10;
 }
 
 .refLabel {
@@ -133,6 +182,7 @@
   color: rgba(208, 197, 181, 0.4);
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  z-index: 10;
 }
 
 .circleDecor {
@@ -144,12 +194,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
 .bottomFade {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, transparent, rgba(53, 52, 58, 0.2));
+  z-index: 10;
 }
 
 .gradientLine {
@@ -159,6 +211,7 @@
   right: 1.5rem;
   height: 1px;
   background: linear-gradient(to right, transparent, rgba(77, 70, 58, 0.3), transparent);
+  z-index: 10;
 }
 
 /* Responsive */

@@ -418,6 +418,28 @@
 .emptyState {
   text-align: center;
   padding: var(--space-12) var(--space-6);
-  color: var(--text-muted);
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.emptyIcon {
+  color: rgba(230, 196, 135, 0.2);
+  margin-bottom: var(--space-4);
+}
+
+.emptyText {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.emptyHint {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 24rem;
+  line-height: 1.6;
+}
+

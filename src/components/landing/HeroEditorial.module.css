@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 102px;
+  padding-bottom: 60px;
 }
 
 /* Dark overlay — heavier on the left for text readability */
@@ -103,7 +103,7 @@
 
 .textBlock {
   width: 100%;
-  margin-bottom: 51px;
+  margin-bottom: 20px;
 }
 
 .spacer {

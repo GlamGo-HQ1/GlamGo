@@ -1,3 +1,8 @@
+'use client';
+
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import styles from './BookingFlow.module.css';
 
 const STEPS = [
@@ -29,22 +34,45 @@ const STEPS = [
   },
 ];
 
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] } 
+  }
+};
+
 export const BookingFlow = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end end"]
+  });
+
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
       {/* Gold SVG Path */}
       <svg className={styles.goldPath} fill="none" viewBox="0 0 1440 4000" xmlns="http://www.w3.org/2000/svg">
-        <path
+        <motion.path
           d="M720 0V450 C720 450 720 750 350 750 C-20 750 -20 300 350 300 C720 300 720 750 720 750 L720 1100 L1350 1400 L150 1400 L1300 2200 L720 2800 L100 3600 C100 3600 -100 3800 150 3950 C400 4100 650 3950 650 3700 C650 3450 400 3200 150 3450"
           stroke="#C9A96E"
           strokeDasharray="6 6"
           strokeWidth="1.5"
+          style={{ pathLength }}
         />
       </svg>
 
       {STEPS.map((step) => (
-        <section
+        <motion.section
           key={step.num}
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-150px" }}
           className={`${styles.step} ${styles[`align${step.align.charAt(0).toUpperCase()}${step.align.slice(1)}`]}`}
         >
           <div className={styles.stepInner}>
@@ -62,7 +90,7 @@ export const BookingFlow = () => {
               </div>
             )}
           </div>
-        </section>
+        </motion.section>
       ))}
     </div>
   );

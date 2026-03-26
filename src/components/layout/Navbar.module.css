@@ -66,6 +66,10 @@
   transform: scale(1.1);
 }
 
+.logoutForm {
+  display: inline;
+}
+
 @media (min-width: 768px) {
   .navLinks {
     display: flex;

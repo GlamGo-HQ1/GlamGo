@@ -46,6 +46,17 @@ export function AuthForm({ view }: { view: 'login' | 'register' }) {
               required
             />
           </div>
+
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>Phone Number</label>
+            <input
+              className={styles.input}
+              type="tel"
+              name="phone"
+              placeholder="+234 801 234 5678"
+              required
+            />
+          </div>
         </>
       )}
 

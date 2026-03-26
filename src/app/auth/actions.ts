@@ -29,6 +29,7 @@ export async function register(formData: FormData) {
   const password = formData.get('password') as string
   const role = formData.get('role') as 'client' | 'stylist' || 'client'
   const fullName = formData.get('full_name') as string
+  const phone = formData.get('phone') as string
 
   const adminAuthClient = createAdminClient()
 
@@ -51,6 +52,7 @@ export async function register(formData: FormData) {
     id: userId,
     email: email,
     full_name: fullName,
+    phone: phone || null,
     role: role
   })
 

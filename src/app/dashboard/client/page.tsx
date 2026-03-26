@@ -162,13 +162,19 @@ export default async function ClientDashboardPage() {
         </div>
       ) : (
         <div className={styles.emptyState}>
-          <p className={styles.emptyText}>No upcoming bookings</p>
-          <p className={styles.emptySubtext}>
-            <Link href="/gallery" style={{ color: 'var(--accent-primary)' }}>
-              Browse the gallery
-            </Link>{' '}
-            to discover your next look
+          <svg className={styles.emptyIcon} width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <h3 className={styles.emptyTitle}>Your Bookings Will Appear Here</h3>
+          <p className={styles.emptyText}>
+            Once you book a session with a stylist, your upcoming and past appointments will show here.
           </p>
+          <Link href="/gallery" className={styles.emptyCta}>
+            Browse the Gallery
+          </Link>
         </div>
       )}
 

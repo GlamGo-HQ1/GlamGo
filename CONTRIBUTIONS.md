@@ -259,3 +259,19 @@ Before writing a single line of code, we ran a full architectural audit on our I
 | 2026-03-26 | Industry Advisor & Content Lead (Oyewole) | Validated editorial naming conventions across platform pages — confirmed hairstyle names, category labels, and gallery section titles align with industry-standard terminology used by Nigerian stylists. |
 | 2026-03-26 | Industry Advisor & Content Lead (Oyewole) | Conducted final UX flow validation — tested the complete client journey from gallery discovery through stylist selection, booking form, and payment initiation. Confirmed the flow is intuitive and consistent with the dark luxury editorial direction. |
 
+---
+
+## Phase 7F: Platform UX Hardening
+
+> **Contributor:** Lead Developer (Overcomer Israel)
+> **Role:** Platform-wide UX audit and fix execution — registration, navigation, dashboards, gallery performance, and booking form enhancements.
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-26 | Lead Dev (Overcomer) | Added phone number field to registration form (`AuthForm.tsx`) and updated the `register` server action to persist phone data to the `users` table. |
+| 2026-03-26 | Lead Dev (Overcomer) | Rewrote `Navbar.tsx` — added visible "Dashboard" text link for authenticated users, replaced duplicate person icon with a 4-square grid dashboard icon, and removed all inline CSS styles. |
+| 2026-03-26 | Lead Dev (Overcomer) | Created shimmer loading skeleton (`/styles/[id]/loading.tsx`) for the style detail page to give instant visual feedback when clicking gallery hairstyle cards. |
+| 2026-03-26 | Lead Dev (Overcomer) | Improved client dashboard empty state — added calendar icon, descriptive headline, explanatory text, and a styled "Browse the Gallery" CTA button. |
+| 2026-03-26 | Lead Dev (Overcomer) | Improved stylist dashboard empty states (both appointments and services sections) — added contextual icons, descriptive text, and guidance hints. |
+| 2026-03-26 | Lead Dev (Overcomer) | Added "Your Hair Profile" section to the booking form — Hair Length dropdown, Hair Condition dropdown, and Additional Notes textarea to help stylists prepare for sessions. |
+| 2026-03-26 | Lead Dev (Overcomer) | Implemented 3D coverflow perspective effect on the Gallery Preview scroll track — cards rotate (±35° rotateY), scale, and shift on Z-axis based on scroll position for an Apple Cover Flow-style curve. |

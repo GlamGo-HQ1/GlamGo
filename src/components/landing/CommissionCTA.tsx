@@ -7,7 +7,7 @@ export const CommissionCTA = () => {
       <div className={styles.inner}>
         <h2 className={styles.heading}>Commission Your Vision</h2>
         <p className={styles.body}>
-          The exhibition is only the beginning. Connect with our master artists for a bespoke consultation that transcends the ordinary.
+          The exhibition is only the beginning. Connect with our expert stylists and secure your booking to bring your vision to life.
         </p>
         <Link href="/auth/register" className={styles.cta}>
           Begin Journey
