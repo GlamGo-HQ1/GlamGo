@@ -1,5 +1,16 @@
 import crypto from 'crypto'
 
+/**
+ * Interswitch Payment Gateway Integration
+ * Author: Oviks Israel (oyewolebb29@gmail.com)
+ * 
+ * Note on Credentials:
+ * - OAuth flow uses CLIENT_ID and SECRET_KEY
+ * - Inline Webpay uses MERCHANT_CODE and PAY_ITEM_ID
+ * - 'Data ref' from the dashboard is used for legacy MAC hashing, which is 
+ *   bypassed here in favor of the more secure OAuth 2.0 Passport tokens.
+ */
+
 // ── Constants ──────────────────────────────────────────────────────────
 const INTERSWITCH_ENV = process.env.NEXT_PUBLIC_INTERSWITCH_ENV || 'TEST'
 const CLIENT_ID      = process.env.INTERSWITCH_CLIENT_ID!

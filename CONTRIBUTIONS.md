@@ -211,3 +211,12 @@ The following architectural gaps were identified by the Product Manager during t
 | 2026-03-26 | Product Engineer (Beloved) | Resolved critical Phase 3 Auth bug: implemented Supabase Admin API to auto-confirm emails and route clients directly to the dashboard post-registration, bypassing email locks. |
 | 2026-03-26 | Product Engineer (Beloved) | Resolved Level 2 RLS bug: deployed SQL policy permitting public read access to the `users` table for stylists, unblocking the Gallery-to-Booking flow. |
 | 2026-03-26 | Product Engineer (Beloved) | Completed final UI Navigation Polish pass: extracted landing page's absolute Navigation to a global transparent `Navbar`, fixed icon routing (Search -> Gallery), and ensured the Gallery page inherits custom "Art of the Crown" aesthetics. |
+
+## Phase 7C: Interswitch Payment Integration
+
+> **Contributor:** Payment Engineer / Architect (Oviks Israel)
+> **Role:** Finalizing the Interswitch Sandbox integration for the booking checkout lifecycle.
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-26 | Oviks Israel | Configured Interswitch Sandbox credentials (MERCHANT_CODE, PAY_ITEM_ID, CLIENT_ID, SECRET) and updated Gateway auth logic. Added formal documentation clarifying the bypass of legacy Data Refs for OAuth 2.0 Passport tokens. |
