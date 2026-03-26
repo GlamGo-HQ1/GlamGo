@@ -1,0 +1,304 @@
+[
+  {
+    "name": "Doll Braids",
+    "category": "Braids",
+    "images": [
+      "/images/hairstyles/Braids/Doll Braids/front.jpg",
+      "/images/hairstyles/Braids/Doll Braids/Using_the_attached_202603252107 (1).jpg",
+      "/images/hairstyles/Braids/Doll Braids/Using_the_attached_202603252107.jpg",
+      "/images/hairstyles/Braids/Doll Braids/_Using_the_attached_202603252107.jpg"
+    ],
+    "description": "Beautiful Doll Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Fulani Braids",
+    "category": "Braids",
+    "images": [
+      "/images/hairstyles/Braids/Fulani Braids/front.jpg",
+      "/images/hairstyles/Braids/Fulani Braids/_Based_on_the_202603260828.jpg",
+      "/images/hairstyles/Braids/Fulani Braids/_Based_on_the_202603260833.jpg",
+      "/images/hairstyles/Braids/Fulani Braids/_Based_on_the_202603260835.jpg"
+    ],
+    "description": "Beautiful Fulani Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Knotless Braids",
+    "category": "Braids",
+    "images": [
+      "/images/hairstyles/Braids/Knotless Braids/front.jpg",
+      "/images/hairstyles/Braids/Knotless Braids/Based_on_the_202603260701 (1).jpg",
+      "/images/hairstyles/Braids/Knotless Braids/Based_on_the_202603260701.jpg",
+      "/images/hairstyles/Braids/Knotless Braids/Based_on_the_202603260711.jpg"
+    ],
+    "description": "Beautiful Knotless Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Knotless Braids With Curls",
+    "category": "Braids",
+    "images": [
+      "/images/hairstyles/Braids/knotless Braids with curls/front.jpg",
+      "/images/hairstyles/Braids/knotless Braids with curls/_Based_on_the_202603260857.jpg",
+      "/images/hairstyles/Braids/knotless Braids with curls/_Based_on_the_202603260909 (1).jpg",
+      "/images/hairstyles/Braids/knotless Braids with curls/_Based_on_the_202603260909.jpg",
+      "/images/hairstyles/Braids/knotless Braids with curls/_Based_on_the_202603260910.jpg"
+    ],
+    "description": "Beautiful Knotless Braids With Curls styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Lemonade Braids",
+    "category": "Braids",
+    "images": [
+      "/images/hairstyles/Braids/Lemonade Braids/front.jpg",
+      "/images/hairstyles/Braids/Lemonade Braids/_Based_on_the_202603260816.jpg",
+      "/images/hairstyles/Braids/Lemonade Braids/_Based_on_the_202603260822.jpg",
+      "/images/hairstyles/Braids/Lemonade Braids/_Based_on_the_202603260824.jpg"
+    ],
+    "description": "Beautiful Lemonade Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Tyla Braids",
+    "category": "Braids",
+    "images": [
+      "/images/hairstyles/Braids/Tyla Braids/front.jpg",
+      "/images/hairstyles/Braids/Tyla Braids/_Based_on_the_202603260841 (1).jpg",
+      "/images/hairstyles/Braids/Tyla Braids/_Based_on_the_202603260841 (2).jpg",
+      "/images/hairstyles/Braids/Tyla Braids/_Based_on_the_202603260843.jpg",
+      "/images/hairstyles/Braids/Tyla Braids/_Based_on_the_202603260854.jpg"
+    ],
+    "description": "Beautiful Tyla Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Boho Locs",
+    "category": "Locs (Dreads & Faux Locs)",
+    "images": [
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Boho Locs/front.jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Boho Locs/_Based_on_the_202603261231.jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Boho Locs/_Based_on_the_202603261234.jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Boho Locs/_Based_on_the_202603261239 (1).jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Boho Locs/_Based_on_the_202603261239.jpg"
+    ],
+    "description": "Beautiful Boho Locs styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Butterfly Locs",
+    "category": "Locs (Dreads & Faux Locs)",
+    "images": [
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Butterfly Locs/Based_on_the_202603261224.jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Butterfly Locs/_Based_on_the_202603261223.jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Butterfly Locs/_Based_on_the_202603261227 (1).jpg",
+      "/images/hairstyles/Locs (Dreads & Faux Locs)/Butterfly Locs/_Based_on_the_202603261227.jpg"
+    ],
+    "description": "Beautiful Butterfly Locs styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Island Twist Braids",
+    "category": "Twists",
+    "images": [
+      "/images/hairstyles/Twists/Island twist braids/front.jpg",
+      "/images/hairstyles/Twists/Island twist braids/_Based_on_the_202603261333.jpg"
+    ],
+    "description": "Beautiful Island Twist Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Jumbo Marley Twist",
+    "category": "Twists",
+    "images": [
+      "/images/hairstyles/Twists/Jumbo Marley Twist/front.jpg",
+      "/images/hairstyles/Twists/Jumbo Marley Twist/_Based_on_the_202603261315.jpg",
+      "/images/hairstyles/Twists/Jumbo Marley Twist/_Based_on_the_202603261317.jpg",
+      "/images/hairstyles/Twists/Jumbo Marley Twist/_Based_on_the_202603261319.jpg"
+    ],
+    "description": "Beautiful Jumbo Marley Twist styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Kinky Twist",
+    "category": "Twists",
+    "images": [
+      "/images/hairstyles/Twists/Kinky Twist/front.jpg",
+      "/images/hairstyles/Twists/Kinky Twist/_Based_on_the_202603261315 (1).jpg",
+      "/images/hairstyles/Twists/Kinky Twist/_Based_on_the_202603261316.jpg",
+      "/images/hairstyles/Twists/Kinky Twist/_Based_on_the_202603261321.jpg"
+    ],
+    "description": "Beautiful Kinky Twist styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Alicia Keys With Beads",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys with Beads/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys with Beads/_Based_on_the_202603261259.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys with Beads/_Based_on_the_202603261301.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys with Beads/_Based_on_the_202603261305.jpg"
+    ],
+    "description": "Beautiful Alicia Keys With Beads styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Alicia Keys Without Beads",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys without Beads/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys without Beads/Based_on_the_202603261119.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Alicia Keys without Beads/_Based_on_the_202603261119 (1).jpg"
+    ],
+    "description": "Beautiful Alicia Keys Without Beads styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Bald Braids",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Bald Braids/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Bald Braids/_Based_on_the_202603260842.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Bald Braids/_Based_on_the_202603260849.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Bald Braids/_Based_on_the_202603260853.jpg"
+    ],
+    "description": "Beautiful Bald Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Celyn Braids",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Celyn Braids/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Celyn Braids/cccccc.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Celyn Braids/_Based_on_the_202603260759.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Celyn Braids/_Based_on_the_202603260801.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Celyn Braids/_Based_on_the_202603260803.jpg"
+    ],
+    "description": "Beautiful Celyn Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Classic Shukwu",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Classic Shukwu/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Classic Shukwu/_Based_on_the_202603260735.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Classic Shukwu/_Based_on_the_202603260737 (1).jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Classic Shukwu/_Based_on_the_202603260737.jpg"
+    ],
+    "description": "Beautiful Classic Shukwu styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Shukwu With Base",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Shukwu with Base/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Shukwu with Base/_Based_on_the_202603260749 (1).jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Shukwu with Base/_Based_on_the_202603260749.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Shukwu with Base/_Based_on_the_202603260751.jpg"
+    ],
+    "description": "Beautiful Shukwu With Base styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Shukwu With Bond",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/shukwu with Bond/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/shukwu with Bond/_Based_on_the_202603260719.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/shukwu with Bond/_Based_on_the_202603260722.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/shukwu with Bond/_Based_on_the_202603260725.jpg"
+    ],
+    "description": "Beautiful Shukwu With Bond styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Stitch Braids",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Stitch Braids/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Stitch Braids/_Based_on_the_202603261300 (1).jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Stitch Braids/_Based_on_the_202603261300 (2).jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Stitch Braids/_Based_on_the_202603261302.jpg"
+    ],
+    "description": "Beautiful Stitch Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  },
+  {
+    "name": "Zig Zag Braids",
+    "category": "Weaving (Cornrows & Stitch Styles)",
+    "images": [
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Zig zag Braids/front.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Zig zag Braids/_Based_on_the_202603261033 (1).jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Zig zag Braids/_Based_on_the_202603261033 (2).jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Zig zag Braids/_Based_on_the_202603261034.jpg",
+      "/images/hairstyles/Weaving (Cornrows & Stitch Styles)/Zig zag Braids/_Based_on_the_202603261036.jpg"
+    ],
+    "description": "Beautiful Zig Zag Braids styling.",
+    "price_min": 15000,
+    "price_max": 35000,
+    "duration_hrs": 4,
+    "is_trending": false
+  }
+]

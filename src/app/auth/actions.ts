@@ -30,39 +30,55 @@ export async function register(formData: FormData) {
   const role = formData.get('role') as 'client' | 'stylist' || 'client'
   const fullName = formData.get('full_name') as string
 
-  const { data, error } = await supabase.auth.signUp({
+  const adminAuthClient = createAdminClient()
+
+  // 1. Create user via Admin API to bypass email confirmation
+  const { data: authData, error: authError } = await adminAuthClient.auth.admin.createUser({
+    email,
+    password,
+    email_confirm: true,
+  })
+
+  if (authError || !authData.user) {
+    // If user already exists, authError might trigger. Return standard error.
+    return { error: authError?.message || 'Failed to create account.' }
+  }
+
+  const userId = authData.user.id
+
+  // 2. Insert into public 'users' table
+  await adminAuthClient.from('users').insert({
+    id: userId,
+    email: email,
+    full_name: fullName,
+    role: role
+  })
+
+  // 3. Insert into 'stylist_profiles' if role is stylist
+  if (role === 'stylist') {
+    await adminAuthClient.from('stylist_profiles').insert({
+      user_id: userId,
+      bio: 'New stylist on GlamGo. Please complete your profile.',
+      service_mode: 'salon',
+      is_available: false,
+      wallet_balance: 0
+    })
+  }
+
+  // 4. Actually log the user into the browser session now that they exist
+  const { error: signInError } = await supabase.auth.signInWithPassword({
     email,
     password,
   })
 
-  if (error) {
-    return { error: error.message }
+  if (signInError) {
+    return { error: 'Account created, but automatic login failed: ' + signInError.message }
   }
 
-  if (data.user) {
-    // Manually push to public tables bypassing RLS using the admin client
-    const adminAuthClient = createAdminClient()
-    
-    await adminAuthClient.from('users').insert({
-      id: data.user.id,
-      email: data.user.email,
-      full_name: fullName,
-      role: role
-    })
-
-    if (role === 'stylist') {
-      await adminAuthClient.from('stylist_profiles').insert({
-        user_id: data.user.id,
-        bio: 'New stylist on GlamGo. Please complete your profile.',
-        service_mode: 'salon',
-        is_available: false,
-        wallet_balance: 0
-      })
-    }
-  }
-
+  // 5. Redirect based on role
   revalidatePath('/', 'layout')
-  redirect('/dashboard')
+  const destination = role === 'stylist' ? '/dashboard/stylist' : '/dashboard/client'
+  redirect(destination)
 }
 
 export async function logout() {

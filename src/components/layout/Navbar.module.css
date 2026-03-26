@@ -1,41 +1,82 @@
-.navbar {
-  position: fixed;
+/* === Global TopNav — Stitch Faithful === */
+
+.topNav {
+  position: absolute; /* Allows hero backgrounds to show through */
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-  background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  border-bottom: none;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
-  /* Hidden on landing page — Hero has its own header */
-  display: none;
-}
-.inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
-.logo {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--accent-primary);
-  letter-spacing: -0.02em;
+
+.brand {
+  font-family: var(--font-display), 'Noto Serif', serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+  color: #e6c487;
+  text-decoration: none;
 }
+
 .navLinks {
-  display: flex;
-  gap: var(--space-6);
+  display: none;
   align-items: center;
+  gap: 3rem;
 }
-.navItem {
-  font-size: 14px;
+
+.navLink {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text-secondary);
-  transition: color 0.2s;
+  color: rgba(228, 225, 233, 0.6);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.4s ease, border-color 0.4s ease;
+  text-decoration: none;
 }
-.navItem:hover {
-  color: var(--text-primary);
+.navLink:hover {
+  color: #ffb2bc;
+}
+.navLinkActive {
+  color: #e6c487;
+  border-bottom-color: #e6c487;
+}
+
+.navIcons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.iconBtn {
+  color: #e6c487;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconBtn:hover {
+  color: #ffb2bc;
+  transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+  .navLinks {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .topNav {
+    padding: 1rem 1.25rem;
+  }
+  .brand {
+    font-size: 1.1rem;
+  }
 }
