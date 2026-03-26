@@ -17,7 +17,7 @@ const CLIENT_ID      = process.env.INTERSWITCH_CLIENT_ID!
 const SECRET_KEY     = process.env.INTERSWITCH_SECRET_KEY!
 
 const PASSPORT_URL = INTERSWITCH_ENV === 'TEST'
-  ? 'https://sandbox.interswitchng.com/passport/oauth/token'
+  ? 'https://qa.interswitchng.com/passport/oauth/token'
   : 'https://passport.interswitchng.com/passport/oauth/token'
 
 // ── Token cache (in-memory, per cold-start) ────────────────────────────
