@@ -101,3 +101,62 @@ export function verifyWebhookSignature(rawBody: string, signatureHeader: string)
     return false
   }
 }
+
+/**
+ * Send a WhatsApp notification using the Interswitch WhatsApp OTP API.
+ * 
+ * Note: In the Sandbox environment, this may return a 409 "User wallet not found" 
+ * error if the API Marketplace wallet is not funded. We catch and log this error
+ * to ensure the booking flow is not interrupted during hackathon testing.
+ */
+export async function sendBookingWhatsApp({
+  phone,
+  code,
+  action,
+  service
+}: {
+  phone: string;
+  code: string;
+  action: string;
+  service: string;
+}) {
+  try {
+    const token = await getInterswitchToken()
+    
+    // Use the QA endpoint for Sandbox testing
+    const url = INTERSWITCH_ENV === 'TEST'
+      ? 'https://qa.interswitchng.com/api/v1/whatsapp/auth/send'
+      : 'https://api-marketplace-routing.k8.isw.la/marketplace-routing/api/v1/whatsapp/auth/send' // Would be replaced with Production URL
+
+    console.log(`[WhatsApp] Sending notification to ${phone} for action: ${action}...`)
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phoneNumber: phone, // e.g. +2348012345678
+        code: code,
+        action: action,
+        service: service,
+        channel: 'phone'
+      })
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      console.warn(`[WhatsApp API Warning] Ignored delivery failure (HTTP ${response.status}):`, text)
+      return { success: false, error: text }
+    }
+
+    const data = await response.json()
+    console.log('[WhatsApp API Success] Message sent successfully:', data)
+    return { success: true, data }
+    
+  } catch (error) {
+    console.error('[WhatsApp API Error] Network request failed:', error)
+    return { success: false, error: String(error) }
+  }
+}

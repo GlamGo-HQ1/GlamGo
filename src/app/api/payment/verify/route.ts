@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { getInterswitchToken } from '@/lib/interswitch'
+import { getInterswitchToken, sendBookingWhatsApp } from '@/lib/interswitch'
 
 /**
  * Interswitch Requery endpoint
@@ -67,6 +67,51 @@ export async function GET(req: Request) {
 
         if (error) {
           console.error('[Requery] DB update failed:', error)
+        } else {
+          // --- WHATSAPP NOTIFICATIONS (Non-blocking) ---
+          // Fetch the parties involved to send confirmation messages
+          // Note: Errors here won't block the client from seeing their successful payment
+          try {
+            const { data: booking } = await supabase
+              .from('bookings')
+              .select('confirmation_code, client_id, stylist_id')
+              .eq('id', bookingId)
+              .single()
+
+            if (booking) {
+              const { data: clientUser } = await supabase.from('users').select('phone').eq('id', booking.client_id).single()
+              const { data: stylistProfile } = await supabase.from('stylist_profiles').select('user_id').eq('id', booking.stylist_id).single()
+              
+              let stylistPhone = null
+              if (stylistProfile?.user_id) {
+                const { data: stylistUser } = await supabase.from('users').select('phone').eq('id', stylistProfile.user_id).single()
+                stylistPhone = stylistUser?.phone
+              }
+
+              // Send to Client
+              if (clientUser?.phone && booking.confirmation_code) {
+                sendBookingWhatsApp({
+                  phone: clientUser.phone,
+                  code: booking.confirmation_code,
+                  action: "confirming your appointment",
+                  service: "GlamGo"
+                })
+              }
+
+              // Send to Stylist
+              if (stylistPhone) {
+                sendBookingWhatsApp({
+                  phone: stylistPhone,
+                  code: booking.confirmation_code || "0000",
+                  action: "receiving a new booking",
+                  service: "GlamGo Stylist Alert"
+                })
+              }
+            }
+          } catch (notificationError) {
+            console.error('[Requery] WhatsApp Notification setup failed:', notificationError)
+          }
+          // ----------------------------------------------
         }
       }
 
