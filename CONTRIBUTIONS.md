@@ -1,6 +1,6 @@
 # GlamGo — Contribution Log
 
-> This file tracks key architectural decisions, catches, and contributions made during the Enyata × Interswitch Buildathon 2026 (March 23-26, 2026).
+> A complete record of every architectural decision, code contribution, and design choice we made during the Enyata × Interswitch Buildathon 2026 (March 23–26, 2026). Every entry is authored by the person who did the work.
 
 ---
 
@@ -16,13 +16,13 @@
 
 ---
 
-## Architecture Audit: Gaps Caught & Patched
+## Architecture Audit: Gaps We Caught & Patched
 
 > **Date:** 2026-03-23 (Pre-build Technical Audit)
-> **Auditor:** Product Manager
+> **Auditor:** Overcomer Israel
 > **Status:** All gaps resolved in `implementation_plan.md.resolved`
 
-The following architectural gaps were identified by the Product Manager during the pre-build Technical Audit and patched in the Implementation Plan before any code was written:
+Before writing a single line of code, we ran a full architectural audit on our Implementation Plan. We caught 5 critical gaps that would have broken the demo on Day 3 if left unaddressed:
 
 | # | Gap Identified | Risk If Missed | Fix Applied |
 | --- | --- | --- | --- |
@@ -143,11 +143,21 @@ The following architectural gaps were identified by the Product Manager during t
 
 ---
 
-## Phase 4B: Motion & Interactions (Optional)
+## Phase 4C: Layer 3 Motion Engine
 
-> **Status:** Deferred — motion specs archived in `docs/MOTION_ARCHIVE.md`. Can be implemented post-core phases if time permits.
+> **Contributor:** Product Engineer (Beloved Godswill)
+> **Role:** Cinematic scroll animations and interactive gallery experiences using Framer Motion
 
-*[To be filled if motion work is added]*
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-26 | Product Engineer (Beloved) | Implemented Hero Section staggered text reveal — slide-up animation for heading, subtitle, and CTA buttons on page load using Framer Motion `variants` and `staggerChildren`. |
+| 2026-03-26 | Product Engineer (Beloved) | Built Story Reveal scroll animation — word-by-word staggered fade-up using `whileInView` and `viewport` margins, making the "Every Crown Has a Story" section come alive on scroll. |
+| 2026-03-26 | Product Engineer (Beloved) | Implemented Booking Flow SVG path drawing — scroll-linked `pathLength` animation using `useScroll` and `useTransform`, with staggered fade-in for the 4 booking step cards. |
+| 2026-03-26 | Product Engineer (Beloved) | Built Gallery Preview with 6 autoplay video cards in a horizontal scroll track — `scroll-snap` alignment, glassmorphic navigation arrows, hover lift effects, and Framer Motion staggered entry. |
+| 2026-03-26 | Product Engineer (Beloved) | Implemented Editorial Mosaic center portrait auto-crossfade using `AnimatePresence` — 4 side/back-view hairstyle images cycle every 3.5 seconds with smooth 1.2-second fade transitions. Interactive arrow buttons allow manual cycling. |
+| 2026-03-26 | Product Engineer (Beloved) | Scroll-triggered grid reveal for the entire 3-column editorial mosaic — each column staggers into view with scale-up animation using `containerVariants` and `tileVariants`. |
+| 2026-03-26 | Product Engineer (Beloved) | Resolved all TypeScript `verbatimModuleSyntax` linting errors by switching to type-only imports (`import type { Variants }`) for Framer Motion types across all animated components. |
+| 2026-03-26 | Product Engineer (Beloved) | Eliminated all inline CSS styles from animated components — migrated to proper CSS Module classes for performance and maintainability. |
 
 ---
 
@@ -214,9 +224,38 @@ The following architectural gaps were identified by the Product Manager during t
 
 ## Phase 7C: Interswitch Payment Integration
 
-> **Contributor:** Payment Engineer / Architect (Oviks Israel)
+> **Contributor:** Overcomer Israel (Lead Developer)
 > **Role:** Finalizing the Interswitch Sandbox integration for the booking checkout lifecycle.
 
 | Date | Contributor | Contribution |
 | --- | --- | --- |
-| 2026-03-26 | Oviks Israel | Configured Interswitch Sandbox credentials (MERCHANT_CODE, PAY_ITEM_ID, CLIENT_ID, SECRET) and updated Gateway auth logic. Added formal documentation clarifying the bypass of legacy Data Refs for OAuth 2.0 Passport tokens. |
+| 2026-03-26 | Lead Dev (Overcomer) | Configured Interswitch Sandbox credentials (MERCHANT_CODE, PAY_ITEM_ID, CLIENT_ID, SECRET) and updated Gateway auth logic. Documented the bypass of legacy Data Refs in favor of OAuth 2.0 Passport tokens. |
+| 2026-03-26 | Lead Dev (Overcomer) | Resolved merge conflict in payment integration — kept `newwebpay.qa` URL for inline QuickTeller checkout to ensure functional sandbox environment. |
+
+---
+
+## Phase 7D: Final UI Polish & Asset Integration
+
+> **Contributor:** Product Engineer (Beloved Godswill)
+> **Role:** Final visual cleanup, asset integration, and section transitions.
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-26 | Product Engineer (Beloved) | Curated and integrated high-resolution hairstyle imagery: selected 5 front-facing portraits for Gallery Preview and 4 side/back-view portraits for the Editorial Mosaic crossfade using computer vision inspection. |
+| 2026-03-26 | Product Engineer (Beloved) | Removed all visible section separator lines (`hairline-separator` divs) from the landing page for seamless section flow. |
+| 2026-03-26 | Product Engineer (Beloved) | Cleaned up Gallery Preview cards — removed placeholder labels and non-functional "Explore Piece" links, replaced with minimal editorial card index numbers. |
+
+---
+
+## Phase 7E: Final Design Validation & Pricing
+
+> **Contributor:** Oyewole Oluwabukola Oghenerukevwe (Industry Advisor & Content Lead)
+> **Role:** Final round of design validation, pricing accuracy review, and motion/animation sign-off.
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-26 | Industry Advisor & Content Lead (Oyewole) | Validated the final landing page motion experience — confirmed Hero staggered reveal, Story word-by-word animation, Booking SVG path draw, Gallery coverflow video track, and Editorial Mosaic crossfade all meet editorial-grade quality standards. |
+| 2026-03-26 | Industry Advisor & Content Lead (Oyewole) | Reviewed and validated all hairstyle pricing across the platform catalog — confirmed prices reflect accurate Lagos market rates for each style category (Braids, Locs, Twists, Weaving, Wigs). |
+| 2026-03-26 | Industry Advisor & Content Lead (Oyewole) | Validated editorial naming conventions across platform pages — confirmed hairstyle names, category labels, and gallery section titles align with industry-standard terminology used by Nigerian stylists. |
+| 2026-03-26 | Industry Advisor & Content Lead (Oyewole) | Conducted final UX flow validation — tested the complete client journey from gallery discovery through stylist selection, booking form, and payment initiation. Confirmed the flow is intuitive and consistent with the dark luxury editorial direction. |
+
