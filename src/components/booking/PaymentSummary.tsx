@@ -47,7 +47,7 @@ export function PaymentSummary({
       const scriptUrl =
         process.env.NEXT_PUBLIC_INTERSWITCH_ENV === 'LIVE'
           ? 'https://newwebpay.interswitchng.com/inline-scripts/pay.js'
-          : 'https://sandbox.interswitchng.com/collections/w/pay'
+          : 'https://qa.interswitchng.com/collections/w/pay'
 
       const existing = document.getElementById('isw-inline-script')
 
