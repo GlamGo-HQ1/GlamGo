@@ -66,6 +66,17 @@
   color: var(--text-primary);
 }
 
+.locationRow {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 .ratingRow {
   display: flex;
   align-items: center;

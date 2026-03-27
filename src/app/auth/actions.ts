@@ -62,7 +62,7 @@ export async function register(formData: FormData) {
       user_id: userId,
       bio: 'New stylist on GlamGo. Please complete your profile.',
       service_mode: 'salon',
-      is_available: false,
+      is_available: true,
       wallet_balance: 0
     })
   }

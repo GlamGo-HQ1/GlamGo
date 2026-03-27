@@ -134,18 +134,24 @@ export async function getDashboardStats(
  */
 export async function verifyBookingCode(
   code: string,
-  stylistId: string
+  stylistId: string,
+  bookingId?: string
 ): Promise<{ success: boolean; error?: string; bookingId?: string }> {
   const supabase = createClient()
 
   // Find booking with this code assigned to this stylist
-  const { data: booking, error: findError } = await supabase
+  let query = supabase
     .from('bookings')
     .select('id, status')
     .eq('confirmation_code', code)
     .eq('stylist_id', stylistId)
     .eq('status', 'confirmed')
-    .single()
+
+  if (bookingId) {
+    query = query.eq('id', bookingId)
+  }
+
+  const { data: booking, error: findError } = await query.single()
 
   if (findError || !booking) {
     return { success: false, error: 'Invalid code or booking not found' }

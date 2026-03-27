@@ -36,13 +36,19 @@ export function PendingBookings({ bookings }: { bookings: PendingBooking[] }) {
   const router = useRouter()
   const [processingId, setProcessingId] = useState<string | null>(null)
   const [dismissed, setDismissed] = useState<Set<string>>(new Set())
+  const [decliningId, setDecliningId] = useState<string | null>(null)
+  const [declineReason, setDeclineReason] = useState('')
 
   const visibleBookings = bookings.filter(b => !dismissed.has(b.id))
 
-  async function handleAction(bookingId: string, action: 'accept' | 'decline') {
+  async function handleAction(bookingId: string, action: 'accept' | 'decline', reason?: string) {
     setProcessingId(bookingId)
     try {
-      const res = await fetch(`/api/bookings/${bookingId}/${action}`, { method: 'PATCH' })
+      const res = await fetch(`/api/bookings/${bookingId}/${action}`, {
+        method: 'PATCH',
+        headers: reason ? { 'Content-Type': 'application/json' } : undefined,
+        body: reason ? JSON.stringify({ reason }) : undefined
+      })
       if (res.ok) {
         setDismissed(prev => new Set(Array.from(prev).concat(bookingId)))
         router.refresh()
@@ -94,7 +100,7 @@ export function PendingBookings({ bookings }: { bookings: PendingBooking[] }) {
               </button>
               <button
                 className={styles.declineBtn}
-                onClick={() => handleAction(booking.id, 'decline')}
+                onClick={() => setDecliningId(booking.id)}
                 disabled={processingId === booking.id}
               >
                 Decline
@@ -103,6 +109,41 @@ export function PendingBookings({ bookings }: { bookings: PendingBooking[] }) {
           </div>
         ))}
       </div>
+
+      {decliningId && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h3 className={styles.modalTitle}>Decline Booking</h3>
+            <p className={styles.modalDesc}>Please provide a reason so the client knows why.</p>
+            <textarea
+              className={styles.reasonInput}
+              placeholder="e.g. Schedule clash, outside service area..."
+              value={declineReason}
+              onChange={(e) => setDeclineReason(e.target.value)}
+              rows={3}
+            />
+            <div className={styles.modalActions}>
+              <button 
+                className={styles.cancelBtn} 
+                onClick={() => { setDecliningId(null); setDeclineReason('') }}
+              >
+                Cancel
+              </button>
+              <button 
+                className={styles.confirmDeclineBtn}
+                disabled={!declineReason.trim() || processingId === decliningId}
+                onClick={() => {
+                  handleAction(decliningId, 'decline', declineReason)
+                  setDecliningId(null)
+                  setDeclineReason('')
+                }}
+              >
+                Confirm Decline
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -6,9 +6,11 @@ import styles from './stylist-dashboard.module.css'
 
 interface BookingCodeInputProps {
   stylistId: string
+  bookingId: string
+  onClose: () => void
 }
 
-export function BookingCodeInput({ stylistId }: BookingCodeInputProps) {
+export function BookingCodeInput({ stylistId, bookingId, onClose }: BookingCodeInputProps) {
   const [digits, setDigits] = useState(['', '', '', ''])
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
@@ -40,7 +42,7 @@ export function BookingCodeInput({ stylistId }: BookingCodeInputProps) {
     setIsLoading(true)
     setResult(null)
 
-    const res = await verifyBookingCode(code, stylistId)
+    const res = await verifyBookingCode(code, stylistId, bookingId)
 
     if (res.success) {
       setResult({ success: true, message: 'Service started — client will confirm completion to release payment.' })
@@ -55,13 +57,15 @@ export function BookingCodeInput({ stylistId }: BookingCodeInputProps) {
   const isComplete = digits.every(d => d !== '')
 
   return (
-    <section className={styles.verifySection}>
-      <div className={styles.verifyInfo}>
-        <h2 className={styles.verifyHeading}>Service Verification</h2>
-        <p className={styles.verifyDescription}>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>Service Verification</h2>
+          <button className={styles.modalCloseBtn} onClick={onClose} aria-label="Close modal">&times;</button>
+        </div>
+        <p className={styles.modalDesc}>
           Enter the client&apos;s 4-digit security code to finalize the appointment and release funds to your wallet.
         </p>
-      </div>
       <div className={styles.verifyControls}>
         <div className={styles.codeInputs}>
           {digits.map((digit, i) => (
@@ -92,6 +96,7 @@ export function BookingCodeInput({ stylistId }: BookingCodeInputProps) {
           {result.message}
         </p>
       )}
-    </section>
+      </div>
+    </div>
   )
 }

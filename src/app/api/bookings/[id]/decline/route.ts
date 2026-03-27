@@ -28,10 +28,18 @@ export async function PATCH(
     return NextResponse.json({ error: 'Not a stylist account' }, { status: 403 })
   }
 
+  let reason = null
+  try {
+    const body = await req.json()
+    reason = body.reason
+  } catch (e) {
+    // Ignore if not present
+  }
+
   // Get booking details for refund simulation
   const { data: booking, error: fetchError } = await supabase
     .from('bookings')
-    .select('id, client_id, amount, status')
+    .select('id, client_id, amount, status, notes')
     .eq('id', params.id)
     .eq('stylist_id', stylistProfile.id)
     .eq('status', 'pending')
@@ -41,10 +49,15 @@ export async function PATCH(
     return NextResponse.json({ error: 'Booking not found or already processed' }, { status: 404 })
   }
 
+  let finalNotes = booking.notes
+  if (reason) {
+    finalNotes = booking.notes ? `${booking.notes}\n\nDecline Reason: ${reason}` : `Decline Reason: ${reason}`
+  }
+
   // Decline the booking
   const { error: declineError } = await supabase
     .from('bookings')
-    .update({ status: 'declined', payment_status: 'refunded' })
+    .update({ status: 'declined', payment_status: 'refunded', notes: finalNotes })
     .eq('id', params.id)
 
   if (declineError) {

@@ -114,7 +114,11 @@ export default async function StylistsPage() {
                 <h2 className={styles.stylistName}>{stylist.full_name}</h2>
                 {(stylist.city || stylist.area) && (
                   <p className={styles.locationRow}>
-                    {[stylist.area, stylist.city].filter(Boolean).join(', ')}
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '4px', verticalAlign: '-1px', display: 'inline-block' }}>
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {[stylist.area, stylist.city].filter(Boolean).join(', ')} • {((stylist.id.charCodeAt(0) + stylist.id.charCodeAt(stylist.id.length - 1)) % 80 / 10 + 0.5).toFixed(1)} miles away
                   </p>
                 )}
                 <div className={styles.ratingRow}>

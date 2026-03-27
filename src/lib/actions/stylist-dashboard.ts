@@ -99,6 +99,96 @@ export async function removeClaimedHairstyle(
   return {}
 }
 
+/* ─── Upload an Evidence Image ─── */
+export async function uploadEvidenceImage(
+  formData: FormData
+): Promise<{ error?: string; url?: string }> {
+  const supabase = createClient()
+
+  const { data: { user }, error: authError } = await supabase.auth.getUser()
+  if (authError || !user) return { error: 'Not authenticated' }
+
+  const stylistProfileId = await getStylistProfileId(user.id)
+  if (!stylistProfileId) return { error: 'No stylist profile found' }
+
+  const file = formData.get('file') as File
+  if (!file) return { error: 'No file provided' }
+
+  const fileExt = file.name.split('.').pop() || 'jpg'
+  // Use timestamp for uniqueness
+  const fileName = `${stylistProfileId}-${Date.now()}.${fileExt}`
+  
+  const { error: uploadError } = await supabase
+    .storage
+    .from('portfolios')
+    .upload(fileName, file)
+
+  if (uploadError) return { error: `Storage error: ${uploadError.message}` }
+
+  const { data: { publicUrl } } = supabase
+    .storage
+    .from('portfolios')
+    .getPublicUrl(fileName)
+
+  // Append to array in DB
+  const { data: profile } = await supabase
+    .from('stylist_profiles')
+    .select('portfolio_images')
+    .eq('id', stylistProfileId)
+    .single()
+
+  const existingImages = profile?.portfolio_images || []
+  const newImages = [...existingImages, publicUrl]
+
+  const { error: updateError } = await supabase
+    .from('stylist_profiles')
+    .update({ portfolio_images: newImages })
+    .eq('id', stylistProfileId)
+
+  if (updateError) return { error: `DB error: ${updateError.message}` }
+
+  revalidatePath('/dashboard/stylist/services')
+  return { url: publicUrl }
+}
+
+/* ─── Delete an Evidence Image ─── */
+export async function deleteEvidenceImage(imageUrl: string): Promise<{ error?: string }> {
+  const supabase = createClient()
+
+  const { data: { user }, error: authError } = await supabase.auth.getUser()
+  if (authError || !user) return { error: 'Not authenticated' }
+
+  const stylistProfileId = await getStylistProfileId(user.id)
+  if (!stylistProfileId) return { error: 'No stylist profile found' }
+
+  const { data: profile } = await supabase
+    .from('stylist_profiles')
+    .select('portfolio_images')
+    .eq('id', stylistProfileId)
+    .single()
+
+  const existingImages = profile?.portfolio_images || []
+  const newImages = existingImages.filter((url: string) => url !== imageUrl)
+
+  const { error: updateError } = await supabase
+    .from('stylist_profiles')
+    .update({ portfolio_images: newImages })
+    .eq('id', stylistProfileId)
+
+  if (updateError) return { error: updateError.message }
+
+  // Clean up from bucket
+  const pathParts = imageUrl.split('/')
+  const fileName = pathParts[pathParts.length - 1]
+  
+  if (fileName) {
+    await supabase.storage.from('portfolios').remove([fileName])
+  }
+
+  revalidatePath('/dashboard/stylist/services')
+  return {}
+}
+
 /* ─── Get stylist profile ID from user ID ─── */
 export async function getStylistProfileId(userId: string): Promise<string | null> {
   const supabase = createClient()

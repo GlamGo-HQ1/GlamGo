@@ -19,7 +19,7 @@ export function DatePicker({ selectedDate, onSelect, minDate }: DatePickerProps)
   const effectiveMinDate = useMemo(() => {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
-    const min = minDate || new Date(today.getTime() + 24 * 60 * 60 * 1000) // Tomorrow
+    const min = minDate || new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000) // 7 days from now
     min.setHours(0, 0, 0, 0)
     return min
   }, [minDate])

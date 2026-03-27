@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import {
@@ -8,36 +7,13 @@ import {
   getStylistProfileId,
 } from '@/lib/actions/stylist-dashboard'
 import { ServiceClaimGrid } from '@/components/stylists/ServiceClaimGrid'
+import { EvidenceGallery } from '@/components/stylists/EvidenceGallery'
 import styles from './services.module.css'
 
 export const metadata = {
   title: 'Service Curation | GlamGo Stylist',
   description: 'Manage your evidence gallery and claim global hairstyles to offer your clients.',
 }
-
-// Masonry evidence images sourced from our own public gallery
-const EVIDENCE_IMAGES = [
-  {
-    src: '/images/hairstyles/Braids/Fulani Braids/front.jpg',
-    label: 'Fulani Heritage',
-    date: '2d ago',
-  },
-  {
-    src: '/images/hairstyles/Braids/Knotless Braids/Based_on_the_202603260711.jpg',
-    label: 'Knotless Artistry',
-    date: '5d ago',
-  },
-  {
-    src: '/images/hairstyles/Braids/Knotless Braids/front.jpg',
-    label: 'Clean Knotless',
-    date: '1w ago',
-  },
-  {
-    src: '/images/hairstyles/Braids/Lemonade Braids/front.jpg',
-    label: 'Lemonade Flow',
-    date: '2w ago',
-  },
-]
 
 export default async function ServiceCurationPage() {
   const supabase = createClient()
@@ -57,10 +33,22 @@ export default async function ServiceCurationPage() {
   const stylistProfileId = await getStylistProfileId(user.id)
   if (!stylistProfileId) redirect('/dashboard/stylist')
 
-  const [catalog, claimedIds] = await Promise.all([
+  const [catalog, claimedIds, profileData] = await Promise.all([
     getGlobalCatalog(),
     getStylistClaimedIds(stylistProfileId),
+    supabase
+      .from('stylist_profiles')
+      .select('portfolio_images')
+      .eq('id', stylistProfileId)
+      .single()
   ])
+
+  const dbImages = profileData.data?.portfolio_images || []
+  const initialImages = dbImages.map((url: string) => ({
+    src: url,
+    label: 'Portfolio Upload',
+    date: 'Recent'
+  }))
 
 
 
@@ -91,36 +79,10 @@ export default async function ServiceCurationPage() {
         <div className={styles.sectionHead}>
           <h2 className={styles.sectionTitle}>My Evidence Gallery</h2>
           <div className={styles.headDivider} />
-          <span className={styles.headBadge}>{EVIDENCE_IMAGES.length} Photos</span>
+          <span className={styles.headBadge}>{initialImages.length} Photos</span>
         </div>
 
-        <div className={styles.masonry}>
-          {/* Upload dropzone */}
-          <div className={styles.uploadZone}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="1.5">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
-            </svg>
-            <span className={styles.uploadLabel}>Upload New Evidence</span>
-            <span className={styles.uploadHint}>JPG or MP4 (Max 50MB)</span>
-          </div>
-
-          {/* Gallery images */}
-          {EVIDENCE_IMAGES.map((img) => (
-            <div key={img.src} className={styles.galleryItem}>
-              <Image
-                src={img.src}
-                alt={img.label}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className={styles.galleryImg}
-              />
-              <div className={styles.galleryOverlay}>
-                <p className={styles.galleryLabel}>{img.label}</p>
-                <span className={styles.galleryDate}>{img.date}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <EvidenceGallery initialImages={initialImages} />
       </section>
 
       {/* ── Section 2: Claim Global Services ── */}
@@ -158,7 +120,7 @@ export default async function ServiceCurationPage() {
             <Link href={`/dashboard/stylist`} className={styles.ctaPrimary}>
               Back to Dashboard
             </Link>
-            <Link href={`/stylists`} className={styles.ctaSecondary}>
+            <Link href={`/stylists/${stylistProfileId}`} className={styles.ctaSecondary}>
               Preview Profile
             </Link>
           </div>

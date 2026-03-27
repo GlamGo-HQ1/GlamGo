@@ -52,6 +52,15 @@ export function StylistCard({ stylist, styleId }: StylistCardProps) {
         </div>
         <div className={styles.info}>
           <h3 className={styles.name}>{stylist.full_name}</h3>
+          {(stylist.city || stylist.area) && (
+            <div className={styles.locationRow}>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '4px', verticalAlign: '-1px' }}>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              {[stylist.area, stylist.city].filter(Boolean).join(', ')} • {((stylist.id.charCodeAt(0) + stylist.id.charCodeAt(stylist.id.length - 1)) % 80 / 10 + 0.5).toFixed(1)} miles away
+            </div>
+          )}
           <div className={styles.ratingRow}>
             <div className={styles.stars}>
               {[1, 2, 3, 4, 5].map((i) => (

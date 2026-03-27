@@ -9,6 +9,12 @@ export async function Navbar() {
   const { data: { session } } = await supabase.auth.getSession()
   const user = session?.user ?? null
 
+  let userRole = null
+  if (user) {
+    const { data } = await supabase.from('users').select('role').eq('id', user.id).single()
+    userRole = data?.role
+  }
+
   return (
     <nav className={styles.topNav}>
       <Link href="/" className={styles.brand}>GlamGo</Link>
@@ -25,9 +31,11 @@ export async function Navbar() {
       </div>
 
       <div className={styles.navIcons}>
-        <Link href="/gallery" className={styles.iconBtn} aria-label="Search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </Link>
+        {userRole !== 'stylist' && (
+          <Link href="/gallery" className={styles.iconBtn} aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </Link>
+        )}
         {user ? (
           <>
             <Link href="/dashboard" className={styles.iconBtn} aria-label="Dashboard">
