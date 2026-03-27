@@ -16,6 +16,7 @@ export function GalleryUploader({ onUploadSuccess }: Props) {
     const file = e.target.files?.[0]
     if (!file) return
 
+    setIsUploading(true)
     try {
       const formData = new FormData()
       formData.append('file', file)

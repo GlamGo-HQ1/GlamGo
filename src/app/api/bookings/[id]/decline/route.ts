@@ -32,7 +32,7 @@ export async function PATCH(
   try {
     const body = await req.json()
     reason = body.reason
-  } catch (e) {
+  } catch {
     // Ignore if not present
   }
 

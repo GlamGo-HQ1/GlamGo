@@ -61,7 +61,7 @@ export function UpcomingBookings({ bookings, stylistId }: { bookings: DashboardB
         </div>
       ) : (
         <div className={styles.appointmentList}>
-          {bookings.map((booking, index) => (
+          {bookings.map((booking) => (
             <div key={booking.id} className={styles.appointmentCard}>
               <div className={styles.clientAvatar}>
                 {booking.counterpart_avatar ? (
@@ -86,7 +86,14 @@ export function UpcomingBookings({ bookings, stylistId }: { bookings: DashboardB
                   <span>{formatTimeSlot(booking.time_slot)}</span>
                 </div>
               </div>
-              {index === 0 && booking.status === 'confirmed' ? (
+              {(() => {
+                const today = new Date()
+                today.setHours(0, 0, 0, 0)
+                const apptDate = new Date(booking.appointment_date.includes('T') ? booking.appointment_date : `${booking.appointment_date}T12:00:00`)
+                apptDate.setHours(0, 0, 0, 0)
+                const isToday = apptDate.getTime() === today.getTime()
+                return isToday && booking.status === 'confirmed'
+              })() ? (
                 <button 
                   className={styles.startBtn}
                   onClick={() => setVerifyingBookingId(booking.id)}
