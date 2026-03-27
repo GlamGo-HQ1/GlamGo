@@ -29,8 +29,13 @@ export function StyleImageGallery({ images, styleName }: StyleImageGalleryProps)
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className={styles.image}
+          style={{ objectFit: 'contain', objectPosition: 'center', backgroundColor: '#0A0A0F' }}
           priority
         />
+        {/* Mobile title overlay now inside mainImage so it doesn't overlap thumbnails */}
+        <div className={styles.mobileTitle}>
+          <h1 className={styles.mobileTitleText}>{styleName}</h1>
+        </div>
       </div>
       {images.length > 1 && (
         <div className={styles.thumbnails}>
@@ -47,15 +52,12 @@ export function StyleImageGallery({ images, styleName }: StyleImageGalleryProps)
                 fill
                 sizes="80px"
                 className={`${styles.thumbImage} ${index !== activeIndex ? styles.thumbInactive : ''}`}
+                style={{ objectPosition: 'top center' }}
               />
             </button>
           ))}
         </div>
       )}
-      {/* Mobile title overlay */}
-      <div className={styles.mobileTitle}>
-        <h1 className={styles.mobileTitleText}>{styleName}</h1>
-      </div>
     </div>
   )
 }

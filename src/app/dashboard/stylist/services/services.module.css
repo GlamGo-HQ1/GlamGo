@@ -1,0 +1,349 @@
+/* ── Page Shell ── */
+.page {
+  min-height: 100vh;
+  background: var(--bg-dark, #0A0A0F);
+}
+
+/* ── Hero ── */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 120px 40px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.heroLeft {
+  max-width: 640px;
+}
+
+.heroLabel {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--accent-primary, #C9A96E);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-family: var(--font-display), serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.heroTitle em {
+  font-style: italic;
+  color: var(--accent-primary, #C9A96E);
+}
+
+.heroSub {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.heroRight {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.heroMetaLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(77, 70, 58, 0.8);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.heroMetaValue {
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+  color: var(--accent-primary, #C9A96E);
+}
+
+/* ── Generic Section Wrapper ── */
+.section {
+  padding: 0 40px 120px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-family: var(--font-display), serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.headDivider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(77, 70, 58, 0.3), transparent);
+}
+
+.headBadge {
+  background: var(--bg-elevated, #1f1f25);
+  color: var(--text-secondary);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(77, 70, 58, 0.15);
+  white-space: nowrap;
+}
+
+/* ── Masonry Gallery ── */
+.masonry {
+  columns: 1;
+  column-gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .masonry {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    columns: 3;
+  }
+}
+
+/* Upload zone */
+.uploadZone {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 340px;
+  border: 2px dashed rgba(201, 169, 110, 0.3);
+  border-radius: 8px;
+  background: rgba(201, 169, 110, 0.03);
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.uploadZone:hover {
+  border-color: var(--accent-primary, #C9A96E);
+  background: rgba(201, 169, 110, 0.06);
+}
+
+.uploadLabel {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+}
+
+.uploadHint {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+/* Gallery item */
+.galleryItem {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--bg-elevated);
+  cursor: pointer;
+}
+
+.galleryImg {
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.galleryItem:hover .galleryImg {
+  transform: scale(1.08);
+}
+
+.galleryOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galleryItem:hover .galleryOverlay {
+  opacity: 1;
+}
+
+.galleryLabel {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: white;
+}
+
+.galleryDate {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(201, 169, 110, 0.8);
+  margin-top: 4px;
+}
+
+/* ── Claim Section ── */
+.claimSection {
+  background: rgba(21, 21, 26, 0.5);
+  border-top: 1px solid rgba(77, 70, 58, 0.1);
+  border-bottom: 1px solid rgba(77, 70, 58, 0.1);
+  padding: 80px 40px;
+}
+
+.claimSectionInner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.claimHead {
+  margin-bottom: 48px;
+}
+
+.claimTitle {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.claimTitle em {
+  font-style: italic;
+  color: var(--accent-primary, #C9A96E);
+}
+
+.claimSub {
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── CTA Section ── */
+.ctaSection {
+  padding: 80px 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ctaPanel {
+  position: relative;
+  padding: 80px 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(26, 26, 31, 0.4);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(77, 70, 58, 0.1);
+}
+
+.ctaTitle {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.ctaHighlight {
+  font-style: normal;
+  color: var(--accent-primary, #C9A96E);
+}
+
+.ctaSub {
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 480px) {
+  .ctaButtons {
+    flex-direction: row;
+  }
+}
+
+.ctaPrimary {
+  display: inline-block;
+  padding: 16px 48px;
+  background: var(--accent-primary, #C9A96E);
+  color: #261900;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.3);
+}
+
+.ctaPrimary:hover {
+  transform: scale(1.05);
+}
+
+.ctaSecondary {
+  display: inline-block;
+  padding: 16px 48px;
+  border: 1px solid rgba(77, 70, 58, 0.3);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.ctaSecondary:hover {
+  background: var(--bg-elevated, #1f1f25);
+}

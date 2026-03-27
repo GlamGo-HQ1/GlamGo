@@ -3,12 +3,14 @@ import { notFound } from 'next/navigation'
 import { getStylistById, getStylesForStylist, getReviewsForStylist } from '@/lib/actions/stylists'
 import { StylistHeader } from '@/components/stylists/StylistHeader'
 import { StylistPortfolio } from '@/components/stylists/StylistPortfolio'
-import { StylistStyles } from '@/components/stylists/StylistStyles'
 import { StylistReviews } from '@/components/stylists/StylistReviews'
+import { StylistStyles } from '@/components/stylists/StylistStyles'
 import styles from './stylist-profile.module.css'
+import Link from 'next/link'
 
 interface StylistProfilePageProps {
   params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ params }: StylistProfilePageProps): Promise<Metadata> {
@@ -22,8 +24,11 @@ export async function generateMetadata({ params }: StylistProfilePageProps): Pro
   }
 }
 
-export default async function StylistProfilePage({ params }: StylistProfilePageProps) {
+export default async function StylistProfilePage({ params, searchParams }: StylistProfilePageProps) {
   const { id } = await params
+  const resolvedSearchParams = await searchParams
+  const styleId = typeof resolvedSearchParams?.styleId === 'string' ? resolvedSearchParams.styleId : null
+
   const [stylist, stylistStyles, reviews] = await Promise.all([
     getStylistById(id),
     getStylesForStylist(id),
@@ -46,7 +51,9 @@ export default async function StylistProfilePage({ params }: StylistProfilePageP
 
         {/* Right: Services + Reviews */}
         <div className={styles.rightCol}>
-          <StylistStyles stylistStyles={stylistStyles} stylistId={id} />
+          <div id="services">
+            <StylistStyles stylistStyles={stylistStyles} stylistId={id} />
+          </div>
           <StylistReviews reviews={reviews} />
         </div>
       </div>
@@ -54,9 +61,15 @@ export default async function StylistProfilePage({ params }: StylistProfilePageP
       {/* Sticky CTA */}
       <div className={styles.stickyCta}>
         <div className={styles.ctaInner}>
-          <button className={styles.ctaButton}>
-            Book {stylist.full_name.split(' ')[0]}
-          </button>
+          {styleId ? (
+            <Link href={`/booking/${styleId}/${id}`} className={styles.ctaButton}>
+              Book Session Now →
+            </Link>
+          ) : (
+            <a href="#services" className={styles.ctaButton}>
+              Book {stylist.full_name.split(' ')[0]} ↓
+            </a>
+          )}
         </div>
       </div>
     </div>

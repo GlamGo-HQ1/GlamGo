@@ -291,3 +291,37 @@ Before writing a single line of code, we ran a full architectural audit on our I
 | 2026-03-27 | Product Engineer (Beloved) | Built an animated FAQ section (`/components/landing/FAQ.tsx`) to handle common client objections before booking. Implemented smooth CSS grid-based accordion transitions and styled to match the dark luxury aesthetic. |
 | 2026-03-27 | Product Engineer (Beloved) | Wired the newly built FAQ and Footer components into the root `page.tsx`, bringing the landing page architecture to 100% completion. Verified production readiness with a successful `next build`. |
 
+---
+
+## Phase 7H: Booking Flow & Gallery Fixes
+
+> **Contributor:** Product Engineer (Beloved Godswill)
+> **Role:** Critical booking navigation fix, gallery image display improvements, and stylist service curation.
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-27 | Product Engineer (Beloved) | Fixed critical booking navigation blocker — the "Book Session" button on the Stylist Profile page was an anchor link (`#services`) instead of a navigation action. Replaced with a dynamic route (`/booking/[styleId]/[stylistId]`) that uses URL query parameters (`?styleId=`) for context-aware booking. |
+| 2026-03-27 | Product Engineer (Beloved) | Implemented 1-click booking flow: when a user navigates from a hairstyle to a stylist profile, the `styleId` is passed through, enabling a direct "Book Session Now" CTA that bypasses the manual scroll-to-services step. |
+| 2026-03-27 | Product Engineer (Beloved) | Built Service Curation dashboard tab (`/dashboard/stylist/services`) — stylists can browse the global hairstyle catalog, claim styles, set custom pricing, and manage their service portfolio. |
+| 2026-03-27 | Product Engineer (Beloved) | Created server actions for service curation: `getGlobalCatalog()`, `claimHairstyle()`, `removeClaimedHairstyle()` to manage the `stylist_styles` bridge table. |
+| 2026-03-27 | Product Engineer (Beloved) | Implemented premium split-screen "Digital Atelier" registration page (`/auth/register`) with role-based authentication and editorial design. |
+| 2026-03-27 | Product Engineer (Beloved) | Fixed gallery image cropping — changed `object-fit` from `cover` to `contain` in `StyleImageGallery.module.css` to prevent extreme zooming of portrait images. Adjusted `background-position` to `top center` in `HeroEditorial.module.css` to prevent hero image head cropping. |
+| 2026-03-27 | Product Engineer (Beloved) | Fixed mobile gallery touch targets — moved the title overlay inside the `mainImage` container to prevent it from intercepting pointer events on thumbnails. |
+
+---
+
+## Phase 7I: Final Documentation & Submission Prep
+
+> **Contributor:** Product Engineer (Beloved Godswill)
+> **Role:** Comprehensive documentation overhaul, testing guide for judges, and pre-hackathon compliance transparency.
+
+| Date | Contributor | Contribution |
+| --- | --- | --- |
+| 2026-03-27 | Product Engineer (Beloved) | Rewrote README problem statement — replaced generic "discovery/booking" framing with the trust-gap narrative from `HACKATHON_FRAMEWORK.md`: "There is zero trust infrastructure in Nigeria's hair industry." |
+| 2026-03-27 | Product Engineer (Beloved) | Updated README with live Vercel deployment URL (`https://glam-go.vercel.app`) across header, getting started, and footer sections. |
+| 2026-03-27 | Product Engineer (Beloved) | Added Demo Accounts section to README with 3 pre-seeded login credentials (1 client, 2 stylists) and a recommended test flow walkthrough for judges. |
+| 2026-03-27 | Product Engineer (Beloved) | Added 2 new features to README feature table: **Service Curation** (stylists claim hairstyles and set pricing) and **1-Click Booking** (context-aware navigation from gallery to stylist to booking). |
+| 2026-03-27 | Product Engineer (Beloved) | Expanded README project structure tree to reflect new routes (`api/`, `dashboard/stylist/services/`, `auth/register`), component folders (`styles/`, `stylists/`), and `lib/actions/`. |
+| 2026-03-27 | Product Engineer (Beloved) | Created `docs/TESTING_GUIDE.md` — comprehensive testing guide for judges containing demo account credentials, Interswitch sandbox test card details (card number, expiry, CVV, PIN, OTP), step-by-step test flows for both client and stylist roles, and dashboard feature descriptions. |
+| 2026-03-27 | Product Engineer (Beloved) | Added "Pre-Hackathon Planning (Compliance Note)" section to README — transparent disclaimer explaining that all pre-build repository activity consisted of research and ideation only (no code), with a table linking all 5 pre-planning documents with dates. |
+| 2026-03-27 | Product Engineer (Beloved) | Linked `HACKATHON_FRAMEWORK.md` from the README documentation table — the team alignment document showing how we identified the trust problem, scoped the MVP, and assigned roles during a 3-hour planning session on March 21. |

@@ -1,0 +1,401 @@
+/* ── Register — Split-Screen Layout ── */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  background-color: #0A0A0F;
+  overflow: hidden;
+}
+
+/* ── Left: Hero Image Panel ── */
+.imagePanel {
+  display: none;
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .imagePanel {
+    display: block;
+  }
+}
+
+.heroImage {
+  object-fit: cover;
+  transition: transform 10s ease;
+}
+
+.heroImage:hover {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(10, 10, 15, 0.85) 100%
+  );
+}
+
+.imageOverlayTop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 15, 0.4) 0%,
+    transparent 40%,
+    rgba(10, 10, 15, 0.6) 100%
+  );
+}
+
+.imageLogo {
+  position: absolute;
+  top: 48px;
+  left: 48px;
+  font-size: 1.5rem;
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  color: white;
+  letter-spacing: -0.02em;
+  z-index: 10;
+}
+
+.imageFooter {
+  position: absolute;
+  bottom: 80px;
+  left: 48px;
+  right: 48px;
+  z-index: 10;
+}
+
+.imageTag {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.imageTagLine {
+  height: 1px;
+  width: 48px;
+  background: var(--accent-primary, #C9A96E);
+}
+
+.imageTagText {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--accent-primary, #C9A96E);
+  font-weight: 600;
+}
+
+.imageHeadline {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.imageHeadline em {
+  font-style: italic;
+}
+
+.imageSub {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 400px;
+}
+
+/* ── Right: Console Panel ── */
+.console {
+  width: 100%;
+  background: #0F0F12;
+  border-left: 1px solid #2D2D35;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+  .console {
+    width: 480px;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .console {
+    width: 560px;
+  }
+}
+
+/* Slim scrollbar */
+.console::-webkit-scrollbar {
+  width: 2px;
+}
+.console::-webkit-scrollbar-track {
+  background: transparent;
+}
+.console::-webkit-scrollbar-thumb {
+  background: #2D2D35;
+}
+
+.consoleHeader {
+  padding: 80px 40px 32px;
+  border-bottom: 1px solid #2D2D35;
+}
+
+.consoleLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  color: #8E8E93;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.consoleTitle {
+  font-family: var(--font-display), serif;
+  font-size: 1.6rem;
+  color: white;
+}
+
+.consoleBody {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Role Selector — "Select Protocol" ── */
+.protocolLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #8E8E93;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.protocolGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #2D2D35;
+  border: 1px solid #2D2D35;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.protocolCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 16px;
+  background: #1A1A1E;
+  cursor: pointer;
+  border: none;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.protocolCard:hover {
+  background: #262626;
+}
+
+.protocolCardActive {
+  background: #262626;
+}
+
+.protocolCardActive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #C9A96E;
+}
+
+.protocolIcon {
+  font-size: 24px;
+  color: #C9A96E;
+}
+
+.protocolCardLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+/* ── Form Fields ── */
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.field {
+  border-bottom: 1px solid #2D2D35;
+  padding-bottom: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.field:focus-within {
+  border-color: #C9A96E;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #8E8E93;
+  margin-bottom: 4px;
+}
+
+.fieldInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-family: var(--font-body), sans-serif;
+  padding: 0;
+}
+
+.fieldInput::placeholder {
+  color: #3a3a40;
+}
+
+/* ── CTA + Terms ── */
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 12px;
+}
+
+.termsRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.termsCheck {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  flex-shrink: 0;
+  accent-color: #C9A96E;
+  cursor: pointer;
+}
+
+.termsText {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #8E8E93;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 22px;
+  background: #C9A96E;
+  color: #1a1000;
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: white;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signInLink {
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #8E8E93;
+}
+
+.signInLink a {
+  color: #C9A96E;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+  padding-bottom: 2px;
+}
+
+.signInLink a:hover {
+  color: white;
+}
+
+.errorMsg {
+  background: rgba(255, 80, 80, 0.1);
+  border: 1px solid rgba(255, 80, 80, 0.3);
+  color: #ff8080;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* ── Console Footer ── */
+.consoleFooter {
+  padding: 32px 40px;
+  border-top: 1px solid #2D2D35;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.footerLink {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(142, 142, 147, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLink:hover {
+  color: white;
+}
+
+.footerCopy {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(142, 142, 147, 0.3);
+}

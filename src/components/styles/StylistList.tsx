@@ -4,10 +4,10 @@ import styles from './StylistList.module.css'
 
 interface StylistListProps {
   stylists: StylistForStyle[]
-  hairstyleId: string
+  styleId?: string
 }
 
-export function StylistList({ stylists, hairstyleId }: StylistListProps) {
+export function StylistList({ stylists, styleId }: StylistListProps) {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
@@ -24,7 +24,7 @@ export function StylistList({ stylists, hairstyleId }: StylistListProps) {
             <StylistCard
               key={stylist.id}
               stylist={stylist}
-              hairstyleId={hairstyleId}
+              styleId={styleId}
             />
           ))}
         </div>

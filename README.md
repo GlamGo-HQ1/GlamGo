@@ -12,7 +12,7 @@
 
 ---
 
-🔗 **[Live Demo](https://glamgo.vercel.app)** · 📖 **[Full Contribution Log](./CONTRIBUTIONS.md)** · 📐 **[Architecture Docs](./docs/ARCHITECTURE_CONTEXT.md)**
+🔗 **[Live Demo](https://glam-go.vercel.app)** · 📖 **[Full Contribution Log](./CONTRIBUTIONS.md)** · 📐 **[Architecture Docs](./docs/ARCHITECTURE_CONTEXT.md)**
 
 </div>
 
@@ -20,21 +20,32 @@
 
 ## 🎯 The Problem
 
-In Nigeria's ₦1.2 trillion beauty industry, booking a hairstylist is still driven by word-of-mouth, WhatsApp messages, and cash payments with zero consumer protection. Clients have no way to:
+**There is zero trust infrastructure in Nigeria's hair industry.**
 
-- **Discover** verified stylists and preview their actual work
-- **Book** appointments with secure scheduling
-- **Pay** with escrow protection — money is only released after service delivery
+Finding a stylist isn't the hard part — TikTok, Instagram, and word-of-mouth handle that. The real problem is what happens *after* you find one:
 
-GlamGo exists to solve this.
+- **Trying a new stylist is a gamble.** You don't know if she can actually deliver what you saw online. You're risking your money, your time, and your hair.
+- **Prices change in the chair.** A stylist can say *"your hair is thicker than expected, it's more now."* The client has zero protection against surprise charges.
+- **No-shows burn both sides.** Clients ghost appointments. Stylists lose entire afternoons waiting. Nobody gets penalised, so nobody fully commits.
+- **Payment has no safety net.** Cash changes hands with no record, no receipt, and no recourse if things go wrong.
+
+Both sides take risks every single transaction. Nobody trusts anybody fully.
 
 ---
 
 ## 💡 Our Solution
 
-We built a **full-stack booking platform** where every naira is protected by an escrow system. Clients browse a curated gallery of 24+ hairstyles, book verified local stylists, and pay through Interswitch's secure gateway. **Funds are held in escrow** and only released to the stylist when the client confirms service completion with a 4-digit verification code.
+**GlamGo is a visual hair marketplace with built-in payment protection powered by Interswitch.**
 
-> *"Style is not about following trends; it is about the structural integrity of one's own identity."*
+We built a **full-stack booking platform** where every naira is protected by an escrow system:
+
+1. **For clients:** Browse a curated gallery of 24+ hairstyles. Find a stylist who does that exact style. See her price **locked upfront** — no surprises. Pay through the app. Your money is **held in escrow** until you confirm the service is done. If she delivers, she gets paid. Simple.
+
+2. **For stylists:** When a client books through GlamGo, they've already paid. That means they're serious. No more wasted time slots. No more *"I'll come tomorrow"* and then disappearing. The money is already there.
+
+**The gallery pulls people in. The payment protects them. One without the other is incomplete.**
+
+> *If we remove payment, GlamGo is just Pinterest for hair. That's a mood board, not a product.*
 
 ---
 
@@ -48,6 +59,8 @@ We built a **full-stack booking platform** where every naira is protected by an 
 | 👩‍🎨 **Stylist Profiles** | Verified portfolios with ratings, reviews, service modes (Salon / Mobile), and style specializations |
 | 📊 **Dual Dashboards** | Separate experiences for Clients (booking history, check-in codes) and Stylists (revenue stats, pending requests, booking management) |
 | 🎬 **Video Gallery** | Autoplay 360° hairstyle video previews in a horizontal scroll track |
+| ✂️ **Service Curation** | Stylists claim global hairstyles, set custom pricing, and manage their service catalog from a dedicated dashboard tab |
+| 🚀 **1-Click Booking** | Context-aware navigation: selecting a hairstyle → choosing a stylist → direct booking link, bypassing redundant manual steps |
 | 🌙 **Editorial Design** | Dark luxury aesthetic with glassmorphism, Playfair Display typography, and Framer Motion scroll animations |
 
 ---
@@ -200,24 +213,31 @@ Building a production-quality platform in 4 days forced us to make hard, deliber
 GlamGo/
 ├── src/
 │   ├── app/                    # Next.js App Router pages
-│   │   ├── auth/               # Login, Register, Callback
-│   │   ├── booking/            # Booking flow pages
-│   │   ├── dashboard/          # Client + Stylist dashboards
-│   │   ├── gallery/            # Hairstyle discovery
-│   │   ├── payment/            # Interswitch checkout
-│   │   ├── review/             # Post-service reviews
-│   │   ├── styles/[id]/        # Style detail pages
-│   │   └── stylists/[id]/      # Stylist profile pages
+│   │   ├── api/                # REST endpoints (bookings, payments, reviews, stylists)
+│   │   ├── auth/               # Login, Register (split-screen editorial), Callback
+│   │   ├── booking/            # Booking flow pages ([styleId]/[stylistId])
+│   │   ├── dashboard/
+│   │   │   ├── client/         # Client dashboard (booking history, check-in codes)
+│   │   │   └── stylist/        # Stylist dashboard (stats, requests, services)
+│   │   │       └── services/   # Service Curation tab (claim styles, set pricing)
+│   │   ├── gallery/            # Hairstyle discovery with category filtering
+│   │   ├── payment/            # Interswitch checkout + callback
+│   │   ├── review/             # Post-service reviews ([bookingId])
+│   │   ├── styles/[id]/        # Style detail pages with multi-angle gallery
+│   │   └── stylists/[id]/      # Stylist profiles with context-aware booking CTA
 │   ├── components/
-│   │   ├── landing/            # Editorial landing page sections
+│   │   ├── landing/            # Editorial landing page sections (9 components)
 │   │   ├── gallery/            # Gallery UI components
+│   │   ├── styles/             # Style detail + image gallery components
+│   │   ├── stylists/           # Stylist cards, profiles, reviews
 │   │   ├── booking/            # Booking form components
-│   │   └── layout/             # Navbar, Footer
+│   │   └── layout/             # Navbar, Footer, MobileBottomNav
 │   └── lib/
-│       ├── supabase/           # Client, Server, Admin, Middleware
+│       ├── supabase/           # Client, Server, Admin, Middleware helpers
+│       ├── actions/            # Server Actions (auth, bookings, stylists, dashboard)
 │       └── interswitch.ts      # Payment gateway integration
 ├── public/
-│   ├── images/hairstyles/      # Organized by category
+│   ├── images/hairstyles/      # Organized by category (24+ styles)
 │   └── videos/                 # 360° hairstyle previews
 ├── docs/                       # Architecture, flows, audit reports
 ├── scripts/                    # Seed data, image processing
@@ -245,7 +265,21 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+Open [http://localhost:3000](http://localhost:3000) for local development, or visit the **[Live Demo →](https://glam-go.vercel.app)**
+
+### 🧪 Demo Accounts (For Judges)
+
+These pre-seeded accounts are ready to use on the live demo:
+
+| Role | Email | Password |
+|:---|:---|:---|
+| **Client** | `demo.client@glamgo.ng` | `GlamGo2026!` |
+| **Stylist** | `stylist.adaeze@glamgo.ng` | `GlamGo2026!` |
+| **Stylist** | `stylist.chioma@glamgo.ng` | `GlamGo2026!` |
+
+> **Recommended Test Flow:** Log in as the Client → Browse Gallery → Select a hairstyle → Choose a stylist → Book & Pay → Then log in as the Stylist to accept the booking and enter the 4-digit verification code.
+
+> 💳 **Need test card details for payment?** See the [Testing Guide](./docs/TESTING_GUIDE.md) for Interswitch sandbox card number, expiry, CVV, PIN, and OTP.
 
 ### Environment Variables
 
@@ -265,6 +299,8 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 | Document | Description |
 |:---|:---|
+| [TESTING_GUIDE.md](./docs/TESTING_GUIDE.md) | **For Judges:** Demo accounts, Interswitch test card details, and recommended test flow |
+| [HACKATHON_FRAMEWORK.md](./docs/HACKATHON_FRAMEWORK.md) | Team alignment document: how we identified the trust problem, scoped the MVP, and assigned roles |
 | [CONTRIBUTIONS.md](./CONTRIBUTIONS.md) | Complete phase-by-phase contribution log with dates, technical decisions, and bug fixes |
 | [USER_FLOWS.md](./docs/USER_FLOWS.md) | Client booking flow and stylist fulfillment flow (with mermaid diagrams) |
 | [ARCHITECTURE_CONTEXT.md](./docs/ARCHITECTURE_CONTEXT.md) | System architecture decisions and security model |
@@ -274,10 +310,30 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 ---
 
+## 📋 Pre-Hackathon Planning (Compliance Note)
+
+> **Important for Judges:** You may notice repository activity and documentation files dated before the official hackathon build dates (March 23–26, 2026). We want to be fully transparent about what this activity represents.
+
+The Enyata × Interswitch Buildathon 2026 explicitly permitted pre-hackathon ideation, research, and planning. Our team used this window to conduct industry research, define the problem space, and align on scope — **no code was written** before March 23.
+
+All pre-hackathon work is documented in these files:
+
+| Document | Date | What It Contains |
+|:---|:---|:---|
+| [GLAMGO_CONCEPT.md](./docs/GLAMGO_CONCEPT.md) | Pre-build | Full idea document: problem definition, user journeys, competitive analysis, data model planning |
+| [HACKATHON_FRAMEWORK.md](./docs/HACKATHON_FRAMEWORK.md) | March 21 | Team alignment meeting notes — how we identified the trust problem and scoped the MVP |
+| [PRODUCT_VISION.md](./docs/PRODUCT_VISION.md) | Pre-build | V1 (hackathon) vs V2 (post-hackathon) feature scoping |
+| [LEAD_DEVELOPER_BRIEF.md](./docs/LEAD_DEVELOPER_BRIEF.md) | Pre-build | Execution plan and phase sequence for the lead developer |
+| [interswitch-workshop-intel.md](./docs/interswitch-workshop-intel.md) | March 25 | Notes from the Interswitch API workshop session (OAuth, webhooks, escrow strategy) |
+
+**All code, database setup, and deployments began on March 23, 2026** — the first day of the official build period.
+
+---
+
 <div align="center">
 
 *Built with 🖤 in 4 days for the Enyata × Interswitch Buildathon 2026 (Health + Payments Track)*
 
-**[📖 Read the Full Contribution Log →](./CONTRIBUTIONS.md)**
+🔗 **[Try the Live Demo →](https://glam-go.vercel.app)** · 📖 **[Read the Full Contribution Log →](./CONTRIBUTIONS.md)**
 
 </div>

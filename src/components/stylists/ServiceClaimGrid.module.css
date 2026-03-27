@@ -1,0 +1,271 @@
+/* ── Tab Bar ── */
+.tabBar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 40px;
+}
+
+.tab {
+  padding: 8px 22px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  background: transparent;
+  color: rgba(228, 225, 233, 0.5);
+  border: 1px solid rgba(77, 70, 58, 0.15);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--text-primary);
+  border-color: rgba(77, 70, 58, 0.4);
+}
+
+.tabActive {
+  background: var(--bg-elevated, #1f1f25);
+  color: var(--accent-primary, #C9A96E);
+  border-color: rgba(201, 169, 110, 0.2);
+  box-shadow: 0 0 15px rgba(201, 169, 110, 0.15);
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.empty {
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 32px 0;
+  grid-column: 1 / -1;
+}
+
+/* ── Card ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated, #15151A);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(77, 70, 58, 0.08);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  border-color: rgba(201, 169, 110, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.cardClaimed {
+  border-color: rgba(201, 169, 110, 0.25);
+}
+
+/* ── Card Image ── */
+.cardImage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.cardImg {
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.8s ease, transform 0.8s ease;
+}
+
+.card:hover .cardImg {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.cardClaimed .cardImg {
+  filter: grayscale(0%);
+}
+
+.trendingBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--accent-primary, #C9A96E);
+  color: #261900;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.claimedBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(201, 169, 110, 0.15);
+  color: var(--accent-primary, #C9A96E);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+/* ── Card Body ── */
+.cardBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardName {
+  font-family: var(--font-display), serif;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.cardCategory {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.cardAction {
+  margin-top: auto;
+}
+
+/* ── Claim Button ── */
+.claimBtn {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(77, 70, 58, 0.3);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.claimBtn:hover {
+  background: var(--accent-primary, #C9A96E);
+  color: #261900;
+  border-color: var(--accent-primary, #C9A96E);
+}
+
+/* ── Pricing Panel ── */
+.pricingPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(26, 26, 31, 0.4);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.priceInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(77, 70, 58, 0.3);
+  padding-bottom: 8px;
+}
+
+.currency {
+  font-weight: 700;
+  color: var(--accent-primary, #C9A96E);
+  font-size: 1rem;
+}
+
+.priceField {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-display), serif;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.priceField::placeholder {
+  color: rgba(228, 225, 233, 0.25);
+}
+
+.saveBtn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(201, 169, 110, 0.1);
+  color: var(--accent-primary, #C9A96E);
+  border: none;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.saveBtn:hover {
+  background: var(--accent-primary, #C9A96E);
+  color: #261900;
+}
+
+.savingText {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 12px 0;
+}
+
+.removeBtn {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: rgba(228, 225, 233, 0.4);
+  border: 1px solid rgba(77, 70, 58, 0.2);
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.removeBtn:hover {
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.4);
+}

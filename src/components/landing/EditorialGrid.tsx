@@ -65,11 +65,11 @@ const GridImage = ({ src, alt }: { src: string; alt: string }) => (
 export const EditorialGrid = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  /* Auto-crossfade every 3.5 seconds */
+  /* Auto-crossfade every 2.5 seconds */
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % CENTER_PORTRAITS.length);
-    }, 3500);
+    }, 2500);
     return () => clearInterval(timer);
   }, []);
 
@@ -102,14 +102,14 @@ export const EditorialGrid = () => {
           <div className={`editorial-grid-box ${styles.boxCenter}`}>
             {/* Crossfading portrait stack */}
             <div className={styles.portraitStack}>
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 <motion.div
                   key={activeIndex}
                   className={styles.portraitSlide}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 1.2, ease: 'easeInOut' }}
+                  transition={{ duration: 0.6, ease: 'easeInOut' }}
                 >
                   <Image
                     src={CENTER_PORTRAITS[activeIndex].src}

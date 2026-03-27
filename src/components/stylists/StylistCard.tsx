@@ -5,7 +5,7 @@ import styles from './StylistCard.module.css'
 
 interface StylistCardProps {
   stylist: StylistForStyle
-  hairstyleId?: string
+  styleId?: string
 }
 
 function formatServiceMode(mode: string): string[] {
@@ -22,11 +22,14 @@ function formatPrice(price: number | null): string {
   }).format(price)
 }
 
-export function StylistCard({ stylist, hairstyleId }: StylistCardProps) {
-  // hairstyleId will be used for booking flow: /booking/[styleId]/[stylistId]
-  const href = hairstyleId 
-    ? `/booking/${hairstyleId}/${stylist.id}` 
+export function StylistCard({ stylist, styleId }: StylistCardProps) {
+  // Always navigate to the stylist's public profile so clients can view
+  // portfolio, reviews, and services before deciding to book.
+  // Add styleId to query params if this card is rendered in the context of a specific style
+  const href = styleId 
+    ? `/stylists/${stylist.id}?styleId=${styleId}`
     : `/stylists/${stylist.id}`
+
   const modes = formatServiceMode(stylist.service_mode)
 
   return (

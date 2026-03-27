@@ -51,7 +51,7 @@ export default async function StyleDetailPage({ params }: StyleDetailPageProps) 
 
         <StyleInfo hairstyle={hairstyle} />
 
-        <StylistList stylists={stylists} hairstyleId={id} />
+        <StylistList stylists={stylists} styleId={id} />
       </div>
 
       {/* Mobile floating CTA */}

@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { getDashboardBookings, getDashboardStats } from '@/lib/actions/dashboard'
 import { getStylesForStylist } from '@/lib/actions/stylists'
@@ -82,6 +83,9 @@ export default async function StylistDashboardPage() {
           <h1 className={styles.heroTitle}>Welcome back, {firstName}</h1>
           <p className={styles.heroSub}>Your salon is curated and ready for today&apos;s excellence.</p>
         </div>
+        <Link href="/dashboard/stylist/services" className={styles.portfolioLink}>
+          Service Curation →
+        </Link>
       </section>
 
       {/* New booking requests — Accept / Decline */}

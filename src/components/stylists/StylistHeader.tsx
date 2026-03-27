@@ -12,7 +12,15 @@ function formatServiceMode(mode: string): string {
   return 'Salon-based'
 }
 
+function getStylistTier(rating: number, reviews: number): { label: string; className: string } {
+  if (rating >= 4.5 && reviews >= 30) return { label: 'Elite', className: styles.tierElite }
+  if (rating >= 4.0 && reviews >= 10) return { label: 'Pro', className: styles.tierPro }
+  return { label: 'Rising', className: styles.tierRising }
+}
+
 export function StylistHeader({ stylist }: StylistHeaderProps) {
+  const tier = getStylistTier(stylist.average_rating, stylist.total_reviews)
+
   return (
     <header className={styles.header}>
       <div className={styles.avatarContainer}>
@@ -31,6 +39,10 @@ export function StylistHeader({ stylist }: StylistHeaderProps) {
               {stylist.full_name.charAt(0)}
             </div>
           )}
+        </div>
+        {/* Tier badge — overlaid on avatar, matching design spec */}
+        <div className={`${styles.tierBadge} ${tier.className}`}>
+          {tier.label}
         </div>
       </div>
 
