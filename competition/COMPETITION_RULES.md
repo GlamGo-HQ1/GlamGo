@@ -3,11 +3,11 @@
 ## Must-Haves
 
 - [x] Team of 2-4 people
-- [ ] Must use Interswitch's APIs
-- [ ] GitHub repository (public or accessible to judges)
-- [ ] Working MVP (hosted live)
-- [ ] All code built during hackathon (March 23-26)
-- [ ] Judges can test and see the solution
+- [x] Must use Interswitch's APIs
+- [x] GitHub repository (public or accessible to judges)
+- [x] Working MVP (hosted live)
+- [x] All code built during hackathon (March 23-26)
+- [x] Judges can test and see the solution
 
 ## What Judges Check
 

@@ -307,6 +307,7 @@ These pre-seeded accounts are ready to use on the live demo:
 | [DATABASE_SCHEMA.md](./docs/DATABASE_SCHEMA.md) | Complete database schema documentation |
 | [PRODUCT_DECISIONS.md](./docs/PRODUCT_DECISIONS.md) | Business logic decisions and rationale |
 | [HAIRSTYLE_CATALOG.md](./docs/HAIRSTYLE_CATALOG.md) | Full catalog of 24+ hairstyles across 7 categories |
+| [PLATFORM_AUDIT.md](./competition/service_curation_audit.md) | The final 12-point UX and database integration audit resolved for submission |
 
 ---
 
