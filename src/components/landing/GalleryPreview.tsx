@@ -107,7 +107,6 @@ export const GalleryPreview = () => {
         viewport={{ once: true, margin: '-80px' }}
       >
         <div className={styles.headerInner}>
-          <span className={styles.volumeTag}>Curated Volume I</span>
           <h2 className={styles.heading}>
             The <span className={styles.headingItalic}>Curator&apos;s</span><br />Choice
           </h2>

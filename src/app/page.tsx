@@ -4,6 +4,8 @@ import { EditorialGrid } from "@/components/landing/EditorialGrid";
 import { BookingFlow } from "@/components/landing/BookingFlow";
 import { GalleryPreview } from "@/components/landing/GalleryPreview";
 import { CommissionCTA } from "@/components/landing/CommissionCTA";
+import { FAQ } from "@/components/landing/FAQ";
+import { Footer } from "@/components/landing/Footer";
 import { MobileBottomNav } from "@/components/landing/MobileBottomNav";
 
 export default function LandingPage() {
@@ -27,8 +29,15 @@ export default function LandingPage() {
       {/* S6: CTA — Commission Your Vision */}
       <CommissionCTA />
 
+      {/* S7: FAQ */}
+      <FAQ />
+
+      {/* S8: Footer */}
+      <Footer />
+
       {/* Mobile Bottom Nav */}
       <MobileBottomNav />
     </>
   );
 }
+

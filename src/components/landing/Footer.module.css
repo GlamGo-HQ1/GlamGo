@@ -1,0 +1,139 @@
+/* === Footer === */
+
+.footer {
+  background: #0a0a0f;
+  border-top: 1px solid rgba(77, 70, 58, 0.1);
+  padding-top: var(--space-16);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* Brand Column */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.brand {
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+  color: #e6c487;
+  text-decoration: none;
+  letter-spacing: -0.05em;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(228, 225, 233, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.socialIcon:hover {
+  background: rgba(230, 196, 135, 0.1);
+  color: #e6c487;
+}
+
+/* Link Columns */
+.linkCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.colTitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.footerLink {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLink:hover {
+  color: #e6c487;
+}
+
+/* Trust Bar */
+.trustBar {
+  max-width: 1200px;
+  margin: var(--space-12) auto 0;
+  padding: var(--space-6) var(--space-6);
+  border-top: 1px solid rgba(77, 70, 58, 0.08);
+}
+
+.trustItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.trustItem svg {
+  color: rgba(230, 196, 135, 0.4);
+}
+
+/* Copyright */
+.copyright {
+  text-align: center;
+  padding: var(--space-6) var(--space-6);
+  font-size: 12px;
+  color: rgba(228, 225, 233, 0.2);
+}
